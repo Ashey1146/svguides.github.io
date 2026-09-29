@@ -1,768 +1,1525 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stateview Correctional Facility - Training Guidelines & Standard Operating Procedures</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#ecfeff',
-              100: '#cffaff',
-              200: '#a5f3fc',
-              300: '#67e8f9',
-              400: '#22d3ee',
-              500: '#06b6d4',
-              600: '#0891b2',
-              700: '#0e7490',
-              800: '#155e75',
-              900: '#164e63',
-              950: '#083344',
-            },
-            darkbg: '#090d16',
-            cardbg: 'rgba(15, 23, 42, 0.75)'
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
-
+  <title>Stateview Training | Tactical Host Portal</title>
   <style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap');
+
+    :root {
+      --bg-core: #030712;
+      --panel-bg: rgba(10, 16, 32, 0.88);
+      --panel-border: rgba(56, 189, 248, 0.22);
+      --panel-border-glow: rgba(56, 189, 248, 0.45);
+      --blue-primary: #38bdf8;
+      --blue-electric: #00d8ff;
+      --blue-glow: rgba(0, 216, 255, 0.35);
+      --blue-dark: #0284c7;
+      --blue-deep-bg: rgba(12, 74, 110, 0.25);
+      
+      --status-copied: #10b981;
+      --status-copied-bg: rgba(16, 185, 129, 0.12);
+      --status-copied-border: rgba(16, 185, 129, 0.4);
+
+      --optional-gold: #fbbf24;
+      --optional-bg: rgba(251, 191, 36, 0.08);
+      --optional-border: rgba(251, 191, 36, 0.35);
+      --optional-glow: rgba(251, 191, 36, 0.25);
+
+      --timer-red: #ef4444;
+      --timer-bg: rgba(239, 68, 68, 0.12);
+
+      --text-main: #f8fafc;
+      --text-muted: #64748b;
+      --text-sub: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-core);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(14, 165, 233, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(3, 105, 161, 0.1) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 30px 20px 100px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 1050px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* FLOATING HOME BUTTON */
+    .btn-home-floating {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      z-index: 999;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 22px;
+      background: rgba(10, 16, 32, 0.9);
+      border: 1px solid var(--blue-primary);
+      border-radius: 50px;
+      color: var(--blue-electric);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px var(--blue-glow);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-home-floating:hover {
+      background: var(--blue-electric);
+      color: #040711;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 216, 255, 0.4);
+    }
+
+    /* DIRECTIVES CARD */
+    .directives-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 24px 28px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .directives-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .directives-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .req-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+
+    .req-box-label {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .req-box-val {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--blue-electric);
+    }
+
+    .video-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+      color: var(--blue-electric);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .video-link-btn:hover {
+      background: var(--blue-electric);
+      color: #040711;
+      box-shadow: 0 0 15px var(--blue-glow);
+    }
+
+    /* TACTICAL CARD */
+    .tactical-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 20px 28px;
+      background: rgba(4, 7, 17, 0.85);
+      border-bottom: 1px solid var(--panel-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .badge-portal {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--blue-deep-bg);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 30px;
+      color: var(--blue-electric);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .badge-pulse {
       width: 8px;
       height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #090d16;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #0891b2;
+      background: var(--blue-electric);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--blue-electric);
+      animation: pulse 2s infinite;
     }
 
-    /* Background Glow Effects */
-    .glow-cyan {
-      box-shadow: 0 0 50px -10px rgba(6, 182, 212, 0.15);
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.4; transform: scale(0.9); }
     }
-    .glow-blue {
-      box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.15);
+
+    /* PROGRESS BAR */
+    .progress-container {
+      padding: 16px 28px;
+      background: rgba(15, 23, 42, 0.5);
+      border-bottom: 1px solid var(--panel-border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    
-    /* Glassmorphism Cards */
-    .glass-card {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(12px);
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      letter-spacing: 0.5px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 9px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue-dark), var(--blue-electric));
+      box-shadow: 0 0 14px var(--blue-electric);
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* TOOLBAR */
+    .toolbar {
+      padding: 16px 28px;
+      background: rgba(8, 13, 26, 0.9);
+      border-bottom: 1px solid var(--panel-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-tab {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    .glass-card-hover {
-      transition: all 0.2s ease-in-out;
-    }
-    .glass-card-hover:hover {
-      border-color: rgba(6, 182, 212, 0.3);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(6, 182, 212, 0.2);
+      border-radius: 10px;
+      color: var(--text-sub);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* Ambient Background Blobs */
-    .bg-blob-1 {
-      position: fixed;
-      top: -10%;
-      left: 15%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(6,182,212,0.08) 0%, rgba(0,0,0,0) 70%);
-      pointer-events: none;
-      z-index: 0;
+    .btn-tab:hover {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--text-main);
+      border-color: rgba(56, 189, 248, 0.3);
     }
-    .bg-blob-2 {
+
+    .btn-tab.active {
+      background: linear-gradient(135deg, var(--blue-dark), #0369a1);
+      color: #ffffff;
+      border-color: var(--blue-electric);
+      box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+    }
+
+    .btn-toggle-indicator.active {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--status-copied);
+      border-color: var(--status-copied-border);
+    }
+
+    .btn-action {
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .btn-reset {
+      background: rgba(239, 68, 68, 0.1);
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-reset:hover {
+      background: rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-restore {
+      background: rgba(251, 191, 36, 0.12);
+      color: var(--optional-gold);
+      border-color: var(--optional-border);
+    }
+
+    .btn-restore:hover {
+      background: rgba(251, 191, 36, 0.25);
+    }
+
+    .btn-save {
+      background: var(--blue-electric);
+      color: #040711;
+    }
+
+    .btn-save:hover {
+      background: #38bdf8;
+      box-shadow: 0 0 15px var(--blue-glow);
+    }
+
+    /* VIEW PANELS */
+    .view-panel {
+      padding: 28px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* LIST VIEW & OPTIONAL BLOCKS */
+    .script-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-title {
+      margin: 20px 0 10px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--blue-electric);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '//';
+      color: var(--blue-dark);
+    }
+
+    /* DISTINCT OPTIONAL SECTION BLOCK */
+    .optional-group-card {
+      background: var(--optional-bg);
+      border: 1px solid var(--optional-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 20px var(--optional-glow);
+      position: relative;
+    }
+
+    .optional-group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed rgba(251, 191, 36, 0.3);
+    }
+
+    .optional-group-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--optional-gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-copy-group {
+      padding: 5px 12px;
+      background: var(--optional-gold);
+      color: #040711;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-copy-group:hover {
+      box-shadow: 0 0 12px var(--optional-gold);
+      transform: translateY(-1px);
+    }
+
+    .script-item {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 14.5px;
+      line-height: 1.6;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      user-select: none;
+    }
+
+    .script-item:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateX(4px);
+    }
+
+    .optional-group-card .script-item {
+      background: rgba(20, 16, 8, 0.6);
+      border-color: rgba(251, 191, 36, 0.2);
+    }
+
+    .optional-group-card .script-item:hover {
+      background: rgba(251, 191, 36, 0.15);
+      border-color: var(--optional-gold);
+    }
+
+    /* COPIED STYLES */
+    .tracking-on .script-item.is-copied {
+      background: var(--status-copied-bg) !important;
+      border-color: var(--status-copied-border) !important;
+      opacity: 0.8;
+    }
+
+    .tracking-on .script-item.is-copied .item-text {
+      color: #a7f3d0;
+      text-decoration: line-through rgba(16, 185, 129, 0.4);
+    }
+
+    .status-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .script-item:hover .status-badge {
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--blue-electric);
+    }
+
+    .tracking-on .script-item.is-copied .status-badge {
+      background: var(--status-copied);
+      color: #042f2e;
+    }
+
+    /* FOCUS MODE CARDS */
+    .focus-card {
+      background: rgba(4, 7, 17, 0.85);
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .focus-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .focus-section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--blue-electric);
+      text-transform: uppercase;
+      background: var(--blue-deep-bg);
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .focus-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* FOCUS MULTI-OPTIONAL DISPLAY */
+    .focus-optional-container {
+      background: var(--optional-bg);
+      border: 1px solid var(--optional-border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .focus-opt-title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .focus-opt-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--optional-gold);
+      text-transform: uppercase;
+    }
+
+    .focus-opt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .focus-opt-item {
+      background: rgba(10, 16, 28, 0.8);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14.5px;
+      line-height: 1.5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .focus-opt-item:hover {
+      background: rgba(251, 191, 36, 0.15);
+      border-color: var(--optional-gold);
+    }
+
+    /* FOCUS REQUIRED CARD */
+    .focus-required-container {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--blue-primary);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+    }
+
+    .focus-req-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue-electric);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .focus-req-text {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    /* ACTION BUTTON ROW */
+    .focus-action-grid {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-focus-action {
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .btn-focus-opt {
+      background: rgba(251, 191, 36, 0.18);
+      border: 1px solid var(--optional-border);
+      color: var(--optional-gold);
+    }
+
+    .btn-focus-opt:hover {
+      background: var(--optional-gold);
+      color: #040711;
+      box-shadow: 0 0 15px var(--optional-glow);
+    }
+
+    .btn-focus-req {
+      background: linear-gradient(135deg, var(--blue-electric), var(--blue-dark));
+      color: #040711;
+      box-shadow: 0 4px 15px var(--blue-glow);
+    }
+
+    .btn-focus-req:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 216, 255, 0.5);
+    }
+
+    .btn-focus-both {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-focus-both:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+    }
+
+    .btn-nav {
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: var(--text-main);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex: 0 0 auto;
+    }
+
+    .btn-nav:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--blue-primary);
+    }
+
+    /* 3-MINUTE TIMER WIDGET */
+    .timer-banner {
+      background: var(--timer-bg);
+      border: 1px solid var(--timer-red);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+      animation: pulse-border 2s infinite;
+    }
+
+    @keyframes pulse-border {
+      0% { border-color: rgba(239, 68, 68, 0.5); }
+      50% { border-color: rgba(239, 68, 68, 1); }
+      100% { border-color: rgba(239, 68, 68, 0.5); }
+    }
+
+    .timer-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .timer-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 26px;
+      font-weight: 800;
+      color: #f87171;
+      letter-spacing: 1px;
+    }
+
+    .btn-timer-ctrl {
+      padding: 10px 18px;
+      background: var(--timer-red);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-timer-ctrl:hover {
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+      transform: scale(1.03);
+    }
+
+    /* EDITOR */
+    #editor {
+      width: 100%;
+      min-height: 600px;
+      background: rgba(4, 7, 17, 0.85);
+      color: var(--text-main);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      line-height: 1.6;
+      outline: none;
+      resize: vertical;
+    }
+
+    #editor:focus {
+      border-color: var(--blue-electric);
+      box-shadow: 0 0 20px var(--blue-glow);
+    }
+
+    /* TOAST */
+    .toast {
       position: fixed;
-      bottom: 10%;
-      right: 10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, rgba(0,0,0,0) 70%);
+      top: 24px;
+      right: 24px;
+      background: var(--blue-electric);
+      color: #040711;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--blue-glow);
+      transform: translateY(-80px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
       pointer-events: none;
-      z-index: 0;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
-<body class="bg-darkbg text-slate-300 font-sans min-h-screen antialiased relative selection:bg-brand-500 selection:text-white">
+<body>
 
-  <!-- Ambient Lights -->
-  <div class="bg-blob-1"></div>
-  <div class="bg-blob-2"></div>
+<a href="index.html" class="btn-home-floating" title="Return to Main Index">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+    <polyline points="9 22 9 12 15 12 15 22"/>
+  </svg>
+  <span>HOME</span>
+</a>
 
-  <!-- Header / Navigation -->
-  <header class="sticky top-0 z-50 bg-darkbg/80 backdrop-blur-md border-b border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="p-2 bg-brand-500/10 border border-brand-500/20 rounded-xl text-brand-400">
-          <i data-lucide="shield-alert" class="w-6 h-6"></i>
-        </div>
-        <div>
-          <h1 class="text-white font-bold tracking-wide text-base sm:text-lg flex items-center gap-2">
-            STATEVIEW CORRECTIONAL FACILITY
-            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20 hidden sm:inline-block">SOP Portal</span>
-          </h1>
-          <p class="text-xs text-slate-400 hidden sm:block">Training Guidelines & Standard Operating Procedures</p>
-        </div>
+<div class="toast" id="toast">COPIED TO CLIPBOARD</div>
+
+<div class="app-container">
+  
+  <!-- DIRECTIVES CARD -->
+  <div class="directives-card">
+    <div class="directives-header">
+      <div class="directives-title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue-electric)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Basic Training Directives & Script Standard
       </div>
-      
-      <!-- Quick Navigation Jump Links -->
-      <nav class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-400">
-        <a href="#overview" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition">Overview</a>
-        <a href="#starting" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition">Starting</a>
-        <a href="#faces" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition">Faces</a>
-        <a href="#questions" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition">Questions</a>
-        <a href="#scenarios" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition">Scenarios</a>
-        <a href="#accuracy" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition">Accuracy</a>
-        <a href="#ending" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition">Ending</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10 space-y-12">
-
-    <!-- Hero Banner & Video Callout -->
-    <section id="overview" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
-      <!-- Main Overview Card -->
-      <div class="lg:col-span-2 glass-card rounded-2xl p-6 sm:p-8 border border-slate-800/80 relative overflow-hidden flex flex-col justify-between">
-        <div class="absolute -right-12 -top-12 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        
-        <div class="space-y-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold">
-            <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Official Protocol Manual
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Basic Training Directives & Script Standard
-          </h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Welcome to the official Stateview Correctional Facility Training Portal. This manual outlines standard operating procedures, personnel requirements, setup deadlines, and official phase scripts for hosting basic training sessions.
-          </p>
-        </div>
-
-        <!-- Key Personnel Requirements Table/Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-800/80 text-xs">
-          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-            <span class="text-slate-400 block mb-1">Min Host</span>
-            <span class="text-white font-bold text-sm">Superintendent+</span>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-            <span class="text-slate-400 block mb-1">Min Co-Host</span>
-            <span class="text-white font-bold text-sm">Chief of Staff+</span>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-            <span class="text-slate-400 block mb-1">Min Trainers</span>
-            <span class="text-white font-bold text-sm">3x Officers+</span>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-            <span class="text-slate-400 block mb-1">Min Overseers</span>
-            <span class="text-white font-bold text-sm">2x CAC Council+</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Video Demonstration Card -->
-      <div class="glass-card rounded-2xl p-6 border border-slate-800/80 flex flex-col justify-between">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold uppercase tracking-wider text-brand-400 flex items-center gap-1.5">
-              <i data-lucide="video" class="w-4 h-4"></i> Video Demonstration
-            </span>
-            <span class="text-xs text-slate-400">Stateview Productions</span>
-          </div>
-          <h3 class="text-lg font-bold text-white">Basic Training Walkthrough</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Watch the full visual walkthrough video demonstrating how to host a training session from setup to completion.
-          </p>
-        </div>
-
-        <!-- Video Player Link / Embed Preview -->
-        <div class="mt-4 relative group rounded-xl overflow-hidden border border-slate-700/60 bg-slate-950 aspect-video flex items-center justify-center">
-          <img src="https://img.youtube.com/vi/7ER3Pt70aMQ/hqdefault.jpg" alt="Video Thumbnail" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-300">
-          <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition"></div>
-          <a href="https://youtu.be/7ER3Pt70aMQ" target="_blank" rel="noopener noreferrer" class="absolute p-3 rounded-full bg-brand-500 text-slate-950 shadow-lg shadow-brand-500/30 group-hover:scale-110 transition">
-            <i data-lucide="play" class="w-6 h-6 fill-current"></i>
-          </a>
-        </div>
-
-        <a href="https://youtu.be/7ER3Pt70aMQ" target="_blank" rel="noopener noreferrer" class="mt-3 text-center text-xs text-brand-400 hover:text-brand-300 flex items-center justify-center gap-1 font-medium">
-          Open demonstration video on YouTube <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- Operational Pre-Session Directives -->
-    <section class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800/80 space-y-6">
-      <div class="flex items-center gap-3">
-        <div class="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400">
-          <i data-lucide="alert-triangle" class="w-5 h-5"></i>
-        </div>
-        <div>
-          <h3 class="text-lg font-bold text-white">Supervision & Preparation Guidelines</h3>
-          <p class="text-xs text-slate-400">Mandatory setup requirements before starting any session</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
-          <div class="font-bold text-white flex items-center gap-2">
-            <i data-lucide="user-check" class="w-4 h-4 text-brand-400"></i> Supervision Requirements
-          </div>
-          <p class="text-slate-300 leading-relaxed text-xs">
-            Hosts and Co-Hosts who hold ranks of Superintendent or Chief of Staff require active supervision from a higher-ranking staff member unless a Board of Directors+ member is present.
-          </p>
-        </div>
-
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
-          <div class="font-bold text-white flex items-center gap-2">
-            <i data-lucide="clock" class="w-4 h-4 text-brand-400"></i> Schedule & Setup Timeline
-          </div>
-          <p class="text-slate-300 leading-relaxed text-xs">
-            Co-Hosts must configure session records on Bloxcord prior to opening. The Host unlocks the session room at <span class="text-amber-300 font-mono">XX:45</span> and locks the doors at <span class="text-amber-300 font-mono">XX:00</span> sharp.
-          </p>
-        </div>
-
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
-          <div class="font-bold text-white flex items-center gap-2">
-            <i data-lucide="shield" class="w-4 h-4 text-brand-400"></i> Readiness Check
-          </div>
-          <p class="text-slate-300 leading-relaxed text-xs">
-            Verify that your Co-Host, Trainers, and Overseers are fully set up in position before announcing rule breakdowns or commencing session phases.
-          </p>
-        </div>
-      </div>
-
-      <!-- Lock Notice Alert Box -->
-      <div class="p-4 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-start sm:items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <i data-lucide="lock" class="w-5 h-5 text-brand-400 shrink-0"></i>
-          <div>
-            <span class="text-xs font-bold text-brand-300 uppercase tracking-wider block">Locking Announcement Line</span>
-            <p class="text-sm font-mono text-white mt-0.5">H The session room has been locked. Remaining trainees may now enter standard training procedures.</p>
-          </div>
-        </div>
-        <button onclick="copyText('H The session room has been locked. Remaining trainees may now enter standard training procedures.')" class="px-3 py-1.5 rounded-lg bg-brand-500/20 hover:bg-brand-500/30 text-brand-300 text-xs font-medium border border-brand-500/30 transition shrink-0 flex items-center gap-1.5">
-          <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Announcement
-        </button>
-      </div>
-    </section>
-
-
-    <!-- ==================== SECTION: STARTING ==================== -->
-    <div class="relative py-4">
-      <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-800"></div></div>
-      <div class="relative flex justify-center">
-        <span class="px-4 py-1.5 rounded-full bg-slate-900 border border-brand-500/30 text-brand-400 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-          <i data-lucide="play-circle" class="w-4 h-4"></i> Section Divider: STARTING
-        </span>
-      </div>
+      <a href="https://youtu.be/7ER3Pt70aMQ?si=3Mos9oKrb_MGYfgk" target="_blank" class="video-link-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        Watch Demonstration Video
+      </a>
     </div>
 
-    <section id="starting" class="space-y-6">
-      <div class="flex items-center justify-between">
-        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-          <i data-lucide="flag" class="w-5 h-5 text-brand-400"></i> Session Introduction & Rule Breakdown
-        </h3>
-        <span class="text-xs text-slate-400">Phase 1: Startup Script</span>
+    <div class="req-grid">
+      <div class="req-box">
+        <div class="req-box-label">Min Host</div>
+        <div class="req-box-val">Chairperson+</div>
       </div>
-
-      <!-- Dialogue Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Host Welcome Script -->
-        <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Host Welcome Speech</span>
-            <button onclick="copyText('Hello, welcome to today\'s training! My name is [Host Username], and I will be your host.')" class="text-xs text-slate-400 hover:text-brand-300 flex items-center gap-1">
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
-            </button>
-          </div>
-          <p class="text-sm font-mono text-slate-200 bg-slate-950/60 p-3 rounded-lg border border-slate-800">
-            "Hello, welcome to today's training! My name is [Host Username], and I will be your host."
-          </p>
-        </div>
-
-        <!-- Co-Host Welcome Script -->
-        <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Co-Host Welcome Speech</span>
-            <button onclick="copyText('Hey! I\'m [Co-Host Username], your co-host, and I\'ll be assisting in today\'s training.')" class="text-xs text-slate-400 hover:text-brand-300 flex items-center gap-1">
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
-            </button>
-          </div>
-          <p class="text-sm font-mono text-slate-200 bg-slate-950/60 p-3 rounded-lg border border-slate-800">
-            "Hey! I'm [Co-Host Username], your co-host, and I'll be assisting in today's training."
-          </p>
-        </div>
+      <div class="req-box">
+        <div class="req-box-label">Min Helpers</div>
+        <div class="req-box-val">2x Superintendent+</div>
       </div>
-
-      <!-- Official Rules Box -->
-      <div class="glass-card rounded-xl p-6 border border-slate-800 space-y-4">
-        <div class="flex items-center justify-between">
-          <h4 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-            <i data-lucide="list-checks" class="w-4 h-4 text-brand-400"></i> Standard Session Rules (Host / Co-Host Transcript)
-          </h4>
-          <span class="text-xs text-slate-400">Read in sequential order</span>
-        </div>
-
-        <div class="space-y-3 text-xs sm:text-sm font-mono">
-          <div class="p-3 rounded-lg bg-slate-950/50 border border-slate-800/80 flex items-start justify-between gap-3">
-            <div>
-              <span class="text-brand-400 font-bold mr-2">Rule 1:</span>
-              <span class="text-slate-200">You must refer to me and my Co-Host by our ranks at all times.</span>
-            </div>
-            <button onclick="copyText('I will now go over our rules for this training. 1 - You must refer to me and my Co-Host by our ranks at all times.')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-
-          <div class="p-3 rounded-lg bg-slate-950/50 border border-slate-800/80 flex items-start justify-between gap-3">
-            <div>
-              <span class="text-brand-400 font-bold mr-2">Rule 2:</span>
-              <span class="text-slate-200">Do not go AFK (Away From Keyboard) or ask PTS (Permission To Speak) while I or my Co-Host are speaking. Doing so will result in a strike or removal.</span>
-            </div>
-            <button onclick="copyText('2 - Do not go AFK (Away From Keyboard) or ask PTS (Permission To Speak) while I or my Co-Host are speaking during this training. Doing so will result in a strike or a removal.')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-
-          <div class="p-3 rounded-lg bg-slate-950/50 border border-slate-800/80 flex items-start justify-between gap-3">
-            <div>
-              <span class="text-brand-400 font-bold mr-2">Rule 3:</span>
-              <span class="text-slate-200">You must be respectful to everyone at all times. Failure to do so will result in training removal and further sanctions.</span>
-            </div>
-            <button onclick="copyText('3 - You must be respectful to everyone at all times. Failure to do so will result in removal from training and possibly further sanctions.')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-
-          <div class="p-3 rounded-lg bg-slate-950/50 border border-slate-800/80 flex items-start justify-between gap-3">
-            <div>
-              <span class="text-brand-400 font-bold mr-2">Rule 4:</span>
-              <span class="text-slate-200">If there is any problem, come to me, my Co-Host, or any other Sir/Ma'am for help. Do not ask for promotion/rank up, or you will be instantly removed.</span>
-            </div>
-            <button onclick="copyText('4 - If there is any problem, come to me, my Co-Host, or any other Sir/Ma\'am for help. You must not ask for a promotion or rank up, or you will be instantly removed.')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-
-          <div class="p-3 rounded-lg bg-slate-950/50 border border-slate-800/80 flex items-start justify-between gap-3">
-            <div>
-              <span class="text-brand-400 font-bold mr-2">Rule 5:</span>
-              <span class="text-slate-200">Trolling in any form is unacceptable. Grammar must be used throughout this training. Failure or failure to use grammar will result in a strike or removal from the training.</span>
-            </div>
-            <button onclick="copyText('5 - Trolling in any form is unacceptable. Grammar must be used throughout this training. Failure or failure to use grammar will result in a strike or removal from the training.')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-
-          <div class="p-3 rounded-lg bg-slate-950/50 border border-slate-800/80 flex items-start justify-between gap-3">
-            <div>
-              <span class="text-brand-400 font-bold mr-2">Rule 6:</span>
-              <span class="text-slate-200">PTS is active unless stated otherwise by me or my Co-Host. Is that understood?</span>
-            </div>
-            <button onclick="copyText('6 - PTS is active unless stated otherwise by me or my Co-Host. Is that understood?')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-        </div>
+      <div class="req-box">
+        <div class="req-box-label">Min Attendees</div>
+        <div class="req-box-val">8 Trainees</div>
       </div>
-    </section>
-
-
-    <!-- ==================== SECTION: FACES ==================== -->
-    <div class="relative py-4">
-      <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-800"></div></div>
-      <div class="relative flex justify-center">
-        <span class="px-4 py-1.5 rounded-full bg-slate-900 border border-brand-500/30 text-brand-400 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-          <i data-lucide="compass" class="w-4 h-4"></i> Section Divider: FACES
-        </span>
+      <div class="req-box">
+        <div class="req-box-label">Session Setup</div>
+        <div class="req-box-val">Bloxcord System</div>
       </div>
     </div>
-
-    <section id="faces" class="space-y-6">
-      <div class="flex items-center justify-between">
-        <div>
-          <h3 class="text-xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="rotate-cw" class="w-5 h-5 text-brand-400"></i> Drill & Facing Commands Evaluation
-          </h3>
-          <p class="text-xs text-slate-400">Phase 2: Reaction time & directional listening orientation</p>
-        </div>
-        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-brand-500/10 text-brand-300 border border-brand-500/20">Phase 2</span>
-      </div>
-
-      <!-- Intro Script Box -->
-      <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-3">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Phase Introduction Speech</span>
-          <button onclick="copyText('We will begin with the faces. In this phase, we will be testing your reaction time and listening skills. Please listen carefully as I will only explain each face once. DO NOT actually do the faces at this point.')" class="text-xs text-brand-400 hover:underline flex items-center gap-1">
-            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Intro Script
-          </button>
-        </div>
-        <p class="text-sm font-mono text-slate-200 bg-slate-950/60 p-3.5 rounded-lg border border-slate-800">
-          "We will begin with the faces. In this phase, we will be testing your reaction time and listening skills. Please listen carefully as I will only explain each face once. DO NOT actually do the faces at this point."
-        </p>
-      </div>
-
-      <!-- Face Definitions Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        
-        <div class="glass-card rounded-xl p-4 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-sm font-bold text-white">Left Face</span>
-            <button onclick="copyText('Left Face - Turn left 90 degrees from your current position.')" class="text-slate-400 hover:text-brand-300"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-          <p class="text-xs text-slate-300 font-mono">Turn left 90 degrees from your current position.</p>
-        </div>
-
-        <div class="glass-card rounded-xl p-4 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-sm font-bold text-white">Right Face</span>
-            <button onclick="copyText('Right Face - Turn right 90 degrees from your current position.')" class="text-slate-400 hover:text-brand-300"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-          <p class="text-xs text-slate-300 font-mono">Turn right 90 degrees from your current position.</p>
-        </div>
-
-        <div class="glass-card rounded-xl p-4 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-sm font-bold text-white">Center Face</span>
-            <button onclick="copyText('Center Face - Turn to your normal position the position you are in right now.')" class="text-slate-400 hover:text-brand-300"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-          <p class="text-xs text-slate-300 font-mono">Turn to your normal position (the position you are in right now).</p>
-        </div>
-
-        <div class="glass-card rounded-xl p-4 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-sm font-bold text-white">About Face</span>
-            <button onclick="copyText('About Face - Turn 180 degrees from your current position.')" class="text-slate-400 hover:text-brand-300"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-          <p class="text-xs text-slate-300 font-mono">Turn 180 degrees from your current position.</p>
-        </div>
-
-        <div class="glass-card rounded-xl p-4 border border-slate-800 space-y-2 sm:col-span-2 lg:col-span-2">
-          <div class="flex items-center justify-between">
-            <span class="text-sm font-bold text-white">Control Face</span>
-            <button onclick="copyText('Control Face - Face the Host/Co-Host at all times (they should be in the middle of your screen at all times).')" class="text-slate-400 hover:text-brand-300"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-          <p class="text-xs text-slate-300 font-mono">Face the Host/Co-Host at all times (they should be centered on screen at all times). Note: Only another face breaks Control Face; Center Face does not.</p>
-        </div>
-
-      </div>
-
-      <!-- Session Tip Callout -->
-      <div class="p-4 rounded-xl bg-slate-900/80 border border-brand-500/20 text-xs text-slate-300 flex items-center gap-3">
-        <i data-lucide="info" class="w-5 h-5 text-brand-400 shrink-0"></i>
-        <span><strong>Session Tip:</strong> Trainees who fail reaction speed or direction twice are dismissed. Remaining attendees standing at completion are marked as passers on Bloxcord.</span>
-      </div>
-    </section>
-
-
-    <!-- ==================== SECTION: QUESTIONS ==================== -->
-    <div class="relative py-4">
-      <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-800"></div></div>
-      <div class="relative flex justify-center">
-        <span class="px-4 py-1.5 rounded-full bg-slate-900 border border-brand-500/30 text-brand-400 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-          <i data-lucide="help-circle" class="w-4 h-4"></i> Section Divider: QUESTIONS
-        </span>
-      </div>
-    </div>
-
-    <section id="questions" class="space-y-6">
-      <div class="flex items-center justify-between">
-        <div>
-          <h3 class="text-xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="message-square-code" class="w-5 h-5 text-brand-400"></i> Rules & Knowledge Assessment Phase
-          </h3>
-          <p class="text-xs text-slate-400">Phase 3: PM Testing for grammar & institutional protocol</p>
-        </div>
-        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-brand-500/10 text-brand-300 border border-brand-500/20">Phase 3</span>
-      </div>
-
-      <!-- Script Directives -->
-      <div class="glass-card rounded-xl p-6 border border-slate-800 space-y-4">
-        <h4 class="text-xs font-bold text-brand-400 uppercase tracking-wider">Instructional Speech Sequence</h4>
-        
-        <div class="space-y-3 font-mono text-xs sm:text-sm">
-          <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
-            <p class="text-slate-200">"We are now moving on to questions. In this phase, I'll be testing you on your knowledge of the rules, grammar, and prison guidelines."</p>
-            <button onclick="copyText('We are now moving on to questions. In this phase, I\'ll be testing you on your knowledge of the rules, grammar, and prison guidelines.')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-
-          <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
-            <p class="text-slate-200">"To start this off, I will send you a private message with the questions I will state shortly. DO NOT send your answers yet."</p>
-            <button onclick="copyText('To start this off, I will send you a private message with the questions I will state shortly. DO NOT send your answers yet.')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-
-          <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 flex items-start justify-between gap-3">
-            <p class="text-slate-200">"I will state the questions in Channel 2:00. DO NOT say the answers out loud—only reply to my PM."</p>
-            <button onclick="copyText('I will state the questions in Channel 2:00. DO NOT say the answers out loud - only reply to my PM.')" class="text-slate-400 hover:text-brand-300 shrink-0"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Questions Asked Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-          <span class="text-xs font-bold text-amber-400 uppercase">Question 1</span>
-          <p class="text-sm font-mono text-white">"What is one reason to use the medical system?"</p>
-        </div>
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-          <span class="text-xs font-bold text-amber-400 uppercase">Question 2</span>
-          <p class="text-sm font-mono text-white">"What would you do if you see a user breaking Roblox Terms of Service?"</p>
-        </div>
-      </div>
-
-      <div class="p-4 rounded-xl bg-brand-500/10 border border-brand-500/20 text-xs text-brand-300 flex items-center justify-between">
-        <span class="font-mono">Timer Command: "You have 2 minutes, starting now!"</span>
-        <button onclick="copyText('You have 2 minutes, starting now!')" class="px-2.5 py-1 rounded bg-brand-500/20 hover:bg-brand-500/30 text-white"><i data-lucide="copy" class="w-3.5 h-3.5 inline"></i></button>
-      </div>
-    </section>
-
-
-    <!-- ==================== SECTION: SCENARIOS ==================== -->
-    <div class="relative py-4">
-      <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-800"></div></div>
-      <div class="relative flex justify-center">
-        <span class="px-4 py-1.5 rounded-full bg-slate-900 border border-brand-500/30 text-brand-400 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-          <i data-lucide="shield-alert" class="w-4 h-4"></i> Section Divider: SCENARIOS
-        </span>
-      </div>
-    </div>
-
-    <section id="scenarios" class="space-y-6">
-      <div class="flex items-center justify-between">
-        <div>
-          <h3 class="text-xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="swords" class="w-5 h-5 text-brand-400"></i> Practical Tactical Evaluation
-          </h3>
-          <p class="text-xs text-slate-400">Phase 4: Equipment usage, comprehension, & threat response</p>
-        </div>
-        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-brand-500/10 text-brand-300 border border-brand-500/20">Phase 4</span>
-      </div>
-
-      <!-- Scenario Rules Cards -->
-      <div class="glass-card rounded-xl p-6 border border-slate-800 space-y-4">
-        <div class="flex items-center justify-between">
-          <h4 class="text-xs font-bold text-brand-400 uppercase tracking-wider">3 Essential Rules for Practical Scenarios</h4>
-          <span class="text-xs text-slate-400">Mandatory Safety Guidelines</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
-          <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
-            <span class="text-red-400 font-bold block">1. No Lethal Force</span>
-            <p class="text-slate-300">DO NOT actually fragg or kill the inmates. Verbal commands and non-lethal equipment apply.</p>
-          </div>
-          <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
-            <span class="text-amber-400 font-bold block">2. Boundary Control</span>
-            <p class="text-slate-300">DO NOT step outside the designated yellow boundary box at any time during execution.</p>
-          </div>
-          <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
-            <span class="text-emerald-400 font-bold block">3. Authorized Tools Only</span>
-            <p class="text-slate-300">Tools permitted: Handcuffs, Taser, Glock, Shield. Unapproved gear results in instant failure.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sample Test Scenarios Table -->
-      <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
-        <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-900/80 border-b border-slate-800 text-slate-400 uppercase font-bold">
-            <tr>
-              <th class="p-3 sm:p-4">Simulated Event</th>
-              <th class="p-3 sm:p-4">Expected Trainee Action</th>
-              <th class="p-3 sm:p-4 text-right">Standard Outcome</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-800/60 font-mono">
-            <tr class="hover:bg-slate-900/40">
-              <td class="p-3 sm:p-4 text-white">Inmate shoots an officer</td>
-              <td class="p-3 sm:p-4 text-slate-300">Neutralize threat, cuff inmate, transfer to maximum security</td>
-              <td class="p-3 sm:p-4 text-emerald-400 text-right font-bold">PASS</td>
-            </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="p-3 sm:p-4 text-white">Inmate exploiting / wall-clipping</td>
-              <td class="p-3 sm:p-4 text-slate-300">Record 30s clip, report to game report ticket server</td>
-              <td class="p-3 sm:p-4 text-emerald-400 text-right font-bold">PASS</td>
-            </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="p-3 sm:p-4 text-white">Disrespectful community guidelines violation</td>
-              <td class="p-3 sm:p-4 text-slate-300">Warn twice, record video evidence, submit report ticket</td>
-              <td class="p-3 sm:p-4 text-emerald-400 text-right font-bold">PASS</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-
-    <!-- ==================== SECTION: ACCURACY ==================== -->
-    <div class="relative py-4">
-      <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-800"></div></div>
-      <div class="relative flex justify-center">
-        <span class="px-4 py-1.5 rounded-full bg-slate-900 border border-brand-500/30 text-brand-400 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-          <i data-lucide="target" class="w-4 h-4"></i> Section Divider: ACCURACY
-        </span>
-      </div>
-    </div>
-
-    <section id="accuracy" class="space-y-6">
-      <div class="flex items-center justify-between">
-        <div>
-          <h3 class="text-xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="crosshair" class="w-5 h-5 text-brand-400"></i> Firearms Accuracy & Target Assessment
-          </h3>
-          <p class="text-xs text-slate-400">Phase 5: Shooting range precision test</p>
-        </div>
-        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-brand-500/10 text-brand-300 border border-brand-500/20">Phase 5</span>
-      </div>
-
-      <div class="glass-card rounded-xl p-6 border border-slate-800 space-y-4">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Range Instruction Speech</span>
-          <button onclick="copyText('You are only allowed to use the Glock 17 for this phase, and you must stay behind the red line at all times. Failure to follow these rules will result in failing this phase.')" class="text-xs text-brand-400 hover:underline flex items-center gap-1">
-            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Script
-          </button>
-        </div>
-        <p class="text-sm font-mono text-slate-200 bg-slate-950/60 p-4 rounded-lg border border-slate-800">
-          "You are only allowed to use the Glock 17 for this phase, and you must stay behind the red line at all times. Failure to follow these rules will result in failing this phase. Without further ado, please relocate to the blue instructional line behind the host's line."
-        </p>
-
-        <!-- Efficiency Tip -->
-        <div class="p-3.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200 flex items-center gap-2">
-          <i data-lucide="sparkles" class="w-4 h-4 text-amber-400 shrink-0"></i>
-          <span><strong>Session Efficiency Tip:</strong> Call up the next participant while the current trainee is taking their accuracy test to keep the session moving rapidly.</span>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ==================== SECTION: ENDING ==================== -->
-    <div class="relative py-4">
-      <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-800"></div></div>
-      <div class="relative flex justify-center">
-        <span class="px-4 py-1.5 rounded-full bg-slate-900 border border-brand-500/30 text-brand-400 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-          <i data-lucide="check-circle-2" class="w-4 h-4"></i> Section Divider: ENDING
-        </span>
-      </div>
-    </div>
-
-    <section id="ending" class="space-y-6">
-      <div class="flex items-center justify-between">
-        <div>
-          <h3 class="text-xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="award" class="w-5 h-5 text-brand-400"></i> Session Conclusion & Dismissal
-          </h3>
-          <p class="text-xs text-slate-400">Final Phase: Promotion announcements & cooldown logging</p>
-        </div>
-        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Conclusion</span>
-      </div>
-
-      <!-- Final Speech Cards -->
-      <div class="space-y-4">
-        
-        <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Completion Speech</span>
-            <button onclick="copyText('We have now completed all phases of the training! I will announce the passers shortly. During this time, you may chat among yourselves (PTS Inactive).')" class="text-xs text-slate-400 hover:text-brand-300 flex items-center gap-1">
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
-            </button>
-          </div>
-          <p class="text-sm font-mono text-slate-200 bg-slate-950/60 p-3 rounded-lg border border-slate-800">
-            "We have now completed all phases of the training! I will announce the passers shortly. During this time, you may chat among yourselves (PTS Inactive)."
-          </p>
-        </div>
-
-        <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Cooldown / Rank Notice</span>
-            <button onclick="copyText('If you have been promoted from this training, your cooldown will range from 3 days to 1 week. Please check with us if you\'re unsure about your cooldown period.')" class="text-xs text-slate-400 hover:text-brand-300 flex items-center gap-1">
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
-            </button>
-          </div>
-          <p class="text-sm font-mono text-slate-200 bg-slate-950/60 p-3 rounded-lg border border-slate-800">
-            "If you have been promoted from this training, your cooldown will range from 3 days to 1 week. Please check with us if you're unsure about your cooldown period."
-          </p>
-        </div>
-
-        <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Final Dismissal</span>
-            <button onclick="copyText('This concludes our training session! It has been an honor and a pleasure to be your host!')" class="text-xs text-slate-400 hover:text-brand-300 flex items-center gap-1">
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
-            </button>
-          </div>
-          <p class="text-sm font-mono text-slate-200 bg-slate-950/60 p-3 rounded-lg border border-slate-800">
-            "This concludes our training session! It has been an honor and a pleasure to be your host!"
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Post-Session Checklist -->
-      <div class="p-6 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 space-y-3">
-        <h4 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-          <i data-lucide="check-square" class="w-4 h-4 text-emerald-400"></i> Post-Session Administrative Checklist
-        </h4>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300 font-mono">
-          <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Take group photo with all attendees visible</li>
-          <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Mark passing trainees on Bloxcord portal</li>
-          <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Unlock training room doors for exit</li>
-          <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Submit logs in Stateview communications server</li>
-        </ul>
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-slate-950/80 py-8 mt-16 text-center text-xs text-slate-400">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <i data-lucide="shield" class="w-4 h-4 text-brand-400"></i>
-        <span class="font-bold text-slate-200">Stateview Correctional Facility</span>
-      </div>
-      <p>Official Roblox Group SOP & Training Guidelines Manual</p>
-    </div>
-  </footer>
-
-  <!-- Toast Notification for Copying -->
-  <div id="toast" class="fixed bottom-5 right-5 bg-brand-500 text-slate-950 px-4 py-2.5 rounded-xl shadow-xl font-semibold text-xs transition duration-300 opacity-0 pointer-events-none flex items-center gap-2 z-50">
-    <i data-lucide="check-circle" class="w-4 h-4"></i>
-    <span id="toast-message">Copied script to clipboard!</span>
   </div>
 
-  <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
+  <!-- MAIN TACTICAL PORTAL -->
+  <div class="tactical-card">
+    
+    <div class="card-header">
+      <div class="badge-portal">
+        <span class="badge-pulse"></span>
+        STATEVIEW HOST PORTAL
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-sub);">
+        [quote="Trey, post:1, topic:2935"]
+      </div>
+    </div>
 
-    // Clipboard Functionality
-    function copyText(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('toast');
-        const toastMsg = document.getElementById('toast-message');
-        toastMsg.textContent = 'Copied script to clipboard!';
-        toast.classList.remove('opacity-0', 'pointer-events-none');
-        
-        setTimeout(() => {
-          toast.classList.add('opacity-0', 'pointer-events-none');
-        }, 2000);
-      }).catch(err => {
-        console.error('Failed to copy: ', err);
+    <!-- PROGRESS BAR -->
+    <div class="progress-container" id="progress-container">
+      <div class="progress-info">
+        <span id="progress-text">PROGRESS TRACKER: 0 / 0 REQUIRED LINES</span>
+        <span id="progress-percent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <div class="control-group">
+        <button class="btn-tab active" id="tab-list" onclick="switchView('list')">List View</button>
+        <button class="btn-tab" id="tab-focus" onclick="switchView('focus')">Focus Mode (Auto-Advance)</button>
+        <button class="btn-tab" id="tab-edit" onclick="switchView('edit')">Edit Script</button>
+      </div>
+
+      <div class="control-group">
+        <button class="btn-tab btn-toggle-indicator active" id="btn-toggle-indicator" onclick="toggleTracking()">
+          <span id="indicator-dot">●</span> Tracking Indicator
+        </button>
+        <button class="btn-action btn-reset" onclick="resetProgress()">Reset Progress</button>
+        <button class="btn-action btn-restore" onclick="restoreDefaultScript()">Restore Default Script</button>
+        <button class="btn-action btn-save" onclick="saveScript()">Save Changes</button>
+      </div>
+    </div>
+
+    <!-- VIEW 1: INTERACTIVE LIST VIEW -->
+    <div class="view-panel tracking-on" id="view-list">
+      <div class="script-list" id="script-list"></div>
+    </div>
+
+    <!-- VIEW 2: FOCUS MODE -->
+    <div class="view-panel hidden" id="view-focus">
+      <div class="focus-card">
+        <div class="focus-header-row">
+          <div class="focus-section-tag" id="focus-section">SECTION</div>
+          <div class="focus-counter" id="focus-counter">Step 0 of 0</div>
+        </div>
+
+        <!-- TIMER PROMPT WIDGET (Appears dynamically for Questions) -->
+        <div class="timer-banner hidden" id="focus-timer-banner">
+          <div class="timer-info">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <div style="font-size: 11px; font-weight: 800; color: #f87171; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;">3-Minute Question Timer</div>
+              <div class="timer-display" id="timer-display">03:00</div>
+            </div>
+          </div>
+          <button class="btn-timer-ctrl" id="btn-timer-ctrl" onclick="toggleTimer()">START TIMER</button>
+        </div>
+
+        <!-- OPTIONAL GROUP CONTAINER (if present in step) -->
+        <div class="focus-optional-container hidden" id="focus-opt-box">
+          <div class="focus-opt-title-bar">
+            <div class="focus-opt-badge">⚡ OPTIONAL LINES GROUP (<span id="opt-count">0</span>)</div>
+            <button class="btn-copy-group" onclick="copyFocusOptionalsGroup()">Copy All Optionals</button>
+          </div>
+          <div class="focus-opt-list" id="focus-opt-list"></div>
+        </div>
+
+        <!-- REQUIRED LINE CONTAINER -->
+        <div class="focus-required-container" id="focus-req-box">
+          <div class="focus-req-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            REQUIRED SCRIPT LINE
+          </div>
+          <div class="focus-req-text" id="focus-req-text">Required line text goes here...</div>
+        </div>
+
+        <!-- ACTION BUTTON ROW -->
+        <div class="focus-action-grid">
+          <button class="btn-nav" onclick="navFocus(-1)">← Prev</button>
+          <button class="btn-focus-action btn-focus-opt hidden" id="btn-copy-opt-only" onclick="copyFocusOptionalsGroup()">Copy Optionals Only</button>
+          <button class="btn-focus-action btn-focus-req" id="btn-copy-req-only" onclick="copyFocusRequiredLine()">Copy Required Line</button>
+          <button class="btn-focus-action btn-focus-both hidden" id="btn-copy-both" onclick="copyFocusBothAndAdvance()">Copy Both & Advance →</button>
+          <button class="btn-nav" onclick="navFocus(1)">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: RAW SCRIPT EDITOR -->
+    <div class="view-panel hidden" id="view-edit">
+      <textarea id="editor" spellcheck="false"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const DEFAULT_SCRIPT = `ANNOUNCEMENTS
+
+H There's a Training being hosted in the session room, come and attend to show activity and possibly receive a promotion! [1/3].
+H There's a Training being hosted in the session room, come and attend to show activity and possibly receive a promotion! [2/3].
+H There's a Training being hosted in the session room, come and attend to show activity and possibly receive a promotion! [3/3].
+H The session room has been locked. You can no longer attend the Training as all fall-in's will be denied.
+
+STARTING
+
+---OPTIONAL--- Greetings everyone! Before we begin, please switch over to channel 2. Crouch when switched.
+---OPTIONAL--- Alright, we will now begin with the training. Please note that PTS and STS will be enforced from this point onwards. If you break it, you'll be striked.
+Salutations! I am [USERNAME] and I'll be your host for today's training.
+---OPTIONAL--- Before we begin, please note that the host has full authority to dismiss and strike attendees for any reason. Do not complain about being striked or that will result in additional strikes.
+I will now go over the rules for this training.
+I – You must refer to me and my Co-Host by our ranks at all times.
+II – Do not go AFK (Away From Keyboard) or say PTS (Permission To Speak) while I am speaking during this training. Doing so will result in a removal or a strike.
+III – You must be respectful to everyone at all times. Failure to do so will result in removal from the training and possibly further sanctions.
+IV – If there is any problem, come to me, my Co-Host, or any other SI+ for assistance. You must not ask for a promotion/rank, or you will be instantly removed.
+V – Trolling in any form is unacceptable! Grammar must be used throughout this training. Trolling or failure to use grammar will result in a strike or instant removal from the training.
+VI – PTS is active unless stated otherwise by me or my Co-Host.
+
+FACES
+
+We will begin with the faces.
+In this phase, we will be testing your reaction time and listening skills!
+Please listen carefully, as I will only explain each face once. Do NOT actually do the faces at this point.
+Left Face – Turn left 90 degrees from your current position.
+Right Face – Turn right, 90 degrees from your current position.
+Center Face – Turn to your normal position (the position you are in right now).
+About Face – Turn 180 degrees from your current position.
+Control Face – Face the Host/Co-Host at all times (they should be in the middle of your screen at all times).
+Please note: Only the center face breaks control face—any other face does not.
+If you are sat, do NOT jump unless I say so. Failure to follow this rule will result in a strike.
+---OPTIONAL--- Please listen carefully to the faces, and don't complain about being sat.
+---OPTIONAL--- Right, Face!
+---OPTIONAL--- Left, Face!
+---OPTIONAL--- About, Face!
+---OPTIONAL--- Control, Face!
+---OPTIONAL--- Center, Face!
+---OPTIONAL--- We will now be ending faces, DO NOT jump yet.
+Faces have concluded. You may all now jump.
+
+QUESTIONS
+
+We are now moving on to questions. In this phase, I’ll be testing you on your grammar and knowledge of the rules.
+To start this off, I will send you a private message with the questions I will state shortly. Do NOT reply yet!
+I will state the questions in Channel 2. DO NOT say the answers out loud—reply only to the PM.
+---OPTIONAL--- What is Lethal Force used for?
+---OPTIONAL--- What are handcuffs used for?
+---OPTIONAL--- What is a taser used for?
+---OPTIONAL--- What is a gun used for?
+---OPTIONAL--- What are a few reasons you should put an inmate in Maximum Security?
+---OPTIONAL--- What are a few reasons you should put an inmate in Solitary Confinement?
+---OPTIONAL--- What is a reason to use the modcall system?
+---OPTIONAL--- What would you do if you see someone breaking Roblox ToS?
+---OPTIONAL--- What would you do if you see an abuser in-game?
+You have 3 minutes, starting now! Crouch once you've answered.
+---OPTIONAL--- The 3 minutes have ended, everyone may stand up. I will now be stating answers to the questions.
+---OPTIONAL--- Lethal Force is used to kill inmates or criminals, who are holding weapons, crossing the red line, rioting, or causing a threat in any way, shape or form.
+---OPTIONAL--- Handcuffs are used to detain, frisk or transport inmates, or to arrest criminals.
+---OPTIONAL--- Tasers are used to temporarily paralyze inmates or criminals to gain an advantage over them.
+---OPTIONAL--- Guns are used to kill inmates or criminals, who are holding weapons, crossing the red line, rioting, or causing a threat in any way, shape or form.
+---OPTIONAL--- Reasons to put an inmate in Maximum Security include, but are not limited to: Inmates who have reached 3 warnings, those who are rioting, holding weapons or killing people.
+---OPTIONAL--- Reasons to put an inmate in Solitary include, but are not limited to: Inmates who have reached 3 warnings, those who are rioting, holding weapons or killing people.
+---OPTIONAL--- The modcall system is used when a player is breaking either Stateview's or Roblox's rules/ToS.
+---OPTIONAL--- If you see someone breaking Roblox ToS, you should report it to Roblox and to Stateview, via a modcall or a report on intel.
+---OPTIONAL--- If someone is abusing in-game, you should collect proof and use modcall to report them.
+All answers, similar to what I've stated will be counted as correct.
+
+SCENARIOS
+
+We are now moving onto Scenarios! In this phase, we are testing you on your knowledge of the rules, comprehension, grammar, and question correctness—along with your proficiency with equipment!
+I will now state 3 important rules for this phase.
+1. Do NOT actually frisk or kill the instructors - Use verbal commands like -frisks- instead.
+2. Do NOT step outside the pink box.
+3. The tools permitted for this section are handcuffs, tasers, Glocks, and shields. The use of any other tools will result in failure.
+Each of you will be tasked with an appropriate interaction demonstrated by the inmate. Your responses should follow the facility’s rules and guidelines.
+Now, please split up into 2 equal groups and STS on the lime instructional lines along the room.
+Now, everybody should STS on the lime instructional lines along the room.
+---OPTIONAL--- Killing others, using a Glock-17 as an inmate. What would you do?
+---OPTIONAL--- Using a fake keycard to escape. What would you do?
+---OPTIONAL--- Killing others, using a knife as an inmate. What would you do?
+---OPTIONAL--- Playing bypassed audios on a boombox. What would you do?
+---OPTIONAL--- AFK farming to gain XP. What would you do?
+---OPTIONAL--- Exploiting by using unauthorized modifications. What would you do?
+
+ACCURACY
+
+We are now moving on to the accuracy phase! In this section, we will evaluate your precision, aiming skills, listening abilities, and overall accuracy.
+You are only allowed to use the Glock-17 for this phase, and you must stay behind the red line at all times. Failure to follow these rules will result in failing this phase.
+Without further ado, please relocate to the blue instructional line behind the host’s instructional lines.
+---OPTIONAL--- Knock your weapon!
+---OPTIONAL--- Ready!
+---OPTIONAL--- Aim!
+---OPTIONAL--- Fire!
+
+ENDING
+
+We have now completed all phases of the training! I will announce the passers shortly. During this time, you may chat among yourselves (PTS inactive).
+---OPTIONAL--- Before we announce the passers, we’ll take a group photo. Please remain in STS formation during this time and DO NOT TALK.
+---OPTIONAL--- Alright, I will now announce the passers of this training. You all did well, but the following people stood out.
+If you have been promoted from this training, your cooldown will range from 3 days to 1 week. Please check with us if you’re unsure about your cooldown period!
+This concludes our training session! It has been an honor and a pleasure to be your host today. You are all now dismissed from the session room.
+H The training is now over! Passers, please say !rejoin to view your new ranks! All dismissed from the session room!`;
+
+  // State Management
+  let rawScript = localStorage.getItem('sv_script_v3');
+  if (!rawScript || !rawScript.trim()) {
+    rawScript = DEFAULT_SCRIPT;
+    localStorage.setItem('sv_script_v3', DEFAULT_SCRIPT);
+  }
+
+  let copiedLineIds = new Set(JSON.parse(localStorage.getItem('sv_copied_v3') || '[]'));
+  let isTrackingEnabled = localStorage.getItem('sv_tracking_v3') !== 'false';
+  let focusStepIdx = 0;
+  
+  // Data Structures
+  let parsedStructure = []; // Raw parsed items (headers, optionals, required)
+  let focusSteps = [];      // Grouped steps for Focus Mode
+
+  // Timer State
+  let timerInterval = null;
+  let timerTime = 180; // 3 minutes in seconds
+  let timerRunning = false;
+
+  // DOM Elements
+  const scriptList = document.getElementById('script-list');
+  const editor = document.getElementById('editor');
+  const toast = document.getElementById('toast');
+  const progressFill = document.getElementById('progress-fill');
+  const progressText = document.getElementById('progress-text');
+  const progressPercent = document.getElementById('progress-percent');
+  const btnToggleIndicator = document.getElementById('btn-toggle-indicator');
+
+  function initApp() {
+    editor.value = rawScript;
+    processScript();
+    updateTrackingUI();
+
+    document.addEventListener('keydown', (e) => {
+      const focusView = document.getElementById('view-focus');
+      if (!focusView.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          navFocus(1);
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          navFocus(-1);
+        }
+      }
+    });
+  }
+
+  // Parse Raw Text into Clean Structures & Group Consecutive Optionals
+  function processScript() {
+    parsedStructure = [];
+    focusSteps = [];
+
+    const rawLines = rawScript.split('\n');
+    let currentSection = 'GENERAL';
+    let lineIdCounter = 0;
+
+    let tempOptionalsBuffer = [];
+
+    rawLines.forEach((line) => {
+      let trimmed = line.trim();
+      if (!trimmed) return;
+
+      const isHeader = /^---[A-Z\s]+---$/.test(trimmed) || 
+                       (/^[A-Z\s]{3,}$/.test(trimmed) && trimmed.length < 35 && !trimmed.startsWith('H '));
+
+      if (isHeader) {
+        // Flush any pending optionals before section change
+        if (tempOptionalsBuffer.length > 0) {
+          focusSteps.push({
+            section: currentSection,
+            optionals: [...tempOptionalsBuffer],
+            required: null
+          });
+          tempOptionalsBuffer = [];
+        }
+
+        currentSection = trimmed.replace(/---/g, '').trim();
+        parsedStructure.push({ type: 'header', text: currentSection });
+      } else {
+        const isOptional = trimmed.startsWith('---OPTIONAL---');
+        const textContent = isOptional ? trimmed.replace('---OPTIONAL---', '').trim() : trimmed;
+        const lineObj = {
+          id: lineIdCounter++,
+          text: textContent,
+          isOptional: isOptional,
+          section: currentSection
+        };
+
+        parsedStructure.push({ type: 'line', data: lineObj });
+
+        if (isOptional) {
+          tempOptionalsBuffer.push(lineObj);
+        } else {
+          // Required Line Hit -> Pair with accumulated optionals
+          focusSteps.push({
+            section: currentSection,
+            optionals: [...tempOptionalsBuffer],
+            required: lineObj
+          });
+          tempOptionalsBuffer = [];
+        }
+      }
+    });
+
+    // Handle trailing optionals if script ends with them
+    if (tempOptionalsBuffer.length > 0) {
+      focusSteps.push({
+        section: currentSection,
+        optionals: [...tempOptionalsBuffer],
+        required: null
       });
     }
-  </script>
+
+    renderList();
+    renderFocus();
+    updateProgress();
+  }
+
+  // Render Interactive List View with Grouped Optionals Sections
+  function renderList() {
+    scriptList.innerHTML = '';
+    let i = 0;
+
+    while (i < parsedStructure.length) {
+      const item = parsedStructure[i];
+
+      if (item.type === 'header') {
+        const header = document.createElement('div');
+        header.className = 'section-title';
+        header.innerText = item.text;
+        scriptList.appendChild(header);
+        i++;
+      } 
+      else if (item.type === 'line' && item.data.isOptional) {
+        // Gather consecutive optionals into a single visual block
+        const optionalGroup = [];
+        while (i < parsedStructure.length && parsedStructure[i].type === 'line' && parsedStructure[i].data.isOptional) {
+          optionalGroup.push(parsedStructure[i].data);
+          i++;
+        }
+
+        const groupCard = document.createElement('div');
+        groupCard.className = 'optional-group-card';
+
+        const groupTextAll = optionalGroup.map(o => o.text).join('\n');
+        
+        groupCard.innerHTML = `
+          <div class="optional-group-header">
+            <div class="optional-group-title">
+              ⚡ OPTIONAL SECTION / BLOCK (${optionalGroup.length} ITEMS)
+            </div>
+            <button class="btn-copy-group" onclick="copyTextBlock(\`${escapeQuotes(groupTextAll)}\`, [${optionalGroup.map(o=>o.id).join(',')}])">
+              Copy Entire Optional Block
+            </button>
+          </div>
+          <div class="optional-items-wrapper"></div>
+        `;
+
+        const itemsWrapper = groupCard.querySelector('.optional-items-wrapper');
+        optionalGroup.forEach(opt => {
+          const isCopied = copiedLineIds.has(opt.id);
+          const lineEl = document.createElement('div');
+          lineEl.className = `script-item ${isCopied ? 'is-copied' : ''}`;
+          lineEl.style.marginBottom = '6px';
+          lineEl.innerHTML = `
+            <span class="item-text">${opt.text}</span>
+            <span class="status-badge">${isCopied ? '✓ COPIED' : 'CLICK TO COPY'}</span>
+          `;
+          lineEl.onclick = (e) => {
+            e.stopPropagation();
+            copySingleLine(opt.text, opt.id);
+          };
+          itemsWrapper.appendChild(lineEl);
+        });
+
+        scriptList.appendChild(groupCard);
+      } 
+      else if (item.type === 'line' && !item.data.isOptional) {
+        // Standard Required Line
+        const req = item.data;
+        const isCopied = copiedLineIds.has(req.id);
+
+        const card = document.createElement('div');
+        card.className = `script-item ${isCopied ? 'is-copied' : ''}`;
+        card.innerHTML = `
+          <span class="item-text">${req.text}</span>
+          <span class="status-badge">${isCopied ? '✓ COPIED' : 'CLICK TO COPY'}</span>
+        `;
+        card.onclick = () => copySingleLine(req.text, req.id);
+
+        scriptList.appendChild(card);
+        i++;
+      }
+    }
+  }
+
+  // Render Focus Mode Card
+  function renderFocus() {
+    if (focusSteps.length === 0) return;
+
+    if (focusStepIdx >= focusSteps.length) focusStepIdx = focusSteps.length - 1;
+    if (focusStepIdx < 0) focusStepIdx = 0;
+
+    const currentStep = focusSteps[focusStepIdx];
+
+    document.getElementById('focus-section').innerText = currentStep.section;
+    document.getElementById('focus-counter').innerText = `Step ${focusStepIdx + 1} of ${focusSteps.length}`;
+
+    // Handle Optionals
+    const optBox = document.getElementById('focus-opt-box');
+    const optList = document.getElementById('focus-opt-list');
+    const optCount = document.getElementById('opt-count');
+    const btnCopyOptOnly = document.getElementById('btn-copy-opt-only');
+    const btnCopyBoth = document.getElementById('btn-copy-both');
+
+    if (currentStep.optionals && currentStep.optionals.length > 0) {
+      optBox.classList.remove('hidden');
+      btnCopyOptOnly.classList.remove('hidden');
+      optCount.innerText = currentStep.optionals.length;
+      optList.innerHTML = '';
+
+      currentStep.optionals.forEach(opt => {
+        const isCopied = copiedLineIds.has(opt.id);
+        const optEl = document.createElement('div');
+        optEl.className = 'focus-opt-item';
+        optEl.innerHTML = `
+          <span style="${isCopied ? 'text-decoration: line-through; opacity: 0.7;' : ''}">${opt.text}</span>
+          <span class="status-badge" style="font-size:10px;">${isCopied ? '✓' : 'COPY'}</span>
+        `;
+        optEl.onclick = () => copySingleLine(opt.text, opt.id);
+        optList.appendChild(optEl);
+      });
+    } else {
+      optBox.classList.add('hidden');
+      btnCopyOptOnly.classList.add('hidden');
+    }
+
+    // Handle Required Line
+    const reqBox = document.getElementById('focus-req-box');
+    const reqTextEl = document.getElementById('focus-req-text');
+
+    if (currentStep.required) {
+      reqBox.classList.remove('hidden');
+      reqTextEl.innerText = currentStep.required.text;
+      
+      if (currentStep.optionals.length > 0) {
+        btnCopyBoth.classList.remove('hidden');
+      } else {
+        btnCopyBoth.classList.add('hidden');
+      }
+    } else {
+      reqBox.classList.add('hidden');
+      btnCopyBoth.classList.add('hidden');
+    }
+
+    // Trigger Timer prompt if this step involves 3 minutes question
+    const reqTextStr = currentStep.required ? currentStep.required.text : '';
+    const timerBanner = document.getElementById('focus-timer-banner');
+    if (reqTextStr.includes('3 minutes')) {
+      timerBanner.classList.remove('hidden');
+    } else {
+      timerBanner.classList.add('hidden');
+    }
+  }
+
+  // Focus Copy Handlers
+  function copyFocusOptionalsGroup() {
+    const currentStep = focusSteps[focusStepIdx];
+    if (!currentStep.optionals || currentStep.optionals.length === 0) return;
+
+    const fullText = currentStep.optionals.map(o => o.text).join('\n');
+    const ids = currentStep.optionals.map(o => o.id);
+    copyTextBlock(fullText, ids);
+  }
+
+  function copyFocusRequiredLine() {
+    const currentStep = focusSteps[focusStepIdx];
+    if (!currentStep.required) return;
+
+    copySingleLine(currentStep.required.text, currentStep.required.id);
+    if (focusStepIdx < focusSteps.length - 1) {
+      focusStepIdx++;
+      renderFocus();
+    }
+  }
+
+  function copyFocusBothAndAdvance() {
+    const currentStep = focusSteps[focusStepIdx];
+    let combinedText = [];
+    let ids = [];
+
+    if (currentStep.optionals.length > 0) {
+      combinedText.push(currentStep.optionals.map(o => o.text).join('\n'));
+      ids.push(...currentStep.optionals.map(o => o.id));
+    }
+    if (currentStep.required) {
+      combinedText.push(currentStep.required.text);
+      ids.push(currentStep.required.id);
+    }
+
+    copyTextBlock(combinedText.join('\n'), ids);
+
+    if (focusStepIdx < focusSteps.length - 1) {
+      focusStepIdx++;
+      renderFocus();
+    }
+  }
+
+  function navFocus(dir) {
+    focusStepIdx = Math.max(0, Math.min(focusSteps.length - 1, focusStepIdx + dir));
+    renderFocus();
+  }
+
+  // Clipboard & Storage Utility
+  function copySingleLine(text, id) {
+    navigator.clipboard.writeText(text);
+    copiedLineIds.add(id);
+    saveCopiedState();
+    showToast('COPIED TO CLIPBOARD!');
+    renderList();
+    renderFocus();
+    updateProgress();
+  }
+
+  function copyTextBlock(text, idsArray) {
+    navigator.clipboard.writeText(text);
+    idsArray.forEach(id => copiedLineIds.add(id));
+    saveCopiedState();
+    showToast(`${idsArray.length} LINES COPIED!`);
+    renderList();
+    renderFocus();
+    updateProgress();
+  }
+
+  function saveCopiedState() {
+    localStorage.setItem('sv_copied_v3', JSON.stringify([...copiedLineIds]));
+  }
+
+  function updateProgress() {
+    const allRequiredLines = parsedStructure.filter(i => i.type === 'line' && !i.data.isOptional);
+    const totalRequired = allRequiredLines.length;
+
+    const copiedCount = allRequiredLines.filter(i => copiedLineIds.has(i.data.id)).length;
+    const pct = totalRequired > 0 ? Math.round((copiedCount / totalRequired) * 100) : 0;
+
+    progressFill.style.width = `${pct}%`;
+    progressText.innerText = `PROGRESS TRACKER: ${copiedCount} / ${totalRequired} REQUIRED LINES COPIED`;
+    progressPercent.innerText = `${pct}%`;
+  }
+
+  // 3-Minute Timer Logic
+  function toggleTimer() {
+    const btn = document.getElementById('btn-timer-ctrl');
+    if (timerRunning) {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      btn.innerText = 'RESUME TIMER';
+    } else {
+      timerRunning = true;
+      btn.innerText = 'PAUSE TIMER';
+      timerInterval = setInterval(() => {
+        timerTime--;
+        updateTimerDisplay();
+        if (timerTime <= 0) {
+          clearInterval(timerInterval);
+          timerRunning = false;
+          btn.innerText = 'RESET TIMER';
+          showToast('⏰ 3 MINUTES IS UP!');
+          timerTime = 180;
+        }
+      }, 1000);
+    }
+  }
+
+  function updateTimerDisplay() {
+    const mins = Math.floor(timerTime / 60);
+    const secs = timerTime % 60;
+    document.getElementById('timer-display').innerText = 
+      `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+
+  // Portal View Controls
+  function toggleTracking() {
+    isTrackingEnabled = !isTrackingEnabled;
+    localStorage.setItem('sv_tracking_v3', isTrackingEnabled);
+    updateTrackingUI();
+  }
+
+  function updateTrackingUI() {
+    const viewList = document.getElementById('view-list');
+    if (isTrackingEnabled) {
+      viewList.classList.add('tracking-on');
+      btnToggleIndicator.classList.add('active');
+    } else {
+      viewList.classList.remove('tracking-on');
+      btnToggleIndicator.classList.remove('active');
+    }
+  }
+
+  function switchView(view) {
+    document.getElementById('view-list').classList.add('hidden');
+    document.getElementById('view-focus').classList.add('hidden');
+    document.getElementById('view-edit').classList.add('hidden');
+
+    document.getElementById('tab-list').classList.remove('active');
+    document.getElementById('tab-focus').classList.remove('active');
+    document.getElementById('tab-edit').classList.remove('active');
+
+    if (view === 'list') {
+      document.getElementById('view-list').classList.remove('hidden');
+      document.getElementById('tab-list').classList.add('active');
+    } else if (view === 'focus') {
+      document.getElementById('view-focus').classList.remove('hidden');
+      document.getElementById('tab-focus').classList.add('active');
+      renderFocus();
+    } else if (view === 'edit') {
+      document.getElementById('view-edit').classList.remove('hidden');
+      document.getElementById('tab-edit').classList.add('active');
+    }
+  }
+
+  function saveScript() {
+    rawScript = editor.value;
+    localStorage.setItem('sv_script_v3', rawScript);
+    processScript();
+    showToast('Script Saved!');
+  }
+
+  function resetProgress() {
+    copiedLineIds.clear();
+    localStorage.removeItem('sv_copied_v3');
+    focusStepIdx = 0;
+    processScript();
+    showToast('Progress Reset!');
+  }
+
+  function restoreDefaultScript() {
+    rawScript = DEFAULT_SCRIPT;
+    localStorage.setItem('sv_script_v3', DEFAULT_SCRIPT);
+    editor.value = DEFAULT_SCRIPT;
+    copiedLineIds.clear();
+    localStorage.removeItem('sv_copied_v3');
+    focusStepIdx = 0;
+    processScript();
+    showToast('Default Script Restored!');
+  }
+
+  function showToast(msg = 'COPIED TO CLIPBOARD') {
+    toast.innerText = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+
+  function escapeQuotes(str) {
+    return str.replace(/`/g, '\\`').replace(/\$/g, '\\$');
+  }
+
+  document.addEventListener('DOMContentLoaded', initApp);
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    initApp();
+  }
+</script>
+
 </body>
 </html>
