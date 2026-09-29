@@ -93,6 +93,116 @@
       box-shadow: 0 15px 35px var(--accent-glow);
     }
 
+    /* GUIDE MANAGEMENT BAR */
+    .guide-manager-bar {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 14px 20px;
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .guide-selector-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .guide-selector-group label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-electric);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .guide-select {
+      background: rgba(4, 7, 17, 0.9);
+      border: 1px solid var(--panel-border);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      flex: 1;
+      min-width: 180px;
+      transition: all 0.2s;
+    }
+
+    .guide-select:focus {
+      border-color: var(--accent-electric);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .guide-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-guide-act {
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-new-guide {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-primary);
+      color: var(--accent-electric);
+    }
+
+    .btn-new-guide:hover {
+      background: var(--accent-electric);
+      color: #040711;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .btn-duplicate-guide {
+      background: rgba(251, 191, 36, 0.12);
+      border-color: rgba(251, 191, 36, 0.3);
+      color: var(--optional-gold);
+    }
+
+    .btn-duplicate-guide:hover {
+      background: var(--optional-gold);
+      color: #040711;
+      box-shadow: 0 0 12px var(--optional-glow);
+    }
+
+    .btn-delete-guide {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
+    }
+
+    .btn-delete-guide:hover {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: #ef4444;
+      color: #ffffff;
+    }
+
     /* DIRECTIVES CARD */
     .directives-card {
       background: var(--panel-bg);
@@ -328,6 +438,16 @@
 
     .btn-reset:hover {
       background: rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-reset-guide {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fcd34d;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-reset-guide:hover {
+      background: rgba(245, 158, 11, 0.25);
     }
 
     .btn-export {
@@ -807,6 +927,102 @@
       box-shadow: 0 0 20px var(--accent-glow);
     }
 
+    /* MODAL CONFIRMATION DIALOG */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: rgba(10, 16, 32, 0.95);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 28px;
+      max-width: 460px;
+      width: 100%;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transform: scale(0.95);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-sub);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn-modal {
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-cancel {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+    }
+
+    .btn-modal-cancel:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-modal-confirm {
+      background: #ef4444;
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-modal-confirm:hover {
+      background: #dc2626;
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
+    }
+
     /* TOAST */
     .toast {
       position: fixed;
@@ -845,8 +1061,46 @@
 
 <div class="toast" id="toast">COPIED TO CLIPBOARD</div>
 
+<!-- CONFIRMATION MODAL -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span id="modal-title-text">Confirm Action</span>
+    </div>
+    <div class="modal-body" id="modal-body-text">Are you sure you want to proceed with this action?</div>
+    <div class="modal-actions">
+      <button class="btn-modal btn-modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-modal btn-modal-confirm" id="btn-modal-proceed">Confirm</button>
+    </div>
+  </div>
+</div>
+
 <div class="app-container">
   
+  <!-- GUIDE MANAGEMENT SELECTOR & BAR -->
+  <div class="guide-manager-bar">
+    <div class="guide-selector-group">
+      <label for="guide-select">Active Guide:</label>
+      <select id="guide-select" class="guide-select" onchange="switchGuide(this.value)"></select>
+    </div>
+
+    <div class="guide-actions">
+      <button class="btn-guide-act btn-new-guide" onclick="createNewGuide()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Guide
+      </button>
+      <button class="btn-guide-act btn-duplicate-guide" onclick="duplicateCurrentGuide()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Duplicate
+      </button>
+      <button class="btn-guide-act btn-delete-guide" onclick="confirmDeleteGuide()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        Delete
+      </button>
+    </div>
+  </div>
+
   <!-- DYNAMIC DIRECTIVES CARD -->
   <div class="directives-card">
     <div class="directives-header">
@@ -901,6 +1155,7 @@
           <span id="indicator-dot">●</span> Tracking Indicator
         </button>
         <button class="btn-action btn-reset" onclick="resetProgress()">Reset Progress</button>
+        <button class="btn-action btn-reset-guide" onclick="confirmResetGuide()">Reset Guide Content</button>
         <button class="btn-action btn-export" onclick="exportGuideJSON()">Export Backup</button>
         <button class="btn-action btn-save" onclick="saveAllSettings()">Save Permanent</button>
       </div>
@@ -1005,22 +1260,67 @@
 </div>
 
 <script>
-  // Default Configuration Template
-  const DEFAULT_CONFIG = {
-    title: "My Custom Tactical Guide",
-    badge: "CUSTOM PROTOCOL PORTAL",
-    subref: "[Custom System v1.0]",
-    videoUrl: "",
-    accentColor: "#38bdf8",
-    directives: [],
-    script: ""
-  };
+  // Default Guide Template generator
+  function createDefaultGuide(id, title = "New Custom Tactical Guide") {
+    return {
+      id: id || 'guide_' + Date.now(),
+      title: title,
+      badge: "CUSTOM PROTOCOL PORTAL",
+      subref: "[Custom System v1.0]",
+      videoUrl: "",
+      accentColor: "#38bdf8",
+      directives: [
+        { label: "Target", val: "Primary Directive" },
+        { label: "Status", val: "Active" }
+      ],
+      script: "---INITIAL SECTION---\nThis is your first required line.\n---OPTIONAL---\nThis is an optional script line.\nAnother required step to complete."
+    };
+  }
 
-  // Persistent State
-  let guideConfig = JSON.parse(localStorage.getItem('fully_custom_guide_cfg_v1')) || DEFAULT_CONFIG;
-  let copiedLineIds = new Set(JSON.parse(localStorage.getItem('fully_custom_guide_copied_v1') || '[]'));
+  // Legacy Migration Check & Multiple Guide Storage Setup
+  let guidesStore = JSON.parse(localStorage.getItem('tactical_guides_store_v2') || 'null');
+  let activeGuideId = localStorage.getItem('tactical_active_guide_id_v2') || null;
+
+  if (!guidesStore) {
+    guidesStore = {};
+    // Migration: check if old single-guide config exists
+    const legacyCfg = localStorage.getItem('fully_custom_guide_cfg_v1');
+    if (legacyCfg) {
+      try {
+        const parsedLegacy = JSON.parse(legacyCfg);
+        const legacyId = 'guide_migrated_default';
+        guidesStore[legacyId] = {
+          id: legacyId,
+          title: parsedLegacy.title || "My Custom Tactical Guide",
+          badge: parsedLegacy.badge || "CUSTOM PROTOCOL PORTAL",
+          subref: parsedLegacy.subref || "[Custom System v1.0]",
+          videoUrl: parsedLegacy.videoUrl || "",
+          accentColor: parsedLegacy.accentColor || "#38bdf8",
+          directives: parsedLegacy.directives || [],
+          script: parsedLegacy.script || ""
+        };
+        activeGuideId = legacyId;
+      } catch (e) {}
+    }
+
+    if (Object.keys(guidesStore).length === 0) {
+      const defaultGuide = createDefaultGuide('guide_default', 'My Custom Tactical Guide');
+      guidesStore[defaultGuide.id] = defaultGuide;
+      activeGuideId = defaultGuide.id;
+    }
+    saveGuidesStore();
+  }
+
+  if (!activeGuideId || !guidesStore[activeGuideId]) {
+    activeGuideId = Object.keys(guidesStore)[0];
+  }
+
+  // Local state for active guide
+  let guideConfig = guidesStore[activeGuideId];
+  let copiedLineIds = new Set(JSON.parse(localStorage.getItem(`guide_copied_${activeGuideId}`) || '[]'));
   let isTrackingEnabled = localStorage.getItem('fully_custom_guide_tracking_v1') !== 'false';
   let focusStepIdx = 0;
+  let pendingModalCallback = null;
 
   // Parsed Structures
   let parsedStructure = [];
@@ -1034,8 +1334,15 @@
   const progressText = document.getElementById('progress-text');
   const progressPercent = document.getElementById('progress-percent');
   const btnToggleIndicator = document.getElementById('btn-toggle-indicator');
+  const guideSelect = document.getElementById('guide-select');
+
+  function saveGuidesStore() {
+    localStorage.setItem('tactical_guides_store_v2', JSON.stringify(guidesStore));
+    localStorage.setItem('tactical_active_guide_id_v2', activeGuideId);
+  }
 
   function initApp() {
+    populateGuideSelector();
     applyConfigToUI();
     processScript();
     updateTrackingUI();
@@ -1050,12 +1357,128 @@
     // Keybindings for Focus Mode
     document.addEventListener('keydown', (e) => {
       const focusView = document.getElementById('view-focus');
-      if (!focusView.classList.contains('hidden')) {
+      if (!focusView.classList.contains('hidden') && !document.getElementById('confirm-modal').classList.contains('active')) {
         if (e.key === 'ArrowRight') { e.preventDefault(); navFocus(1); }
         else if (e.key === 'ArrowLeft') { e.preventDefault(); navFocus(-1); }
       }
     });
   }
+
+  // Populate Active Guide Selector Dropdown
+  function populateGuideSelector() {
+    guideSelect.innerHTML = '';
+    Object.values(guidesStore).forEach(g => {
+      const opt = document.createElement('option');
+      opt.value = g.id;
+      opt.innerText = g.title || "Untitled Guide";
+      if (g.id === activeGuideId) opt.selected = true;
+      guideSelect.appendChild(opt);
+    });
+  }
+
+  // Switch Active Guide
+  function switchGuide(guideId) {
+    if (!guidesStore[guideId]) return;
+    saveAllSettings(false); // save current edits before switching
+    activeGuideId = guideId;
+    guideConfig = guidesStore[activeGuideId];
+    copiedLineIds = new Set(JSON.parse(localStorage.getItem(`guide_copied_${activeGuideId}`) || '[]'));
+    focusStepIdx = 0;
+
+    saveGuidesStore();
+    populateGuideSelector();
+    applyConfigToUI();
+    processScript();
+    showToast(`Switched to: ${guideConfig.title}`);
+  }
+
+  // Create New Guide
+  function createNewGuide() {
+    saveAllSettings(false);
+    const newId = 'guide_' + Date.now();
+    const newGuide = createDefaultGuide(newId, `Custom Guide #${Object.keys(guidesStore).length + 1}`);
+    guidesStore[newId] = newGuide;
+    
+    switchGuide(newId);
+    switchView('customizer');
+  }
+
+  // Duplicate Current Guide
+  function duplicateCurrentGuide() {
+    saveAllSettings(false);
+    const newId = 'guide_' + Date.now();
+    const dup = JSON.parse(JSON.stringify(guideConfig));
+    dup.id = newId;
+    dup.title = (dup.title || "Guide") + " (Copy)";
+    
+    guidesStore[newId] = dup;
+    switchGuide(newId);
+    switchView('customizer');
+  }
+
+  // Delete Current Guide with Confirmation
+  function confirmDeleteGuide() {
+    if (Object.keys(guidesStore).length <= 1) {
+      showToast("Cannot delete the only remaining guide!");
+      return;
+    }
+
+    openModal(
+      "Delete Current Guide?",
+      `Are you sure you want to delete <strong>"${guideConfig.title}"</strong>? This action cannot be undone.`,
+      () => {
+        delete guidesStore[activeGuideId];
+        localStorage.removeItem(`guide_copied_${activeGuideId}`);
+        activeGuideId = Object.keys(guidesStore)[0];
+        guideConfig = guidesStore[activeGuideId];
+        copiedLineIds = new Set(JSON.parse(localStorage.getItem(`guide_copied_${activeGuideId}`) || '[]'));
+        
+        saveGuidesStore();
+        populateGuideSelector();
+        applyConfigToUI();
+        processScript();
+        showToast("Guide deleted successfully");
+      }
+    );
+  }
+
+  // Confirm Reset Guide Settings & Script Content
+  function confirmResetGuide() {
+    openModal(
+      "Reset Guide Content & Settings?",
+      `This will completely wipe and reset all titles, colors, directives, and script text for <strong>"${guideConfig.title}"</strong> back to default setup. Are you sure?`,
+      () => {
+        const resetObj = createDefaultGuide(activeGuideId, "Reset Tactical Guide");
+        guidesStore[activeGuideId] = resetObj;
+        guideConfig = resetObj;
+        copiedLineIds.clear();
+        localStorage.removeItem(`guide_copied_${activeGuideId}`);
+        
+        saveGuidesStore();
+        applyConfigToUI();
+        processScript();
+        showToast("Guide reset to default!");
+      }
+    );
+  }
+
+  // Modal Dialog Manager
+  function openModal(titleText, bodyHtml, onConfirmCallback) {
+    document.getElementById('modal-title-text').innerText = titleText;
+    document.getElementById('modal-body-text').innerHTML = bodyHtml;
+    pendingModalCallback = onConfirmCallback;
+    document.getElementById('confirm-modal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('confirm-modal').classList.remove('active');
+    pendingModalCallback = null;
+  }
+
+  document.getElementById('btn-modal-proceed').addEventListener('click', () => {
+    if (pendingModalCallback) pendingModalCallback();
+    closeModal();
+  });
 
   // Update Visual Customizations
   function applyConfigToUI() {
@@ -1416,7 +1839,7 @@
   }
 
   function saveCopiedState() {
-    localStorage.setItem('fully_custom_guide_copied_v1', JSON.stringify([...copiedLineIds]));
+    localStorage.setItem(`guide_copied_${activeGuideId}`, JSON.stringify([...copiedLineIds]));
   }
 
   function updateProgress() {
@@ -1478,12 +1901,14 @@
     guideConfig.videoUrl = document.getElementById('cfg-video').value;
     guideConfig.script = editor.value;
 
-    localStorage.setItem('fully_custom_guide_cfg_v1', JSON.stringify(guideConfig));
+    guidesStore[activeGuideId] = guideConfig;
+    saveGuidesStore();
     
     applyConfigToUI();
     processScript();
+    populateGuideSelector();
     
-    if (notify) showToast('GUIDE SAVED FOREVER!');
+    if (notify) showToast('GUIDE SAVED PERMANENTLY!');
   }
 
   function exportGuideJSON() {
@@ -1500,7 +1925,7 @@
 
   function resetProgress() {
     copiedLineIds.clear();
-    localStorage.removeItem('fully_custom_guide_copied_v1');
+    localStorage.removeItem(`guide_copied_${activeGuideId}`);
     focusStepIdx = 0;
     processScript();
     showToast('PROGRESS RESET!');
