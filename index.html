@@ -140,7 +140,7 @@
                     <button onclick="setCategory('guides')" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800" data-cat="guides">
                         Guides
                     </button>
-                    <button onclick="setCategory('')" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800" data-cat="rules">
+                    <button onclick="setCategory('rules')" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800" data-cat="rules">
                         Rules
                     </button>
                     <button onclick="setCategory('assets')" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800" data-cat="assets">
@@ -184,6 +184,29 @@
                             <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Handbook</span>
                         </div>
                         <h2 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors flex items-center gap-2">
+                            Training Guide
+                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-cyan-400"></i>
+                        </h2>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            Guide for Stateview trainings for hosts & co-hosts.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-cyan-400">
+                        <span>Open Guide</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+                ====================================================================
+                -->
+                <a href="training.html" data-category="guides" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Handbook</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors flex items-center gap-2">
                             Guide Title Here
                             <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-cyan-400"></i>
                         </h2>
@@ -196,152 +219,7 @@
                         <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
                     </div>
                 </a>
-                ====================================================================
-                -->
 
-                <a href="cadet-guide.html" data-category="handbooks" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
-                                <i data-lucide="book-open" class="w-5 h-5"></i>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Handbook</span>
-                        </div>
-                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors flex items-center gap-2">
-                            Cadet Handbook
-                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-cyan-400"></i>
-                        </h2>
-                        <p class="text-slate-400 text-sm line-clamp-3">
-                            Essential training, duties, expectations, and fundamental guidelines for new Cadets.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-cyan-400">
-                        <span>View Guide</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </a>
-
-                <a href="facility-rules.html" data-category="rules" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 group-hover:bg-rose-500 group-hover:text-slate-950 transition-colors">
-                                <i data-lucide="file-text" class="w-5 h-5"></i>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Rules</span>
-                        </div>
-                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-rose-300 transition-colors flex items-center gap-2">
-                            Facility Rules
-                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-rose-400"></i>
-                        </h2>
-                        <p class="text-slate-400 text-sm line-clamp-3">
-                            General facility rules, regulations, conduct policies, and operational standards.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-rose-400">
-                        <span>View Rules</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </a>
-
-                <a href="assets.html" data-category="assets" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
-                                <i data-lucide="image" class="w-5 h-5"></i>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Assets</span>
-                        </div>
-                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition-colors flex items-center gap-2">
-                            Logos & Assets
-                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-amber-400"></i>
-                        </h2>
-                        <p class="text-slate-400 text-sm line-clamp-3">
-                            High-quality logos, branding graphics, decals, and visual media assets for Stateview.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-amber-400">
-                        <span>Access Assets</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </a>
-
-                <a href="staff-guide.html" data-category="handbooks" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
-                                <i data-lucide="users" class="w-5 h-5"></i>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Handbook</span>
-                        </div>
-                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors flex items-center gap-2">
-                            Staff Guidelines
-                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-emerald-400"></i>
-                        </h2>
-                        <p class="text-slate-400 text-sm line-clamp-3">
-                            Comprehensive manual for staff members regarding duties, moderation, and protocols.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-emerald-400">
-                        <span>View Guidelines</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </a>
-
-                <a href="ranks.html" data-category="departments" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 group-hover:bg-purple-500 group-hover:text-slate-950 transition-colors">
-                                <i data-lucide="layers" class="w-5 h-5"></i>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Departments</span>
-                        </div>
-                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors flex items-center gap-2">
-                            Rank System
-                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-purple-400"></i>
-                        </h2>
-                        <p class="text-slate-400 text-sm line-clamp-3">
-                            Detailed overview of ranks, chain of command, promotions, and responsibilities.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-purple-400">
-                        <span>View Ranks</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </a>
-
-                <a href="shifts.html" data-category="departments" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-slate-950 transition-colors">
-                                <i data-lucide="calendar" class="w-5 h-5"></i>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Departments</span>
-                        </div>
-                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors flex items-center gap-2">
-                            Shifts & Activity
-                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-blue-400"></i>
-                        </h2>
-                        <p class="text-slate-400 text-sm line-clamp-3">
-                            Information regarding official shifts, activity requirements, and schedule logs.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-blue-400">
-                        <span>View Schedule</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
-                    </div>
-                </a>
-
-            </div>
-
-            <!-- Empty Search Results State -->
-            <div id="noResults" class="hidden text-center py-16 glass-card rounded-2xl border border-slate-800">
-                <i data-lucide="search-x" class="w-12 h-12 text-slate-600 mx-auto mb-3"></i>
-                <h3 class="text-lg font-semibold text-slate-300">No matching guides found</h3>
-                <p class="text-sm text-slate-500 mt-1">Try tweaking your search term or select another category filter.</p>
-                <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs font-semibold rounded-lg transition-all">
-                    Reset All Filters
-                </button>
-            </div>
 
         </main>
     </div>
