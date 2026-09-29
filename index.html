@@ -1,284 +1,556 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
-<meta charset="UTF-8" />
-<title>Training Script</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stateview Guides & Assets</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfeff',
+                            100: '#cffafe',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            900: '#164e63',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 15px rgba(6, 182, 212, 0.2)' },
+                            '100%': { boxShadow: '0 0 30px rgba(6, 182, 212, 0.6)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-*{
-    box-sizing:border-box;
-    font-family:'Inter',system-ui,sans-serif;
-}
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
 
-body{
-    margin:0;
-    padding:40px 20px;
-    background:#0c0d10;
-    color:#eaeaea;
-}
+        /* Ambient Glow Background Grid */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-.line{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding:11px 15px;
-    border-radius:12px;
-    background:linear-gradient(135deg,#1b1f26,#222733);
-    border:1px solid rgba(255,255,255,0.05);
-    transition:.15s;
-}
-
-.line:hover{
-    background:linear-gradient(135deg,#222733,#2b3242);
-}
-
-.text{
-    flex:1;
-    font-size:14px;
-    line-height:1.45;
-    white-space:pre-wrap;
-}
-
-button{
-    background:#2d2f36;
-    border:1px solid #3a3d45;
-    color:white;
-    padding:6px 12px;
-    border-radius:8px;
-    font-size:12px;
-    cursor:pointer;
-    transition:.15s;
-}
-
-button:hover{
-    background:#3a3d45;
-}
-
-button.copied{
-    background:#22c55e;
-    border-color:#22c55e;
-}
-
-.spacer{
-    height:16px;
-}
-
-.noCopy{
-    background:linear-gradient(135deg,#16181d,#1a1d23);
-    opacity:.7;
-    font-weight:600;
-    justify-content:center;
-}
-</style>
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.15);
+        }
+    </style>
 </head>
-
-<body>
-
-<div class="container" id="container"></div>
-
-<script>
-const script = `H There's a Training being hosted in the session room, come and attend to show activity and possibly receive a promotion! [1/3].
-
-H The session room has been locked. You can no longer attend the Training as all fall-in's will be denied.
-
----STARTING---
-
-Greetings everyone! Before we begin, please switch over to channel 2. Crouch when switched.
-
-Alright, we will now begin with the training. Please note that PTS and STS will be enforced from this point onwards. If you break it, you'll be striked.
-
-Salutations! I am Ashey1146 and I'll be your host for today's training.
-
-Before we begin, please note that the host has full authority to dismiss and strike attendees for any reason. Do not complain about being striked or that will result in additional strikes.
-
-Any trolling or major breakage of PTS or STS will result in an immediate dismissal.
-
-I will now go over the rules for this training. Please listen carefully to what I'm about to say.
-
-I – You must refer to me and my Co-Host by our ranks at all times.
-
-II – Do not go AFK (Away From Keyboard) or say PTS (Permission To Speak) while I am speaking during this training. Doing so will result in a removal or a strike.
-
-III – You must be respectful to everyone at all times. Failure to do so will result in removal from the training and possibly further sanctions.
-
-IV – If there is any problem, come to me, my Co-Host, or any other SI+ for assistance. You must not ask for a promotion/rank, or you will be instantly removed.
-
-V – Trolling in any form is unacceptable! Grammar must be used throughout this training. Trolling or failure to use grammar will result in a strike or instant removal from the training.
-
-VI – PTS is active unless stated otherwise by me or my Co-Host.
-
---- FACES ---
-
-We will begin with the faces.
-
-In this phase, we will be testing your reaction time and listening skills!
-
-Please listen carefully, as I will only explain each face once. Do NOT actually do the faces at this point.
-
-Left Face – Turn left 90 degrees from your current position.
-
-Right Face – Turn right, 90 degrees.
-
-Center Face – Turn to your normal position (the position you are in right now).
-
-About Face – Turn 180 degrees from your current position.
-
-Control Face – Face the Host/Co-Host at all times (they should be in the middle of your screen at all times).
-
-Please note: Only the center face breaks control face—any other face does not.
-
-If you are sat, do NOT jump unless I say so. Failure to follow this rule will result in a strike.
-
-Please listen carefully to the faces, and don't complain about being sat.
-
-Right, Face!
-Left, Face!
-About, Face!
-Control, Face!
-Center, Face!
-
-We will now be ending faces, DO NOT jumo yet.
-
-Faces have concluded. You may all now jump.
-
----QUESTIONS---
-
-We are now moving on to questions. In this phase, I’ll be testing you on your grammar and knowledge of the rules.
-
-To start this off, I will send you a private message with the questions I will state shortly. Do NOT reply yet!
-
- I will state the questions in Channel 2. DO NOT say the answers out loud—reply only to the PM.
-
-What is Lethal Force used for?
-What are handcuffs used for?
-What is a taser used for?
-What is a gun used for?
-What are a few reasons you should put an inmate in Maximum Security?
-What are a few reasons you should put an inmate in Solitary Confinement?
-What is a reason to use the modcall system?
-What would you do if you see someone breaking Roblox ToS?
-What would you do if you see an abuser in-game?
-
-You have 3 minutes, starting now! Crouch once you've answered.
-
-The 3 minutes have ended, everyone may stand up. I will now be stating answers to the questions.
-
-Lethal Force is used to kill inmates or criminals, who are holding weapons, crossing the red line, rioting, or causing a threat in any way, shape or form.
-Handcuffs are used to detain, frisk or transport inmates, or to arrest criminals.
-Tasers are used to temporarily paralyze inmates or criminals to gain an advantage over them.
-Guns are used to kill inmates or criminals, who are holding weapons, crossing the red line, rioting, or causing a threat in any way, shape or form.
-Reasons to put an inmate in Maximum Security include, but are not limited to: Inmates who have reached 3 warnings, those who are rioting, holding weapons or killing people.
-Reasons to put an inmate in Solitary include, but are not limited to: Inmates who have reached 3 warnings, those who are rioting, holding weapons or killing people.
-The modcall system is used when a player is breaking either Stateview's or Roblox's rules/ToS.
-If you see someone breaking Roblox ToS, you should report it to Roblox and to Stateview, via a modcall or a report on intel.
-If someone is abusing in-game, you should collect proof and use modcall to report them.
-
-All answers, similar to what I've stated will be counted as correct.
-
----SCENARIOS---
-
-We are now moving onto Scenarios! In this phase, we are testing you on your knowledge of the rules, comprehension, grammar, and question correctness—along with your proficiency with equipment!
-
-I will now state 3 important rules for this phase.
-
-1. Do NOT actually frisk or kill the instructors - Use verbal commands like -frisks- instead.
-
-2. Do NOT step outside the pink box.
-
-3. The tools permitted for this section are handcuffs, tasers, Glocks, and shields. The use of any other tools will result in failure.
-
-Each of you will be tasked with an appropriate interaction demonstrated by the inmate. Your responses should follow the facility’s rules and guidelines.
-
-Now, please split up into 2 equal groups and STS on the lime instructional lines along the room.
-
-Killing others, using a Glock-17 as an inmate. What would you do?
-Using a fake keycard to escape. What would you do?
-Killing others, using a knife as an inmate. What would you do?
-Playing bypassed audios on a boombox. What would you do?
-AFK farming to gain XP. What would you do?
-Exploiting by using unauthorized modifications. What would you do?
-
-
----ACCURACY---
-
-We are now moving on to the accuracy phase! In this section, we will evaluate your precision, aiming skills, listening abilities, and overall accuracy.
-
-You are only allowed to use the Glock-17 for this phase, and you must stay behind the red line at all times. Failure to follow these rules will result in failing this phase.
-
-Without further ado, please relocate to the blue instructional line behind the host’s instructional lines.
-
-Knock your weapon!
-Ready!
-Aim!
-Fire!
-
----ENDING---
-
-We have now completed all phases of the training! I will announce the passers shortly. During this time, you may chat among yourselves (PTS inactive).
-
-Before we announce the passers, we’ll take a group photo. Please remain in STS formation during this time and DO NOT TALK.
-
-Alright, I will now announce the passers of this training. You all did well, but the following people stood out.
-
-If you have been promoted from this training, your cooldown will range from 3 days to 1 week. Please check with us if you’re unsure about your cooldown period!
-
-This concludes our training session! It has been an honor and a pleasure to be your host today. You are all now dismissed from the session room.
-
-H The training is now over! Passers, please say !rejoin to view your new ranks! All dismissed from the session room!`;
-
-const container = document.getElementById("container");
-
-script.split("\n").forEach(line => {
-
-    if(line.trim() === ""){
-        const space = document.createElement("div");
-        space.className = "spacer";
-        container.appendChild(space);
-        return;
-    }
-
-    const row = document.createElement("div");
-    row.className = "line";
-
-    const text = document.createElement("div");
-    text.className = "text";
-    text.textContent = line;
-
-    if(line.includes("---")){
-        row.classList.add("noCopy");
-        row.append(text);
-        container.appendChild(row);
-        return;
-    }
-
-    const btn = document.createElement("button");
-    btn.textContent = "Copy";
-
-    btn.onclick = async () => {
-        await navigator.clipboard.writeText(line);
-        btn.textContent = "Copied ✓";
-        btn.classList.add("copied");
-        setTimeout(()=>{
-            btn.textContent="Copy";
-            btn.classList.remove("copied");
-        },900);
-    };
-
-    row.append(text, btn);
-    container.appendChild(row);
-});
-</script>
-
+<body class="bg-[#070a12] text-slate-100 font-sans min-h-screen relative antialiased selection:bg-cyan-500 selection:text-slate-950 flex flex-col justify-between">
+
+    <!-- Background Decor Accent Orbs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-600/20 rounded-full blur-[128px]"></div>
+        <div class="absolute top-1/3 -right-40 w-96 h-96 bg-blue-600/15 rounded-full blur-[128px]"></div>
+        <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-indigo-600/15 rounded-full blur-[128px]"></div>
+        <div class="absolute inset-0 bg-grid-pattern opacity-60"></div>
+    </div>
+
+    <!-- MAIN WRAPPER -->
+    <div class="relative z-10">
+
+        <!-- HEADER / NAVIGATION -->
+        <header class="border-b border-slate-800/80 bg-slate-950/70 backdrop-blur-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <!-- Logo / Title -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-slate-950"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">
+                            Stateview
+                        </span>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-cyan-400 block -mt-1">Guides Hub</span>
+                    </div>
+                </a>
+
+                <!-- Header Action Buttons -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleInstructions()" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-xs font-medium text-slate-300 hover:text-cyan-400 transition-all">
+                        <i data-lucide="code" class="w-4 h-4 text-cyan-400"></i>
+                        <span>How to Add Buttons</span>
+                    </button>
+                    <a href="https://github.com" target="_blank" rel="noopener" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-xs font-medium text-cyan-300 transition-all">
+                        <i data-lucide="github" class="w-4 h-4"></i>
+                        <span>GitHub Repo</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 text-center">
+            
+            <!-- Category Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-medium mb-6 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                Stateview Correctional Facility Documentation
+            </div>
+
+            <!-- Main Title requested by user -->
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6">
+                Stateview <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Guides</span>
+            </h1>
+
+            <!-- Extended Welcome Header Text requested by user -->
+            <div class="glass-card max-w-3xl mx-auto rounded-2xl p-6 sm:p-8 text-slate-300 text-base sm:text-lg leading-relaxed shadow-xl border border-slate-800">
+                <p>
+                    Hello! Welcome to our site. Here you will find all the handbooks, official protocols, departmental rules, and assets you may need for <strong class="text-white font-semibold">Stateview Correctional Facility</strong>. Select any guide below to view the full documentation.
+                </p>
+            </div>
+        </section>
+
+        <!-- SEARCH & FILTER SECTION -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                
+                <!-- Live Search Bar -->
+                <div class="relative w-full md:w-96">
+                    <i data-lucide="search" class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search guides, protocols, assets..." 
+                        onkeyup="filterGuides()"
+                        class="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-sm text-slate-200 placeholder-slate-500 outline-none transition-all"
+                    >
+                    <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 w-full md:w-auto justify-start md:justify-end" id="categoryTabs">
+                    <button onclick="setCategory('all')" class="cat-btn active px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20" data-cat="all">
+                        All Guides
+                    </button>
+                    <button onclick="setCategory('handbooks')" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800" data-cat="handbooks">
+                        Handbooks
+                    </button>
+                    <button onclick="setCategory('rules')" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800" data-cat="rules">
+                        Rules & Codes
+                    </button>
+                    <button onclick="setCategory('assets')" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800" data-cat="assets">
+                        Assets
+                    </button>
+                    <button onclick="setCategory('departments')" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800" data-cat="departments">
+                        Departments
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- GUIDES / BUTTONS GRID CONTAINER -->
+        <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+            
+            <div id="guidesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                <!-- 
+                ====================================================================
+                EASY EDIT INSTRUCTIONS FOR THE USER:
+                - To add a NEW button/card, copy one of the <a href="..."> blocks below.
+                - Paste it inside this #guidesGrid div.
+                - Edit the href to your GitHub HTML page e.g. "my-guide.html" or "https://username.github.io/repo/page.html"
+                - Edit the title, description, category badge, and Lucide icon.
+                ====================================================================
+                -->
+
+
+                <!-- CARD 1: General Handbook -->
+                <a href="handbook.html" data-category="handbooks" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Handbook</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors flex items-center gap-2">
+                            General Officer Handbook
+                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-cyan-400"></i>
+                        </h2>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            Comprehensive guidelines for correctional officers, ranking structure, duties, shift protocols, and standard operating procedures.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-cyan-400">
+                        <span>View Handbook</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- CARD 2: Emergency Protocols -->
+                <a href="emergency-protocols.html" data-category="rules" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 group-hover:bg-rose-500 group-hover:text-slate-950 transition-colors">
+                                <i data-lucide="siren" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Rules</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-rose-300 transition-colors flex items-center gap-2">
+                            Emergency & Riot Codes
+                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-rose-400"></i>
+                        </h2>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            Official procedures during facility lockdowns, prison riots, containment breaches, and maximum security lockdown triggers.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-rose-400">
+                        <span>View Protocols</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- CARD 3: Departmental Assets & Uniforms -->
+                <a href="assets-and-uniforms.html" data-category="assets" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                                <i data-lucide="shirt" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Assets</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition-colors flex items-center gap-2">
+                            Uniforms & Graphics Assets
+                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-amber-400"></i>
+                        </h2>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            Download official Stateview uniforms, division patches, branding assets, logo templates, and avatar guidelines.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-amber-400">
+                        <span>Access Assets</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+
+                <!-- CARD 4: Emergency Response Team (ERT) -->
+                <a href="ert-guide.html" data-category="departments" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
+                                <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Department</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors flex items-center gap-2">
+                            ERT Division Guide
+                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-emerald-400"></i>
+                        </h2>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            Specialized tactics, tactical equipment loadouts, breach entries, and high-value prisoner escort procedures for ERT staff.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-emerald-400">
+                        <span>View ERT Guide</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- CARD 5: Radio Codes & Signals -->
+                <a href="radio-codes.html" data-category="rules" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-slate-950 transition-colors">
+                                <i data-lucide="radio" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Rules</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors flex items-center gap-2">
+                            Radio Signals & 10-Codes
+                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-blue-400"></i>
+                        </h2>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            Official list of 10-codes, signal terminology, clear radio etiquette, and dispatch communication standards.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-blue-400">
+                        <span>View Radio Codes</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- CARD 6: Inmate Discipline & Solitary -->
+                <a href="inmate-discipline.html" data-category="handbooks" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 group-hover:bg-purple-500 group-hover:text-slate-950 transition-colors">
+                                <i data-lucide="lock" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold tracking-wider">Handbook</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors flex items-center gap-2">
+                            Inmate Management Policy
+                            <i data-lucide="external-link" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-purple-400"></i>
+                        </h2>
+                        <p class="text-slate-400 text-sm line-clamp-3">
+                            Rules on cuffing, cell blocks, maximum solitary lockdown times, and contraband search procedures.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-purple-400">
+                        <span>View Policy</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- EMPTY SEARCH RESULTS STATE -->
+            <div id="noResults" class="hidden text-center py-16 glass-card rounded-2xl border border-slate-800">
+                <i data-lucide="search-x" class="w-12 h-12 text-slate-600 mx-auto mb-3"></i>
+                <h3 class="text-lg font-semibold text-slate-300">No matching guides found</h3>
+                <p class="text-sm text-slate-500 mt-1">Try tweaking your search term or select another category filter.</p>
+                <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs font-semibold rounded-lg transition-all">
+                    Reset All Filters
+                </button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- DEVELOPER HELP MODAL (How to add GitHub HTML links easily) -->
+    <div id="instructionsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card max-w-2xl w-full rounded-2xl p-6 sm:p-8 border border-slate-700 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <button onclick="toggleInstructions()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                    <i data-lucide="code" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">How to Add More Buttons & Link GitHub Pages</h3>
+                    <p class="text-xs text-slate-400">Quick step-by-step guide to edit this HTML code</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-300">
+                <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                    <h4 class="font-bold text-cyan-400 mb-1">1. Copy a Card Block</h4>
+                    <p class="text-xs text-slate-400 mb-2">Open this HTML file in any editor (VS Code, Notepad, etc.). Find the section marked <code class="text-cyan-300">&lt;main id="guidesGrid"&gt;</code> and duplicate one of the <code class="text-cyan-300">&lt;a href="..." class="guide-card..."&gt;</code> tags.</p>
+                </div>
+
+                <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                    <h4 class="font-bold text-cyan-400 mb-1">2. Change the GitHub Page Link</h4>
+                    <p class="text-xs text-slate-400 mb-2">Change the <code class="text-cyan-300">href="..."</code> attribute to point to your new GitHub HTML page:</p>
+                    <pre class="bg-slate-950 p-3 rounded-lg text-xs font-mono text-cyan-300 overflow-x-auto">href="https://YOUR-USERNAME.github.io/YOUR-REPO/your-new-guide.html"</pre>
+                    <p class="text-[11px] text-slate-500 mt-1">Or if hosted in the same repository folder, use relative links like: <code class="text-slate-300">href="your-new-guide.html"</code></p>
+                </div>
+
+                <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                    <h4 class="font-bold text-cyan-400 mb-1">3. Customize Text & Category</h4>
+                    <ul class="list-disc list-inside text-xs text-slate-400 space-y-1">
+                        <li>Change <code class="text-slate-200">data-category="handbooks"</code> (Options: <code class="text-slate-300">handbooks</code>, <code class="text-slate-300">rules</code>, <code class="text-slate-300">assets</code>, <code class="text-slate-300">departments</code>).</li>
+                        <li>Update Title, Icon name, and Description text inside the copied card.</li>
+                    </ul>
+                </div>
+
+                <!-- Sample Card Snippet for Quick Copying -->
+                <div class="relative">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-semibold text-slate-400">Quick Copy HTML Snippet:</span>
+                        <button onclick="copySnippet()" class="text-xs text-cyan-400 hover:underline flex items-center gap-1">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span id="copyBtnText">Copy Snippet</span>
+                        </button>
+                    </div>
+                    <textarea id="codeSnippet" readonly class="w-full h-32 bg-slate-950 text-cyan-300 text-xs font-mono p-3 rounded-xl border border-slate-800 focus:outline-none resize-none">&lt;!-- CARD ITEM --&gt;
+&lt;a href="your-page.html" data-category="handbooks" class="guide-card glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1"&gt;
+    &lt;div&gt;
+        &lt;div class="flex items-center justify-between mb-4"&gt;
+            &lt;div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400"&gt;
+                &lt;i data-lucide="file-text" class="w-5 h-5"&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 text-[10px] uppercase font-bold"&gt;Handbook&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;h2 class="text-lg font-bold text-white mb-2"&gt;New Guide Title&lt;/h2&gt;
+        &lt;p class="text-slate-400 text-sm"&gt;Brief summary of this new guide.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-cyan-400"&gt;
+        &lt;span&gt;Read Documentation&lt;/span&gt;
+        &lt;i data-lucide="arrow-right" class="w-4 h-4"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+&lt;/a&gt;</textarea>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button onclick="toggleInstructions()" class="px-5 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold rounded-xl transition-all">
+                    Got it!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-slate-950/80 backdrop-blur-md py-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                    <i data-lucide="shield" class="w-4 h-4"></i>
+                </div>
+                <p class="text-xs text-slate-400">
+                    &copy; Stateview Correctional Facility Guides. All official protocols reserved.
+                </p>
+            </div>
+            <div class="flex items-center gap-6 text-xs text-slate-500">
+                <a href="#" onclick="toggleInstructions(); return false;" class="hover:text-cyan-400 transition-colors">Developer Setup</a>
+                <a href="https://github.com" target="_blank" rel="noopener" class="hover:text-cyan-400 transition-colors">GitHub Pages</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let currentCategory = 'all';
+
+        // Filter function for search bar & category tabs
+        function filterGuides() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clearSearch');
+            const cards = document.querySelectorAll('.guide-card');
+            let visibleCount = 0;
+
+            // Toggle clear button visibility
+            if (query.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            cards.forEach(card => {
+                const title = card.querySelector('h2').innerText.toLowerCase();
+                const desc = card.querySelector('p').innerText.toLowerCase();
+                const category = card.getAttribute('data-category');
+
+                const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+                const matchesSearch = title.includes(query) || desc.includes(query);
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Handle Empty State
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        // Set active category filter
+        function setCategory(cat) {
+            currentCategory = cat;
+            
+            // Update UI tab states
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.className = 'cat-btn active px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20';
+                } else {
+                    btn.className = 'cat-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800';
+                }
+            });
+
+            filterGuides();
+        }
+
+        // Clear input field
+        function clearSearchInput() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            filterGuides();
+            searchInput.focus();
+        }
+
+        // Reset all filters
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            setCategory('all');
+        }
+
+        // Toggle Instructions Modal
+        function toggleInstructions() {
+            const modal = document.getElementById('instructionsModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Copy HTML snippet helper (Iframe fallback compliant)
+        function copySnippet() {
+            const snippetText = document.getElementById('codeSnippet');
+            snippetText.select();
+            document.execCommand('copy');
+            
+            const copyBtnText = document.getElementById('copyBtnText');
+            copyBtnText.innerText = 'Copied!';
+            setTimeout(() => {
+                copyBtnText.innerText = 'Copy Snippet';
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
