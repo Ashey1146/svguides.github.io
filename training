@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Training Script</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+*{
+    box-sizing:border-box;
+    font-family:'Inter',system-ui,sans-serif;
+}
+
+body{
+    margin:0;
+    padding:40px 20px;
+    background:#0c0d10;
+    color:#eaeaea;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.line{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:11px 15px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#1b1f26,#222733);
+    border:1px solid rgba(255,255,255,0.05);
+    transition:.15s;
+}
+
+.line:hover{
+    background:linear-gradient(135deg,#222733,#2b3242);
+}
+
+.text{
+    flex:1;
+    font-size:14px;
+    line-height:1.45;
+    white-space:pre-wrap;
+}
+
+button{
+    background:#2d2f36;
+    border:1px solid #3a3d45;
+    color:white;
+    padding:6px 12px;
+    border-radius:8px;
+    font-size:12px;
+    cursor:pointer;
+    transition:.15s;
+}
+
+button:hover{
+    background:#3a3d45;
+}
+
+button.copied{
+    background:#22c55e;
+    border-color:#22c55e;
+}
+
+.spacer{
+    height:16px;
+}
+
+.noCopy{
+    background:linear-gradient(135deg,#16181d,#1a1d23);
+    opacity:.7;
+    font-weight:600;
+    justify-content:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="container"></div>
+
+<script>
+const script = `H There's a Training being hosted in the session room, come and attend to show activity and possibly receive a promotion! [1/3].
+
+H The session room has been locked. You can no longer attend the Training as all fall-in's will be denied.
+
+---STARTING---
+
+Greetings everyone! Before we begin, please switch over to channel 2. Crouch when switched.
+
+Alright, we will now begin with the training. Please note that PTS and STS will be enforced from this point onwards. If you break it, you'll be striked.
+
+Salutations! I am Ashey1146 and I'll be your host for today's training.
+
+Before we begin, please note that the host has full authority to dismiss and strike attendees for any reason. Do not complain about being striked or that will result in additional strikes.
+
+Any trolling or major breakage of PTS or STS will result in an immediate dismissal.
+
+I will now go over the rules for this training. Please listen carefully to what I'm about to say.
+
+I – You must refer to me and my Co-Host by our ranks at all times.
+
+II – Do not go AFK (Away From Keyboard) or say PTS (Permission To Speak) while I am speaking during this training. Doing so will result in a removal or a strike.
+
+III – You must be respectful to everyone at all times. Failure to do so will result in removal from the training and possibly further sanctions.
+
+IV – If there is any problem, come to me, my Co-Host, or any other SI+ for assistance. You must not ask for a promotion/rank, or you will be instantly removed.
+
+V – Trolling in any form is unacceptable! Grammar must be used throughout this training. Trolling or failure to use grammar will result in a strike or instant removal from the training.
+
+VI – PTS is active unless stated otherwise by me or my Co-Host.
+
+--- FACES ---
+
+We will begin with the faces.
+
+In this phase, we will be testing your reaction time and listening skills!
+
+Please listen carefully, as I will only explain each face once. Do NOT actually do the faces at this point.
+
+Left Face – Turn left 90 degrees from your current position.
+
+Right Face – Turn right, 90 degrees.
+
+Center Face – Turn to your normal position (the position you are in right now).
+
+About Face – Turn 180 degrees from your current position.
+
+Control Face – Face the Host/Co-Host at all times (they should be in the middle of your screen at all times).
+
+Please note: Only the center face breaks control face—any other face does not.
+
+If you are sat, do NOT jump unless I say so. Failure to follow this rule will result in a strike.
+
+Please listen carefully to the faces, and don't complain about being sat.
+
+Right, Face!
+Left, Face!
+About, Face!
+Control, Face!
+Center, Face!
+
+We will now be ending faces, DO NOT jumo yet.
+
+Faces have concluded. You may all now jump.
+
+---QUESTIONS---
+
+We are now moving on to questions. In this phase, I’ll be testing you on your grammar and knowledge of the rules.
+
+To start this off, I will send you a private message with the questions I will state shortly. Do NOT reply yet!
+
+ I will state the questions in Channel 2. DO NOT say the answers out loud—reply only to the PM.
+
+What is Lethal Force used for?
+What are handcuffs used for?
+What is a taser used for?
+What is a gun used for?
+What are a few reasons you should put an inmate in Maximum Security?
+What are a few reasons you should put an inmate in Solitary Confinement?
+What is a reason to use the modcall system?
+What would you do if you see someone breaking Roblox ToS?
+What would you do if you see an abuser in-game?
+
+You have 3 minutes, starting now! Crouch once you've answered.
+
+The 3 minutes have ended, everyone may stand up. I will now be stating answers to the questions.
+
+Lethal Force is used to kill inmates or criminals, who are holding weapons, crossing the red line, rioting, or causing a threat in any way, shape or form.
+Handcuffs are used to detain, frisk or transport inmates, or to arrest criminals.
+Tasers are used to temporarily paralyze inmates or criminals to gain an advantage over them.
+Guns are used to kill inmates or criminals, who are holding weapons, crossing the red line, rioting, or causing a threat in any way, shape or form.
+Reasons to put an inmate in Maximum Security include, but are not limited to: Inmates who have reached 3 warnings, those who are rioting, holding weapons or killing people.
+Reasons to put an inmate in Solitary include, but are not limited to: Inmates who have reached 3 warnings, those who are rioting, holding weapons or killing people.
+The modcall system is used when a player is breaking either Stateview's or Roblox's rules/ToS.
+If you see someone breaking Roblox ToS, you should report it to Roblox and to Stateview, via a modcall or a report on intel.
+If someone is abusing in-game, you should collect proof and use modcall to report them.
+
+All answers, similar to what I've stated will be counted as correct.
+
+---SCENARIOS---
+
+We are now moving onto Scenarios! In this phase, we are testing you on your knowledge of the rules, comprehension, grammar, and question correctness—along with your proficiency with equipment!
+
+I will now state 3 important rules for this phase.
+
+1. Do NOT actually frisk or kill the instructors - Use verbal commands like -frisks- instead.
+
+2. Do NOT step outside the pink box.
+
+3. The tools permitted for this section are handcuffs, tasers, Glocks, and shields. The use of any other tools will result in failure.
+
+Each of you will be tasked with an appropriate interaction demonstrated by the inmate. Your responses should follow the facility’s rules and guidelines.
+
+Now, please split up into 2 equal groups and STS on the lime instructional lines along the room.
+
+Killing others, using a Glock-17 as an inmate. What would you do?
+Using a fake keycard to escape. What would you do?
+Killing others, using a knife as an inmate. What would you do?
+Playing bypassed audios on a boombox. What would you do?
+AFK farming to gain XP. What would you do?
+Exploiting by using unauthorized modifications. What would you do?
+
+
+---ACCURACY---
+
+We are now moving on to the accuracy phase! In this section, we will evaluate your precision, aiming skills, listening abilities, and overall accuracy.
+
+You are only allowed to use the Glock-17 for this phase, and you must stay behind the red line at all times. Failure to follow these rules will result in failing this phase.
+
+Without further ado, please relocate to the blue instructional line behind the host’s instructional lines.
+
+Knock your weapon!
+Ready!
+Aim!
+Fire!
+
+---ENDING---
+
+We have now completed all phases of the training! I will announce the passers shortly. During this time, you may chat among yourselves (PTS inactive).
+
+Before we announce the passers, we’ll take a group photo. Please remain in STS formation during this time and DO NOT TALK.
+
+Alright, I will now announce the passers of this training. You all did well, but the following people stood out.
+
+If you have been promoted from this training, your cooldown will range from 3 days to 1 week. Please check with us if you’re unsure about your cooldown period!
+
+This concludes our training session! It has been an honor and a pleasure to be your host today. You are all now dismissed from the session room.
+
+H The training is now over! Passers, please say !rejoin to view your new ranks! All dismissed from the session room!`;
+
+const container = document.getElementById("container");
+
+script.split("\n").forEach(line => {
+
+    if(line.trim() === ""){
+        const space = document.createElement("div");
+        space.className = "spacer";
+        container.appendChild(space);
+        return;
+    }
+
+    const row = document.createElement("div");
+    row.className = "line";
+
+    const text = document.createElement("div");
+    text.className = "text";
+    text.textContent = line;
+
+    if(line.includes("---")){
+        row.classList.add("noCopy");
+        row.append(text);
+        container.appendChild(row);
+        return;
+    }
+
+    const btn = document.createElement("button");
+    btn.textContent = "Copy";
+
+    btn.onclick = async () => {
+        await navigator.clipboard.writeText(line);
+        btn.textContent = "Copied ✓";
+        btn.classList.add("copied");
+        setTimeout(()=>{
+            btn.textContent="Copy";
+            btn.classList.remove("copied");
+        },900);
+    };
+
+    row.append(text, btn);
+    container.appendChild(row);
+});
+</script>
+
+</body>
+</html>
