@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stateview Training | Tactical Host Portal</title>
+  <title>Stateview Training Portal</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap');
 
@@ -819,7 +819,7 @@
     <div class="directives-header">
       <div class="directives-title">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue-electric)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Basic Training Directives & Script Standard
+        Training Information
       </div>
       <a href="https://youtu.be/7ER3Pt70aMQ?si=3Mos9oKrb_MGYfgk" target="_blank" class="video-link-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -829,16 +829,16 @@
 
     <div class="req-grid">
       <div class="req-box">
-        <div class="req-box-label">Min Host</div>
-        <div class="req-box-val">Chairperson+</div>
+        <div class="req-box-label">Co-Hosts</div>
+        <div class="req-box-val">Chairperson+ | Max. 2</div>
       </div>
       <div class="req-box">
-        <div class="req-box-label">Min Helpers</div>
-        <div class="req-box-val">2x Superintendent+</div>
+        <div class="req-box-label">Helpers</div>
+        <div class="req-box-val">2x Superintendent+ | Max. 2</div>
       </div>
       <div class="req-box">
-        <div class="req-box-label">Min Attendees</div>
-        <div class="req-box-val">8 Trainees</div>
+        <div class="req-box-label">Attendees</div>
+        <div class="req-box-val">Minimum 8 Attendees</div>
       </div>
       <div class="req-box">
         <div class="req-box-label">Session Setup</div>
@@ -856,7 +856,7 @@
         STATEVIEW HOST PORTAL
       </div>
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-sub);">
-        [quote="Trey, post:1, topic:2935"]
+        [quote="Trey, post:1, topic:2935"] - https://forum.stateview.io/
       </div>
     </div>
 
@@ -907,7 +907,7 @@
           <div class="timer-info">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <div>
-              <div style="font-size: 11px; font-weight: 800; color: #f87171; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;">3-Minute Question Timer</div>
+              <div style="font-size: 11px; font-weight: 800; color: #f87171; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;">3-Minute Questions Timer</div>
               <div class="timer-display" id="timer-display">03:00</div>
             </div>
           </div>
@@ -917,7 +917,7 @@
         <!-- OPTIONAL GROUP CONTAINER (if present in step) -->
         <div class="focus-optional-container hidden" id="focus-opt-box">
           <div class="focus-opt-title-bar">
-            <div class="focus-opt-badge">⚡ OPTIONAL LINES GROUP (<span id="opt-count">0</span>)</div>
+            <div class="focus-opt-badge">⚡ OPTIONAL LINES (<span id="opt-count">0</span>)</div>
             <button class="btn-copy-group" onclick="copyFocusOptionalsGroup()">Copy All Optionals</button>
           </div>
           <div class="focus-opt-list" id="focus-opt-list"></div>
@@ -927,7 +927,7 @@
         <div class="focus-required-container" id="focus-req-box">
           <div class="focus-req-label">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            REQUIRED SCRIPT LINE
+            SCRIPT LINE
           </div>
           <div class="focus-req-text" id="focus-req-text">Required line text goes here...</div>
         </div>
@@ -957,7 +957,8 @@ const DEFAULT_SCRIPT = `ANNOUNCEMENTS
 H There's a Training being hosted in the session room, come and attend to show activity and possibly receive a promotion! [1/3].
 H There's a Training being hosted in the session room, come and attend to show activity and possibly receive a promotion! [2/3].
 H There's a Training being hosted in the session room, come and attend to show activity and possibly receive a promotion! [3/3].
-H The session room has been locked. You can no longer attend the Training as all fall-in's will be denied.
+---OPTIONAL--- H The session room has been locked. You can no longer attend the Training as all fall-in's will be denied.
+---OPTIONAL--- H The session room has been locked. You may ask to fall-in in radio channel 2.
 
 STARTING
 
