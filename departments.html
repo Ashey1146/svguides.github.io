@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stateview Correctional Facility - Departments & Recruitment Portal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap');
+
+    :root {
+      --bg-core: #030712;
+      --panel-bg: rgba(10, 16, 32, 0.92);
+      --panel-border: rgba(56, 189, 248, 0.25);
+      
+      --accent-primary: #38bdf8;
+      --accent-electric: #00d8ff;
+      --accent-glow: rgba(0, 216, 255, 0.35);
+      --accent-dark: #0284c7;
+      --accent-bg-subtle: rgba(12, 74, 110, 0.28);
+      
+      --status-success: #10b981;
+      --status-success-bg: rgba(16, 185, 129, 0.16);
+      --status-success-border: rgba(16, 185, 129, 0.45);
+
+      --danger-red: #f43f5e;
+      --danger-bg: rgba(244, 63, 94, 0.16);
+      --danger-border: rgba(244, 63, 94, 0.45);
+
+      --warning-gold: #fbbf24;
+      --warning-bg: rgba(251, 191, 36, 0.14);
+      --warning-border: rgba(251, 191, 36, 0.45);
+
+      --text-main: #f8fafc;
+      --text-muted: #64748b;
+      --text-sub: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-core);
+      background-image: 
+        radial-gradient(circle at 15% 15%, var(--accent-bg-subtle) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(3, 105, 161, 0.12) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 32px 16px 80px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* App Container */
+    .app-container {
+      width: 100%;
+      max-width: 1080px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Portal Header */
+    .header-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 28px 32px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-title h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .header-title p {
+      font-size: 12px;
+      color: var(--text-sub);
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 4px;
+    }
+
+    .badge-portal {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--accent-bg-subtle);
+      border: 1px solid var(--panel-border);
+      border-radius: 30px;
+      color: var(--accent-electric);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .badge-pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-electric);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-electric);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    /* Controls Bar */
+    .controls-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      padding: 18px 24px;
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      background: rgba(4, 7, 17, 0.85);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-electric);
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      color: var(--text-sub);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent-primary);
+      color: #fff;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-bg-subtle);
+      border-color: var(--accent-electric);
+      color: var(--accent-electric);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .section-badge {
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-mod {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-electric);
+      border: 1px solid var(--panel-border);
+    }
+
+    .badge-nonmod {
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--warning-gold);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .badge-join {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--status-success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* Grid Layouts */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 18px;
+    }
+
+    /* Cards */
+    .dept-card {
+      background: var(--panel-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(16px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dept-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-electric), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .dept-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-primary);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.15);
+    }
+
+    .dept-card:hover::before {
+      opacity: 1;
+    }
+
+    .dept-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .dept-icon-wrapper {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--panel-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .dept-acronym {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent-electric);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .dept-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .dept-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .dept-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 12px;
+      margin-top: auto;
+    }
+
+    .dept-type {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+    }
+
+    .btn-detail {
+      background: transparent;
+      border: none;
+      color: var(--accent-electric);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s;
+    }
+
+    .btn-detail:hover {
+      gap: 8px;
+    }
+
+    /* Joining Section */
+    .join-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .join-card {
+      background: var(--panel-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.25s ease;
+    }
+
+    .join-card:hover {
+      border-color: var(--accent-electric);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4), 0 0 15px rgba(0, 216, 255, 0.15);
+    }
+
+    .join-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .join-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .join-icon {
+      font-size: 20px;
+    }
+
+    .join-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .status-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-pill.closed {
+      background: var(--danger-bg);
+      color: #fecdd3;
+      border: 1px solid var(--danger-border);
+    }
+
+    .status-pill.active {
+      background: var(--status-success-bg);
+      color: #a7f3d0;
+      border: 1px solid var(--status-success-border);
+    }
+
+    .status-pill.info {
+      background: var(--warning-bg);
+      color: #fde68a;
+      border: 1px solid var(--warning-border);
+    }
+
+    .join-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.55;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      color: var(--accent-electric);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+
+    .action-btn:hover {
+      background: var(--accent-electric);
+      color: #030712;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(3, 7, 18, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--accent-electric);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 540px;
+      width: 100%;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 25px var(--accent-glow);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transform: translateY(10px);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-close {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--panel-border);
+      color: var(--text-sub);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+      border-color: var(--accent-electric);
+    }
+
+    .modal-body {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .modal-tag-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--status-success);
+      color: #030712;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 100000;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- Header Banner -->
+  <div class="header-card">
+    <div class="header-title">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-electric)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </svg>
+      <div>
+        <h1>STATEVIEW CORRECTIONAL FACILITY</h1>
+        <p>DEPARTMENT OVERVIEW & RECRUITMENT PATHWAYS PORTAL</p>
+      </div>
+    </div>
+    
+    <div class="badge-portal">
+      <span class="badge-pulse"></span>
+      <span>7 DEPARTMENTS REGISTERED</span>
+    </div>
+  </div>
+
+  <!-- Search & Filter Bar -->
+  <div class="controls-card">
+    <div class="search-box">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="search-input" class="search-input" placeholder="Search by acronym, title, or keywords (e.g., SVGA, Support, Handpicks)..." oninput="filterContent()">
+    </div>
+
+    <div class="filter-tabs">
+      <button class="tab-btn active" data-filter="all" onclick="setTab('all', this)">ALL DEPARTMENTS</button>
+      <button class="tab-btn" data-filter="moderative" onclick="setTab('moderative', this)">MODERATIVE</button>
+      <button class="tab-btn" data-filter="non-moderative" onclick="setTab('non-moderative', this)">NON-MODERATIVE</button>
+      <button class="tab-btn" data-filter="joining" onclick="setTab('joining', this)">JOINING PATHWAYS</button>
+    </div>
+  </div>
+
+  <!-- Moderative Departments Section -->
+  <div id="section-moderative">
+    <div class="section-header">
+      <div class="section-title">Moderative Departments</div>
+      <span class="section-badge badge-mod">5 DEPARTMENTS</span>
+    </div>
+
+    <div class="dept-grid" id="grid-moderative">
+      
+      <!-- SVGA -->
+      <div class="dept-card" data-category="moderative" data-tags="svga stateview game administration mod calls rule violations safety gaming">
+        <div>
+          <div class="dept-top">
+            <div class="dept-icon-wrapper">🎯</div>
+            <div class="dept-acronym">SVGA</div>
+          </div>
+          <div class="dept-title">Stateview Game Administration</div>
+          <div class="dept-desc">Responsible for maintaining a safe and enjoyable in-game atmosphere. They handle mod calls, respond to rule violations, and take appropriate actions to preserve a secure and fair gaming environment for everyone.</div>
+        </div>
+        <div class="dept-footer">
+          <span class="dept-type">MODERATIVE DIVISION</span>
+          <button class="btn-detail" onclick="openModal('Stateview Game Administration 🎯', 'SVGA', 'The Game Administration team is responsible for maintaining a safe and enjoyable in-game atmosphere. They handle mod calls, respond to rule violations, and take appropriate actions to preserve a secure and fair gaming environment for everyone.', 'Moderative Division', ['In-Game Moderation', 'Mod Call Handling', 'Rule Enforcement'])">
+            INFO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SVSA -->
+      <div class="dept-card" data-category="moderative" data-tags="svsa stateview support agency tickets administration server community care">
+        <div>
+          <div class="dept-top">
+            <div class="dept-icon-wrapper">📑</div>
+            <div class="dept-acronym">SVSA</div>
+          </div>
+          <div class="dept-title">Stateview Support Agency</div>
+          <div class="dept-desc">Dedicated to ensuring the community feels valued, heard, and cared for. It primarily manages tickets within the Administration server, working to foster a positive, supportive, and welcoming environment for all members.</div>
+        </div>
+        <div class="dept-footer">
+          <span class="dept-type">MODERATIVE DIVISION</span>
+          <button class="btn-detail" onclick="openModal('Stateview Support Agency 📑', 'SVSA', 'This department is dedicated to ensuring the community feels valued, heard, and cared for. It primarily manages tickets within the Administration server, working to foster a positive, supportive, and welcoming environment for all members.', 'Moderative Division', ['Ticket System', 'Community Support', 'Member Assistance'])">
+            INFO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SVIA -->
+      <div class="dept-card" data-category="moderative" data-tags="svia stateview intelligence agency employee regulations order policy compliance audit">
+        <div>
+          <div class="dept-top">
+            <div class="dept-icon-wrapper">🔆</div>
+            <div class="dept-acronym">SVIA</div>
+          </div>
+          <div class="dept-title">Stateview Intelligence Agency</div>
+          <div class="dept-desc">Essential in upholding employee regulations and providing crucial support to maintain organizational order. This department plays a vital role in ensuring that all policies are followed effectively.</div>
+        </div>
+        <div class="dept-footer">
+          <span class="dept-type">MODERATIVE DIVISION</span>
+          <button class="btn-detail" onclick="openModal('Stateview Intelligence Agency 🔆', 'SVIA', 'The Intelligence Agency is essential in upholding employee regulations and providing crucial support to maintain organizational order. This department plays a vital role in ensuring that all policies are followed effectively.', 'Moderative Division', ['Employee Oversight', 'Policy Audit', 'Internal Regulations'])">
+            INFO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SVCM -->
+      <div class="dept-card" data-category="moderative" data-tags="svcm stateview community management session standards activity monitoring promotions recognition">
+        <div>
+          <div class="dept-top">
+            <div class="dept-icon-wrapper">🖊️</div>
+            <div class="dept-acronym">SVCM</div>
+          </div>
+          <div class="dept-title">Stateview Community Management</div>
+          <div class="dept-desc">Takes on a variety of responsibilities, from maintaining session standards to monitoring staff activity. This department ensures a vibrant and active community while rewarding the most engaged players with promotions and recognition.</div>
+        </div>
+        <div class="dept-footer">
+          <span class="dept-type">MODERATIVE DIVISION</span>
+          <button class="btn-detail" onclick="openModal('Stateview Community Management 🖊️', 'SVCM', 'Community Management takes on a variety of responsibilities, from maintaining session standards to monitoring staff activity. This department ensures a vibrant and active community while rewarding the most engaged players with promotions and recognition.', 'Moderative Division', ['Session Standards', 'Staff Monitoring', 'Promotions & Rewards'])">
+            INFO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SVDM -->
+      <div class="dept-card" data-category="moderative" data-tags="svdm stateview discord moderation communications intel administration server rule violations">
+        <div>
+          <div class="dept-top">
+            <div class="dept-icon-wrapper">💬</div>
+            <div class="dept-acronym">SVDM</div>
+          </div>
+          <div class="dept-title">Stateview Discord Moderation</div>
+          <div class="dept-desc">Handles rule violations on our main (communications) and intel (administration) servers to maintain safe, respectful, and organized discussion spaces across all Discord servers.</div>
+        </div>
+        <div class="dept-footer">
+          <span class="dept-type">MODERATIVE DIVISION</span>
+          <button class="btn-detail" onclick="openModal('Stateview Discord Moderation 💬', 'SVDM', 'Discord Moderation handles rule violations on our main (communications) and intel (administration) servers.', 'Moderative Division', ['Main Discord Moderation', 'Intel Server Moderation', 'Community Safety'])">
+            INFO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Non-Moderative Departments Section -->
+  <div id="section-non-moderative" style="margin-top: 16px;">
+    <div class="section-header">
+      <div class="section-title">Non-Moderative Departments</div>
+      <span class="section-badge badge-nonmod">2 DEPARTMENTS</span>
+    </div>
+
+    <div class="dept-grid" id="grid-non-moderative">
+      
+      <!-- SVOC -->
+      <div class="dept-card" data-category="non-moderative" data-tags="svoc stateview overseer command weapons tactical weapons weapons tactical facility safety security">
+        <div>
+          <div class="dept-top">
+            <div class="dept-icon-wrapper">⛹️️</div>
+            <div class="dept-acronym">SVOC</div>
+          </div>
+          <div class="dept-title">Stateview Overseer Command</div>
+          <div class="dept-desc">Equipped with specialized tools and weapons, the Overseer Command ensures the facility remains secure and any threats are swiftly neutralized. This team plays a critical role in maintaining safety and stability.</div>
+        </div>
+        <div class="dept-footer">
+          <span class="dept-type">NON-MODERATIVE DIVISION</span>
+          <button class="btn-detail" onclick="openModal('Stateview Overseer Command ⛹️', 'SVOC', 'Equipped with specialized tools and weapons, the Overseer Command ensures the facility remains secure and any threats are swiftly neutralized. This team plays a critical role in maintaining the safety and stability of the Stateview facility.', 'Non-Moderative Division', ['Facility Security', 'Threat Neutralization', 'Specialized Equipment'])">
+            INFO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SVET -->
+      <div class="dept-card" data-category="non-moderative" data-tags="svet stateview events team entertainment community events activities participation">
+        <div>
+          <div class="dept-top">
+            <div class="dept-icon-wrapper">🃏</div>
+            <div class="dept-acronym">SVET</div>
+          </div>
+          <div class="dept-title">Stateview Events Team</div>
+          <div class="dept-desc">Brings excitement and engagement to the Stateview experience by organizing events that create memorable moments for the community. They add a layer of entertainment and overall participation.</div>
+        </div>
+        <div class="dept-footer">
+          <span class="dept-type">NON-MODERATIVE DIVISION</span>
+          <button class="btn-detail" onclick="openModal('Stateview Events Team 🃏', 'SVET', 'The Events Team brings excitement and engagement to the Stateview experience by organizing events that create memorable moments for the community. They add a layer of entertainment and enjoyment, enhancing overall participation.', 'Non-Moderative Division', ['Event Planning', 'Community Engagement', 'Entertainment Operations'])">
+            INFO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Joining Pathways Section -->
+  <div id="section-joining" style="margin-top: 16px;">
+    <div class="section-header">
+      <div class="section-title">Department Joining Pathways</div>
+      <span class="section-badge badge-join">3 ENTRY METHODS</span>
+    </div>
+
+    <div class="join-grid" id="grid-joining">
+      
+      <!-- Handpicks -->
+      <div class="join-card" data-category="joining" data-tags="handpicks high command activity maturity professionalism involvement recruitment">
+        <div class="join-header">
+          <div class="join-title-group">
+            <span class="join-icon">🎯</span>
+            <div class="join-title">1. Handpicks</div>
+          </div>
+          <span class="status-pill info">HIGH COMMAND</span>
+        </div>
+        <div class="join-desc">
+          The department's High Command directly selects users into these departments. Factors considered for handpicks include active in-game participation, maturity, professionalism, and dedication to Stateview as a whole.
+        </div>
+        <button class="action-btn" onclick="showToast('🔴Nuh uh! These requirements are classified.')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          VIEW HANDPICK CRITERIA
+        </button>
+      </div>
+
+      <!-- Applications -->
+      <div class="join-card" data-category="joining" data-tags="applications discord channel closed recruitment announcements">
+        <div class="join-header">
+          <div class="join-title-group">
+            <span class="join-icon">📑</span>
+            <div class="join-title">2. Applications</div>
+          </div>
+          <span class="status-pill closed">CURRENTLY CLOSED</span>
+        </div>
+        <div class="join-desc">
+          Departments periodically open official application cycles. When applications are available, formal announcements are posted in the official Discord application channel.
+        </div>
+        <a class="action-btn" href="https://discord.com/channels/696544612810096681/914632620380414033" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          OPEN DISCORD CHANNEL
+        </a>
+      </div>
+
+      <!-- Buy-ins -->
+      <div class="join-card" data-category="joining" data-tags="buy-ins sales team dm2buy robux purchase instated">
+        <div class="join-header">
+          <div class="join-title-group">
+            <span class="join-icon">💎</span>
+            <div class="join-title">3. Buy-ins</div>
+          </div>
+          <span class="status-pill active">AVAILABLE NOW</span>
+        </div>
+        <div class="join-desc">
+          You may buy entry directly into a department. To initiate a department buy-in, contact an official member of Stateview's Sales Team (identifiable by <strong>"DM2Buy"</strong> in their username).
+        </div>
+        <button class="action-btn" onclick="copySalesInfo()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          COPY SALES CONTACT INFO
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Info Modal -->
+<div class="modal-overlay" id="info-modal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-card">
+    <div class="modal-top">
+      <div class="modal-title" id="m-title">Department Title</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-electric);" id="m-acronym">ACRONYM</div>
+    <div class="modal-body" id="m-body">Detailed information...</div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; margin-top: 4px;">
+      <div style="font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); margin-bottom: 6px;">CORE FUNCTIONAL PILLARS</div>
+      <div class="modal-tag-list" id="m-tags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast element -->
+<div class="toast" id="toast">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <span id="toast-text">Action executed successfully!</span>
+</div>
+
+<script>
+  let activeTab = 'all';
+
+  function setTab(tabName, btnElement) {
+    activeTab = tabName;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btnElement.classList.add('active');
+    filterContent();
+  }
+
+  function filterContent() {
+    const query = document.getElementById('search-input').value.toLowerCase().trim();
+    
+    const secMod = document.getElementById('section-moderative');
+    const secNonMod = document.getElementById('section-non-moderative');
+    const secJoin = document.getElementById('section-joining');
+
+    // Filter moderative cards
+    const modCards = document.querySelectorAll('#grid-moderative .dept-card');
+    let visibleMod = 0;
+    modCards.forEach(card => {
+      const tags = card.getAttribute('data-tags').toLowerCase();
+      const text = card.innerText.toLowerCase();
+      const matchesSearch = !query || tags.includes(query) || text.includes(query);
+      const matchesTab = (activeTab === 'all' || activeTab === 'moderative');
+
+      if (matchesSearch && matchesTab) {
+        card.style.display = 'flex';
+        visibleMod++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Filter non-moderative cards
+    const nonModCards = document.querySelectorAll('#grid-non-moderative .dept-card');
+    let visibleNonMod = 0;
+    nonModCards.forEach(card => {
+      const tags = card.getAttribute('data-tags').toLowerCase();
+      const text = card.innerText.toLowerCase();
+      const matchesSearch = !query || tags.includes(query) || text.includes(query);
+      const matchesTab = (activeTab === 'all' || activeTab === 'non-moderative');
+
+      if (matchesSearch && matchesTab) {
+        card.style.display = 'flex';
+        visibleNonMod++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Filter joining cards
+    const joinCards = document.querySelectorAll('#grid-joining .join-card');
+    let visibleJoin = 0;
+    joinCards.forEach(card => {
+      const tags = card.getAttribute('data-tags').toLowerCase();
+      const text = card.innerText.toLowerCase();
+      const matchesSearch = !query || tags.includes(query) || text.includes(query);
+      const matchesTab = (activeTab === 'all' || activeTab === 'joining');
+
+      if (matchesSearch && matchesTab) {
+        card.style.display = 'flex';
+        visibleJoin++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Section visibility toggles
+    secMod.style.display = visibleMod > 0 ? 'block' : 'none';
+    secNonMod.style.display = visibleNonMod > 0 ? 'block' : 'none';
+    secJoin.style.display = visibleJoin > 0 ? 'block' : 'none';
+  }
+
+  function openModal(title, acronym, bodyText, division, pillars) {
+    document.getElementById('m-title').innerText = title;
+    document.getElementById('m-acronym').innerText = acronym + ' — ' + division;
+    document.getElementById('m-body').innerText = bodyText;
+
+    const tagsContainer = document.getElementById('m-tags');
+    tagsContainer.innerHTML = '';
+    pillars.forEach(p => {
+      const tag = document.createElement('span');
+      tag.className = 'status-pill active';
+      tag.innerText = p;
+      tagsContainer.appendChild(tag);
+    });
+
+    document.getElementById('info-modal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('info-modal').classList.remove('active');
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target.id === 'info-modal') {
+      closeModal();
+    }
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-text').innerText = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3200);
+  }
+
+  function copySalesInfo() {
+    navigator.clipboard.writeText('Stateview Buy-ins: Contact any Sales Team member with "DM2Buy" in their username.');
+    showToast('Copied Sales Contact instructions to clipboard!');
+  }
+</script>
+
+</body>
+</html>
