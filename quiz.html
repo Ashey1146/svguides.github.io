@@ -2924,6 +2924,38 @@
       showToast("Lifetime stats reset successfully.");
     }
   }
+
+  // CODEX / HANDBOOK SEARCH
+  function openHandbookModal() {
+    playClickSFX();
+    document.getElementById('modal-handbook').classList.remove('hidden');
+  }
+
+  function renderHandbookCodex() {
+    const codexContainer = document.getElementById('codex-list');
+    codexContainer.innerHTML = '';
+
+    QUESTION_BANK.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'codex-item';
+      div.innerHTML = `
+        <h4>[${item.cat}] ${item.q}</h4>
+        <p><strong>ANSWER:</strong> ${item.options[item.ans]}</p>
+        <p style="margin-top: 4px; font-size: 12px; color: var(--accent-electric);">${item.exp}</p>
+      `;
+      codexContainer.appendChild(div);
+    });
+  }
+
+  function searchCodex(query) {
+    const q = query.toLowerCase().trim();
+    const items = document.querySelectorAll('.codex-item');
+
+    items.forEach(item => {
+      const text = item.innerText.toLowerCase();
+      item.style.display = text.includes(q) ? 'block' : 'none';
+    });
+  }
 /* FLOATING HOME BUTTON */
     .floating-home-btn {
       position: fixed;
@@ -3135,38 +3167,6 @@
       color: var(--text-sub);
       line-height: 1.4;
     }
-  // CODEX / HANDBOOK SEARCH
-  function openHandbookModal() {
-    playClickSFX();
-    document.getElementById('modal-handbook').classList.remove('hidden');
-  }
-
-  function renderHandbookCodex() {
-    const codexContainer = document.getElementById('codex-list');
-    codexContainer.innerHTML = '';
-
-    QUESTION_BANK.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'codex-item';
-      div.innerHTML = `
-        <h4>[${item.cat}] ${item.q}</h4>
-        <p><strong>ANSWER:</strong> ${item.options[item.ans]}</p>
-        <p style="margin-top: 4px; font-size: 12px; color: var(--accent-electric);">${item.exp}</p>
-      `;
-      codexContainer.appendChild(div);
-    });
-  }
-
-  function searchCodex(query) {
-    const q = query.toLowerCase().trim();
-    const items = document.querySelectorAll('.codex-item');
-
-    items.forEach(item => {
-      const text = item.innerText.toLowerCase();
-      item.style.display = text.includes(q) ? 'block' : 'none';
-    });
-  }
-
   // CONFETTI EFFECT
   function triggerConfetti() {
     const canvas = document.getElementById('confetti-canvas');
