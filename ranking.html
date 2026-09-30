@@ -1,1 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StateView Ranking Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap');
 
+    :root {
+      --bg-core: #030712;
+      --panel-bg: rgba(10, 16, 32, 0.88);
+      --panel-border: rgba(56, 189, 248, 0.22);
+      
+      --accent-primary: #38bdf8;
+      --accent-electric: #00d8ff;
+      --accent-glow: rgba(0, 216, 255, 0.35);
+      --accent-dark: #0284c7;
+      --accent-bg-subtle: rgba(12, 74, 110, 0.25);
+
+      --status-success: #10b981;
+      --status-success-bg: rgba(16, 185, 129, 0.1);
+      --status-success-border: rgba(16, 185, 129, 0.3);
+
+      --status-warning: #fbbf24;
+      --status-warning-bg: rgba(251, 191, 36, 0.08);
+      --status-warning-border: rgba(251, 191, 36, 0.3);
+
+      --status-danger: #f43f5e;
+      --status-danger-bg: rgba(244, 63, 94, 0.12);
+      --status-danger-border: rgba(244, 63, 94, 0.3);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --font-code: 'JetBrains Mono', monospace;
+      --font-ui: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-core);
+      background-image: 
+        radial-gradient(circle at 15% 15%, var(--accent-bg-subtle) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(3, 105, 161, 0.1) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      min-height: 100vh;
+      padding: 40px 20px 80px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .guide-container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .header-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 28px 32px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .main-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-badge {
+      font-family: var(--font-code);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-electric);
+      background: var(--accent-bg-subtle);
+      border: 1px solid var(--panel-border);
+      padding: 6px 14px;
+      border-radius: 30px;
+      letter-spacing: 1px;
+    }
+
+    .section-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-code);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent-electric);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--panel-border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '//';
+      color: var(--accent-dark);
+    }
+
+    .sub-block {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sub-header {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .quote-box {
+      background: rgba(12, 74, 110, 0.2);
+      border-left: 4px solid var(--accent-electric);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .rule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .rule-item {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .rule-item.success {
+      background: var(--status-success-bg);
+      border-color: var(--status-success-border);
+    }
+
+    .rule-item.danger {
+      background: var(--status-danger-bg);
+      border-color: var(--status-danger-border);
+    }
+
+    .rule-item.warning {
+      background: var(--status-warning-bg);
+      border-color: var(--status-warning-border);
+    }
+
+    .rule-condition {
+      font-weight: 700;
+      font-size: 14px;
+      color: #ffffff;
+    }
+
+    .rule-outcome {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      padding-left: 14px;
+      border-left: 2px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .footer-reminder {
+      background: var(--status-warning-bg);
+      border: 1px solid var(--status-warning-border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--status-warning);
+      letter-spacing: 0.5px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+<div class="guide-container">
+
+  <!-- Main Header -->
+  <div class="header-card">
+    <h1 class="main-title">STATEVIEW RANKING GUIDE 🧾</h1>
+    <span class="header-badge">STATEVIEW GUIDES</span>
+  </div>
+
+  <!-- Section 1: Session Tab Ranking -->
+  <div class="section-card">
+    <div class="section-title">RANKING FROM THE SESSION TAB</div>
+
+    <!-- 1. Checking cooldowns -->
+    <div class="sub-block">
+      <h2 class="sub-header">1. Checking cooldowns:</h2>
+      
+      <div class="quote-box">
+        When checking cooldowns, do not rely on BloxCord's session panel, or the /cooldown command. Instead, you should enter the attendee's logbook and see when they last got promoted (only entries you can see on the logbook count, demotions don't affect cooldown, rank claims don't affect cooldown, reverted promotions don't affect cooldown)
+      </div>
+
+      <div class="rule-list">
+        <div class="rule-item success">
+          <div class="rule-condition">If the time elapsed since their promotion has exceeded their cooldown period:</div>
+          <div class="rule-outcome"><strong>THEY'RE OFF COOLDOWN</strong>; promote them.</div>
+        </div>
+
+        <div class="rule-item danger">
+          <div class="rule-condition">If the time elapsed since their promotion has not yet exceeded their cooldown period:</div>
+          <div class="rule-outcome"><strong>THEY'RE ON COOLDOWN</strong>; don't promote them.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Promoting them -->
+    <div class="sub-block" style="margin-top: 12px;">
+      <h2 class="sub-header">2. Promoting them:</h2>
+      
+      <div class="quote-box">
+        If they're off-cooldown and there's no other issues, promote them to their next rank. Sometimes BloxCord says cooldown was bypassed, but if you made sure they're off-cooldown on their logbook, you can ignore that [Cadet-Corrections Officer-Emergency Response Team-Commander-Prison Inspector-Deputy Warden-Warden-Superintedent]
+      </div>
+
+      <div class="rule-list">
+        <div class="rule-item danger">
+          <div class="rule-condition">If they are ranked Low Security Inmate [LSI]:</div>
+          <div class="rule-outcome"><strong>DO NOT PROMOTE THEM</strong></div>
+        </div>
+
+        <div class="rule-item warning">
+          <div class="rule-condition">If they are a different rank in-game and on BC:</div>
+          <div class="rule-outcome">Promote them to the next rank from the one you see in-game. You should promote them manuall* using the Ranking tab on BloxCord.</div>
+        </div>
+
+        <div class="rule-item warning">
+          <div class="rule-condition">If session panel says they're ineligible or on cooldown:</div>
+          <div class="rule-outcome"><strong>Promote them manually</strong>; session panel can be wrong.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Manual Ranking -->
+  <div class="section-card">
+    <div class="section-title">MANUAL RANKING</div>
+
+    <div class="sub-block">
+      <div class="quote-box">
+        When ranking manually, you should go to the Ranking tab on BloxCord, and promote them to the next rank manually. Sometimes BC says cooldown was bypassed, but if you made sure they're off cooldown on their logbook, you can ignore that.
+      </div>
+
+      <div class="rule-list">
+        <div class="rule-item warning">
+          <div class="rule-condition">If BloxCord doesn't let you promote them due to you not being able to bypass cooldown:</div>
+          <div class="rule-outcome">If you have made sure they aren't on cooldown on their logbook, directly message somebody who has those BloxCord permissions to rank them for you; usually CAC+.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Banner -->
+  <div class="footer-reminder">
+    Don't forget to log the promotions!
+  </div>
+
+</div>
+
+</body>
+</html>
