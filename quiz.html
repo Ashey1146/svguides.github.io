@@ -2899,6 +2899,460 @@ It requires **no external libraries, CSS files, or audio MP3s**.
     window.addEventListener('mouseup', onMouseUp);
   });
 })();
+<!-- ========================================================================= -->
+<!--  ULTIMATE AESTHETIC HOME BUTTON (Drop-in snippet for any HTML file)     -->
+<!-- ========================================================================= -->
+<div id="u-home-btn-host">
+  <a href="index.html" id="u-home-btn" aria-label="Home Navigation">
+    <!-- Particle Canvas Layer -->
+    <canvas id="u-home-canvas"></canvas>
+
+    <!-- Animated Multi-layered Aura & Rings -->
+    <div class="u-aura-blur"></div>
+    <div class="u-ring-orbit u-ring-1"></div>
+    <div class="u-ring-orbit u-ring-2"></div>
+    <div class="u-ring-orbit u-ring-3"></div>
+
+    <!-- Shimmer Sparkle Sweeps -->
+    <div class="u-shimmer"></div>
+
+    <!-- Core Glass Shell & Icon -->
+    <div class="u-glass-core">
+      <div class="u-icon-wrap">
+        <svg class="u-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Floating Hotkey Tooltip Tag -->
+    <div class="u-tooltip">
+      <span class="u-label">HOME</span>
+      <span class="u-key">H</span>
+    </div>
+  </a>
+</div>
+
+<style>
+  /* Base Container Positioning */
+  #u-home-btn-host {
+    position: fixed !important;
+    bottom: 28px !important;
+    right: 28px !important;
+    z-index: 9999999 !important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    touch-action: none !important;
+    perspective: 1000px;
+  }
+
+  /* Compact Button Frame */
+  #u-home-btn {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 54px !important;
+    height: 54px !important;
+    border-radius: 50% !important;
+    text-decoration: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Canvas Particle Overlay */
+  #u-home-canvas {
+    position: absolute !important;
+    top: -65px !important;
+    left: -65px !important;
+    width: 184px !important;
+    height: 184px !important;
+    pointer-events: none !important;
+    z-index: 10 !important;
+  }
+
+  /* Core Glass Sphere */
+  .u-glass-core {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.25), rgba(12, 10, 24, 0.85) 70%);
+    backdrop-filter: blur(20px) saturate(220%);
+    -webkit-backdrop-filter: blur(20px) saturate(220%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(168, 85, 247, 0.3),
+      inset 0 2px 3px rgba(255, 255, 255, 0.6),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 4;
+    transition: all 0.4s ease;
+  }
+
+  /* Icon Animations */
+  .u-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: #ffffff;
+    filter: drop-shadow(0 2px 8px rgba(168, 85, 247, 0.8));
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+    z-index: 5;
+  }
+
+  .u-icon {
+    width: 100%;
+    height: 100%;
+    animation: u-pulse-icon 3s ease-in-out infinite;
+  }
+
+  /* Outer Glowing Aura Ambient Pulse */
+  .u-aura-blur {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #a855f7, #ec4899, #3b82f6, #06b6d4, #a855f7);
+    filter: blur(14px);
+    opacity: 0.4;
+    z-index: 1;
+    animation: u-spin 6s linear infinite, u-aura-pulse 2.5s ease-in-out infinite alternate;
+    transition: opacity 0.4s ease, filter 0.4s ease;
+  }
+
+  /* Animated Orbital Rings */
+  .u-ring-orbit {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .u-ring-1 {
+    inset: -5px;
+    border: 1px dashed rgba(168, 85, 247, 0.6);
+    animation: u-spin 10s linear infinite;
+  }
+
+  .u-ring-2 {
+    inset: -10px;
+    border: 1px dotted rgba(56, 189, 248, 0.5);
+    animation: u-spin-reverse 14s linear infinite;
+  }
+
+  .u-ring-3 {
+    inset: -15px;
+    border: 1px solid rgba(236, 72, 153, 0.2);
+    animation: u-spin 20s linear infinite;
+  }
+
+  /* Shimmer Laser Light Sweep */
+  .u-shimmer {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 60%
+    );
+    transform: rotate(30deg) translateY(-100%);
+    animation: u-shimmer-pass 4s ease-in-out infinite;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  /* Floating Tooltip Label */
+  .u-tooltip {
+    position: absolute;
+    right: 68px;
+    top: 50%;
+    transform: translateY(-50%) scale(0.8) translateX(12px);
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(10, 10, 18, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(168, 85, 247, 0.3);
+    padding: 5px 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    z-index: 20;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .u-key {
+    background: rgba(168, 85, 247, 0.3);
+    border: 1px solid rgba(168, 85, 247, 0.6);
+    color: #38bdf8;
+    border-radius: 5px;
+    padding: 1px 5px;
+    font-size: 9px;
+  }
+
+  /* ================= HOVER & ACTIVE STATES ================= */
+  #u-home-btn:hover {
+    transform: scale(1.18) translateZ(10px);
+  }
+
+  #u-home-btn:hover .u-glass-core {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 
+      0 16px 40px rgba(0, 0, 0, 0.7),
+      0 0 35px rgba(168, 85, 247, 0.6),
+      0 0 15px rgba(56, 189, 248, 0.8),
+      inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  }
+
+  #u-home-btn:hover .u-aura-blur {
+    opacity: 0.95;
+    filter: blur(18px);
+    animation-duration: 2s;
+  }
+
+  #u-home-btn:hover .u-icon-wrap {
+    transform: scale(1.25) rotate(-8deg);
+    color: #38bdf8;
+  }
+
+  #u-home-btn:hover .u-ring-1 { border-color: rgba(56, 189, 248, 0.9); animation-duration: 3s; }
+  #u-home-btn:hover .u-ring-2 { border-color: rgba(236, 72, 153, 0.9); animation-duration: 4s; }
+
+  #u-home-btn:hover .u-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) scale(1) translateX(0);
+  }
+
+  #u-home-btn:active {
+    transform: scale(0.9) translateZ(0);
+  }
+
+  /* ================= KEYFRAME ANIMATIONS ================= */
+  @keyframes u-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes u-spin-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  @keyframes u-aura-pulse {
+    0% { transform: scale(0.92); }
+    100% { transform: scale(1.12); }
+  }
+
+  @keyframes u-pulse-icon {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 2px 6px rgba(168, 85, 247, 0.6)); }
+    50% { transform: scale(1.08); filter: drop-shadow(0 2px 12px rgba(56, 189, 248, 0.9)); }
+  }
+
+  @keyframes u-shimmer-pass {
+    0% { transform: rotate(30deg) translateY(-150%); }
+    20%, 100% { transform: rotate(30deg) translateY(150%); }
+  }
+</style>
+
+<script>
+(function() {
+  const btn = document.getElementById('u-home-btn');
+  const host = document.getElementById('u-home-btn-host');
+  const canvas = document.getElementById('u-home-canvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = 184;
+  canvas.height = 184;
+
+  // 1. PROCEDURAL SOUND SYNTHESIZER (Web Audio API)
+  let audioCtx = null;
+  function getAudioContext() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function playSound(type) {
+    try {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+
+      if (type === 'hover') {
+        // High glass chime hover tone
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, now); // D5
+        osc.frequency.exponentialRampToValueAtTime(1174.66, now + 0.15); // D6
+        gain.gain.setValueAtTime(0.02, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.15);
+      } else if (type === 'click') {
+        // Crystal arpeggio chime chord
+        const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // C Major 9th
+        freqs.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.03);
+          gain.gain.setValueAtTime(0.07, now + idx * 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.03 + 0.45);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.03);
+          osc.stop(now + idx * 0.03 + 0.45);
+        });
+      }
+    } catch(e) {}
+  }
+
+  // 2. PARTICLE PHYSICS EXPLOSION & AMBIENT SPARKLES
+  let particles = [];
+  class Particle {
+    constructor(x, y, isBurst = false) {
+      this.x = x;
+      this.y = y;
+      this.radius = isBurst ? Math.random() * 3 + 1 : Math.random() * 1.8 + 0.5;
+      const colors = ['#a855f7', '#ec4899', '#38bdf8', '#ffffff', '#c084fc'];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      const angle = Math.random() * Math.PI * 2;
+      const speed = isBurst ? Math.random() * 4.5 + 1.5 : Math.random() * 0.8 + 0.2;
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed;
+      this.alpha = 1;
+      this.decay = isBurst ? Math.random() * 0.025 + 0.015 : Math.random() * 0.015 + 0.005;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.alpha -= this.decay;
+    }
+
+    draw(c) {
+      c.save();
+      c.globalAlpha = Math.max(0, this.alpha);
+      c.fillStyle = this.color;
+      c.shadowColor = this.color;
+      c.shadowBlur = 6;
+      c.beginPath();
+      c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      c.fill();
+      c.restore();
+    }
+  }
+
+  function spawnBurst() {
+    for (let i = 0; i < 35; i++) {
+      particles.push(new Particle(92, 92, true));
+    }
+  }
+
+  // Continuous ambient star sparkles
+  setInterval(() => {
+    if (particles.length < 50) {
+      const offsetX = 92 + (Math.random() * 50 - 25);
+      const offsetY = 92 + (Math.random() * 50 - 25);
+      particles.push(new Particle(offsetX, offsetY, false));
+    }
+  }, 120);
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.update();
+      p.draw(ctx);
+      if (p.alpha <= 0) particles.splice(i, 1);
+    }
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  // 3. 3D MAGNETIC HOVER TILT
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `scale(1.18) rotateX(${-y * 0.45}deg) rotateY(${x * 0.45}deg) translateZ(12px)`;
+  });
+
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+
+  btn.addEventListener('mouseenter', () => playSound('hover'));
+
+  // 4. CLICK TRIGGER & SMOOTH NAV
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    playSound('click');
+    spawnBurst();
+
+    btn.style.transform = 'scale(0.82)';
+    setTimeout(() => {
+      window.location.href = btn.getAttribute('href');
+    }, 240);
+  });
+
+  // 5. KEYBOARD HOTKEY ("H")
+  window.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'h' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+      btn.click();
+    }
+  });
+
+  // 6. DRAG & DROP POSITIONING
+  let dragging = false, startX, startY, initR, initB;
+  btn.addEventListener('mousedown', (e) => {
+    dragging = false;
+    startX = e.clientX;
+    startY = e.clientY;
+    const rect = host.getBoundingClientRect();
+    initR = window.innerWidth - rect.right;
+    initB = window.innerHeight - rect.bottom;
+
+    function onMove(ev) {
+      const dx = startX - ev.clientX;
+      const dy = startY - ev.clientY;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+        dragging = true;
+        host.style.right = (initR + dx) + 'px';
+        host.style.bottom = (initB + dy) + 'px';
+      }
+    }
+
+    function onUp() {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    }
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  });
+})();
 </script>
+<!-- ========================================================================= -->
 </body>
 </html>
