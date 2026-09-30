@@ -60,7 +60,6 @@
       overflow-x: hidden;
     }
 
-    /* FLOATING ACTIONS */
     .floating-actions {
       position: fixed;
       bottom: 24px;
@@ -232,7 +231,6 @@
       display: none !important;
     }
 
-    /* MODES SELECTOR */
     .mode-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -279,7 +277,6 @@
       line-height: 1.4;
     }
 
-    /* CONFIG GRID */
     .config-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -353,7 +350,6 @@
       filter: brightness(1.1);
     }
 
-    /* QUIZ VIEW */
     .quiz-bar {
       display: flex;
       justify-content: space-between;
@@ -604,7 +600,6 @@
       transform: translateY(-1px);
     }
 
-    /* FLASHCARD VIEW */
     .flashcard-container {
       perspective: 1000px;
       margin: 20px 0;
@@ -659,7 +654,6 @@
       margin-top: 20px;
     }
 
-    /* RESULTS VIEW */
     .results-header {
       text-align: center;
       margin-bottom: 30px;
@@ -739,25 +733,6 @@
       margin-top: 24px;
     }
 
-    .review-filter-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .review-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      color: var(--accent-electric);
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     .review-item {
       background: rgba(15, 23, 42, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -773,13 +748,8 @@
       margin-bottom: 10px;
     }
 
-    .review-ans {
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .ans-correct { color: #a7f3d0; margin-bottom: 4px; }
-    .ans-wrong { color: #fecdd3; margin-bottom: 4px; }
+    .ans-correct { color: #a7f3d0; margin-bottom: 4px; font-size: 13px; }
+    .ans-wrong { color: #fecdd3; margin-bottom: 4px; font-size: 13px; }
 
     .btn-group-results {
       display: flex;
@@ -810,7 +780,6 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
-    /* MODAL OVERLAY */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -829,7 +798,7 @@
       border: 1px solid var(--accent-electric);
       border-radius: 20px;
       padding: 28px;
-      max-width: 520px;
+      max-width: 680px;
       width: 100%;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 25px var(--accent-glow);
       display: flex;
@@ -845,19 +814,6 @@
       color: #fff;
     }
 
-    .modal-msg {
-      font-size: 14px;
-      color: var(--text-sub);
-      line-height: 1.5;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    /* POLICY HANDBOOK / CODEX STYLES */
     .codex-search {
       width: 100%;
       padding: 12px 16px;
@@ -896,29 +852,11 @@
       line-height: 1.5;
     }
 
-    /* CONFETTI CANVAS */
     #confetti-canvas {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none;
       z-index: 99999;
-    }
-
-    /* TOAST FEEDBACK */
-    .toast {
-      position: fixed;
-      bottom: 85px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--status-success);
-      color: #030712;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-weight: 800;
-      font-size: 13px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-      z-index: 100000;
-      animation: fadeIn 0.2s ease;
     }
   </style>
 </head>
@@ -926,7 +864,6 @@
 
 <canvas id="confetti-canvas"></canvas>
 
-<!-- FLOATING ACTIONS -->
 <div class="floating-actions">
   <button class="floating-btn gold-btn" onclick="openHandbookModal()">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -939,7 +876,6 @@
 
 <div class="app-container">
 
-  <!-- Header Banner -->
   <div class="header-card">
     <div class="header-title">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-electric)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -953,2116 +889,1677 @@
     </div>
     
     <div class="header-controls">
-      <button class="icon-btn" id="btn-sound-toggle" onclick="toggleSound()" title="Toggle Sound SFX">
-        <svg id="icon-sound-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-        <svg id="icon-sound-off" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-      </button>
-
-      <button class="icon-btn" onclick="openStatsModal()" title="View Lifetime Stats">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      </button>
-
       <div class="badge-portal">
-        <span class="badge-pulse"></span>
-        <span id="header-q-count">83 POLICY QUESTIONS</span>
+        <div class="badge-pulse"></div>
+        <span>102 FACTUAL QUESTIONS LOADED</span>
       </div>
+      <button class="icon-btn" id="btn-sound-toggle" onclick="toggleSound()" title="Toggle Sound SFX">
+        <svg id="sound-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
     </div>
   </div>
 
-  <!-- Main Tactical Card -->
   <div class="tactical-card">
-    
-    <!-- VIEW 1: SETUP DASHBOARD -->
-    <div id="view-setup" class="panel-view">
-      <h2 style="font-size: 20px; font-weight: 800; color: #fff;">Configure Assessment Session</h2>
-      <p style="font-size: 13.5px; color: var(--text-sub); margin-top: 4px;">Select your preferred game mode, category filter, and target question length.</p>
 
-      <!-- MODE SELECTION -->
-      <div style="margin-top: 20px;">
-        <label style="font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--accent-electric); text-transform: uppercase; font-weight: 700;">Select Assessment Mode</label>
-        <div class="mode-grid">
-          <div class="mode-card active" onclick="selectMode('practice', this)">
-            <div class="mode-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-electric)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-              Practice Mode
-            </div>
-            <div class="mode-desc">Instant policy citations, explanations, and lifelines after every answer.</div>
-          </div>
+    <!-- SETUP VIEW -->
+    <div id="panel-setup" class="panel-view">
+      <h2 style="font-size: 18px; font-weight: 800; color: #fff;">ASSESSMENT CONFIGURATION</h2>
+      <p style="font-size: 13px; color: var(--text-sub); margin-top: 4px;">Select your evaluation mode and test parameters based on official Stateview policy documentation.</p>
 
-          <div class="mode-card" onclick="selectMode('exam', this)">
-            <div class="mode-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning-gold)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Official Exam Mode
-            </div>
-            <div class="mode-desc">Strict exam conditions. Results, score, and citation log revealed only at the end.</div>
+      <div class="mode-grid">
+        <div class="mode-card active" onclick="selectMode('quiz', this)">
+          <div class="mode-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-electric)" stroke-width="2"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Standard Quiz
           </div>
+          <div class="mode-desc">Multiple-choice evaluation with lifelines, instant feedback, and thorough policy explanations.</div>
+        </div>
 
-          <div class="mode-card" onclick="selectMode('survival', this)">
-            <div class="mode-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger-red)" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-              Sudden Death
-            </div>
-            <div class="mode-desc">Single strike elimination. One wrong answer terminates the assessment instantly!</div>
+        <div class="mode-card" onclick="selectMode('flashcard', this)">
+          <div class="mode-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning-gold)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Flashcard Study
           </div>
+          <div class="mode-desc">Self-paced interactive flashcard revision mode for quick memorization of regulations.</div>
+        </div>
 
-          <div class="mode-card" onclick="selectMode('flashcards', this)">
-            <div class="mode-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a7f3d0" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-              Flashcard Study
-            </div>
-            <div class="mode-desc">Self-paced flashcard deck. Flip to review official policy citations and rules.</div>
+        <div class="mode-card" onclick="selectMode('survival', this)">
+          <div class="mode-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger-red)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Hardcore Survival
           </div>
+          <div class="mode-desc">Single strike elimination mode. Test your absolute knowledge of facility rules without errors.</div>
         </div>
       </div>
 
-      <!-- CONFIGURATION GRID -->
       <div class="config-grid">
         <div class="config-box">
-          <label>Category Filter</label>
-          <select id="cfg-cat" class="config-select">
-            <option value="all" selected>All Categories (Full Handbook - 83 Qs)</option>
-            <option value="Section 1: In-Game Regulations & Specific Rule Offenses">Section 1: In-Game Regulations & Rule Offenses</option>
-            <option value="Section 2: Command Operations, Infraction Stacking & Penalties">Section 2: Command Operations & Stacking</option>
-            <option value="Section 3: Reform Strategy, Resignations & Reinstatements">Section 3: Reforms, Resignations & Reinstatements</option>
-            <option value="Section 4: Respected Inmate Policies & Leave of Absence (LOA)">Section 4: Respected Inmate & LOA Policies</option>
+          <label>Policy Category</label>
+          <select id="select-category" class="config-select">
+            <option value="ALL">All Policy Categories (102 Questions)</option>
+            <option value="Behavioral Standards">Behavioral Standards & Moderation</option>
+            <option value="Infraction System">In-Game Infractions & Bans</option>
+            <option value="Sessions & Duty">Sessions & Spectator Guidelines</option>
+            <option value="Reforms & Ranks">Reforms, Resignation & RI Rules</option>
+            <option value="LOA & Forced Leave">LOA & Forced Leave Policies</option>
+            <option value="Policies & Regulations">General Organizational Policies</option>
+            <option value="Admin Commands & HAX">Admin Commands & HAX Rules</option>
           </select>
         </div>
 
         <div class="config-box">
           <label>Question Quantity</label>
-          <select id="cfg-count" class="config-select">
-            <option value="10">10 Questions (Quick)</option>
-            <option value="20">20 Questions (Standard)</option>
-            <option value="30">30 Questions (Extended)</option>
-            <option value="50">50 Questions (Comprehensive)</option>
-            <option value="all" selected>All Questions in Filter</option>
-          </select>
-        </div>
-
-        <div class="config-box">
-          <label>Difficulty Tier</label>
-          <select id="cfg-diff" class="config-select">
-            <option value="all" selected>All Difficulties (Mixed Pool)</option>
-            <option value="easy">Easy (Basic Rules & Definitions)</option>
-            <option value="medium">Medium (Specific Procedures & Limits)</option>
-            <option value="hard">Hard (Exact Penalties & Timeframes)</option>
-          </select>
-        </div>
-
-        <div class="config-box">
-          <label>Question Timer</label>
-          <select id="cfg-timer" class="config-select">
-            <option value="off" selected>No Timer (Relaxed Pace)</option>
-            <option value="15">15 Seconds / Question</option>
-            <option value="30">30 Seconds / Question</option>
-            <option value="45">45 Seconds / Question</option>
+          <select id="select-quantity" class="config-select">
+            <option value="10">10 Questions</option>
+            <option value="25">25 Questions</option>
+            <option value="50">50 Questions</option>
+            <option value="100">100 Questions</option>
+            <option value="ALL" selected>All Valid Questions (102 Total)</option>
           </select>
         </div>
       </div>
 
-      <button class="btn-start" onclick="startSession()">
-        <span>LAUNCH ASSESSMENT SESSION</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <button class="btn-start" onclick="startAssessment()">
+        <span>BEGIN ASSESSMENT</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </button>
     </div>
 
-    <!-- VIEW 2: QUIZ ACTIVE -->
-    <div id="view-quiz" class="panel-view hidden">
+    <!-- QUIZ VIEW -->
+    <div id="panel-quiz" class="panel-view hidden">
       <div class="quiz-bar">
         <div class="quiz-stats">
-          <div class="stat-pill">QUESTION: <span id="lbl-qnum">1/83</span></div>
+          <div class="stat-pill">QUESTION: <span id="lbl-qnum">1/100</span></div>
           <div class="stat-pill">SCORE: <span id="lbl-score">0</span></div>
           <div class="stat-pill">STREAK: <span id="lbl-streak">0 🔥</span></div>
-          <div class="stat-pill" id="pill-timer">TIMER: <span id="lbl-timer">--</span></div>
         </div>
-
-        <button class="btn-quit" onclick="promptQuitQuiz()">Quit Quiz</button>
+        <button class="btn-quit" onclick="exitToSetup()">ABORT QUIZ</button>
       </div>
 
       <div class="progress-track">
-        <div class="progress-fill" id="progress-fill"></div>
+        <div id="progress-fill" class="progress-fill"></div>
       </div>
 
-      <!-- LIFELINES BAR -->
-      <div class="lifelines-bar" id="lifelines-bar">
-        <button class="lifeline-btn" id="btn-5050" onclick="useLifeline5050()">50/50 Lifeline</button>
-        <button class="lifeline-btn" id="btn-hint" onclick="useLifelineHint()">Policy Hint</button>
-        <button class="lifeline-btn" id="btn-flag" onclick="toggleFlagQuestion()">
-          <span id="lbl-flag-text">🚩 Flag Question</span>
-        </button>
+      <div class="lifelines-bar">
+        <button id="btn-5050" class="lifeline-btn" onclick="useLifeline5050()">50:50 (1 Left)</button>
+        <button id="btn-hint" class="lifeline-btn" onclick="useLifelineHint()">HINT (1 Left)</button>
+        <button id="btn-skip" class="lifeline-btn" onclick="useLifelineSkip()">SKIP QUESTION</button>
       </div>
 
       <div class="question-meta">
-        <span class="meta-tag" id="tag-diff">EASY</span>
-        <span class="meta-tag tag-cat" id="tag-cat">SECTION 1</span>
+        <span id="tag-category" class="meta-tag tag-cat">CATEGORY</span>
+        <span id="tag-difficulty" class="meta-tag tag-easy">EASY</span>
       </div>
 
-      <div class="question-text" id="lbl-question">Question text appears here...</div>
+      <div id="lbl-question-text" class="question-text">Loading question text...</div>
 
-      <div class="options-grid" id="options-container">
-        <!-- Dynamic options -->
-      </div>
+      <div id="options-container" class="options-grid"></div>
 
-      <div id="explanation-box" class="explanation-box hidden">
-        <!-- Dynamic explanation -->
-      </div>
+      <div id="explanation-box" class="explanation-box hidden"></div>
 
       <div class="quiz-actions">
-        <button id="btn-next" class="btn-next hidden" onclick="nextQuestion()">Next Question →</button>
+        <button id="btn-next" class="btn-next hidden" onclick="nextQuestion()">NEXT QUESTION &rarr;</button>
       </div>
     </div>
 
-    <!-- VIEW 3: FLASHCARD MODE -->
-    <div id="view-flashcard" class="panel-view hidden">
+    <!-- FLASHCARD VIEW -->
+    <div id="panel-flashcard" class="panel-view hidden">
       <div class="quiz-bar">
         <div class="quiz-stats">
-          <div class="stat-pill">CARD: <span id="lbl-card-num">1/83</span></div>
-          <div class="stat-pill"><span id="lbl-card-cat">SECTION 1</span></div>
+          <div class="stat-pill">CARD: <span id="lbl-card-num">1/100</span></div>
         </div>
-        <button class="btn-quit" onclick="showSetup()">Exit Flashcards</button>
+        <button class="btn-quit" onclick="exitToSetup()">EXIT FLASHCARDS</button>
       </div>
 
       <div class="flashcard-container">
-        <div class="flashcard" id="flashcard-card" onclick="flipFlashcard()">
+        <div id="flashcard-element" class="flashcard" onclick="flipCard()">
           <div class="flashcard-front">
-            <span class="meta-tag tag-cat" id="fc-cat">CATEGORY</span>
-            <h3 style="font-size: 18px; font-weight: 700; color: #fff;" id="fc-question">Flashcard Question Here</h3>
-            <p style="font-size: 12px; color: var(--accent-electric); font-family: 'JetBrains Mono', monospace; margin-top: 10px;">[ CLICK CARD TO REVEAL ANSWER ]</p>
+            <span id="flash-cat-tag" class="meta-tag tag-cat">CATEGORY</span>
+            <div id="flash-question-text" class="question-text">Card Question</div>
+            <p style="font-size: 11px; color: var(--accent-electric); font-family: 'JetBrains Mono', monospace;">[ CLICK CARD TO REVEAL OFFICIAL POLICY ANSWER ]</p>
           </div>
           <div class="flashcard-back">
-            <span style="font-size: 11px; font-weight: 800; color: var(--status-success); letter-spacing: 1px;">CORRECT POLICY REGULATION</span>
-            <h2 style="font-size: 18px; color: #a7f3d0;" id="fc-answer">Answer Here</h2>
-            <p style="font-size: 13px; color: var(--text-sub); line-height: 1.5; margin-top: 8px;" id="fc-exp">Citation details...</p>
+            <div id="flash-answer-text" style="font-size: 16px; font-weight: 700; color: #a7f3d0;">Official Answer</div>
+            <p id="flash-explanation-text" style="font-size: 13px; color: var(--text-sub); line-height: 1.5;">Explanation details...</p>
           </div>
         </div>
       </div>
 
       <div class="flashcard-nav">
-        <button class="btn-secondary" onclick="prevFlashcard()">← Previous Card</button>
-        <button class="btn-secondary" onclick="shuffleFlashcards()">🔀 Shuffle Deck</button>
-        <button class="btn-start" style="margin-top: 0; width: auto; padding: 12px 24px;" onclick="nextFlashcard()">Next Card →</button>
+        <button class="btn-secondary" onclick="prevCard()">&larr; Previous Card</button>
+        <button class="btn-secondary" onclick="nextCard()">Next Card &rarr;</button>
       </div>
     </div>
 
-    <!-- VIEW 4: RESULTS -->
-    <div id="view-results" class="panel-view hidden">
+    <!-- RESULTS VIEW -->
+    <div id="panel-results" class="panel-view hidden">
       <div class="results-header">
         <div class="score-badge-circle">
-          <span class="score-percent" id="res-percent">0%</span>
+          <span id="lbl-res-percent" class="score-percent">0%</span>
           <span class="score-sub">ACCURACY</span>
         </div>
-        <div class="results-title" id="res-title">Assessment Complete</div>
-        <div class="results-msg" id="res-msg">Review your overall performance and miss log below.</div>
+        <h2 id="lbl-res-title" class="results-title">ASSESSMENT COMPLETE</h2>
+        <p id="lbl-res-msg" class="results-msg">Evaluation results generated based on official standards.</p>
       </div>
 
       <div class="summary-grid">
         <div class="summary-card">
-          <div class="summary-lbl">Correct Answers</div>
-          <div class="summary-val" id="res-correct" style="color: #10b981;">0</div>
+          <div class="summary-lbl">TOTAL QUESTIONS</div>
+          <div id="lbl-res-total" class="summary-val">0</div>
         </div>
         <div class="summary-card">
-          <div class="summary-lbl">Incorrect Answers</div>
-          <div class="summary-val" id="res-wrong" style="color: #f43f5e;">0</div>
+          <div class="summary-lbl">CORRECT ANSWERS</div>
+          <div id="lbl-res-correct" class="summary-val" style="color: #10b981;">0</div>
         </div>
         <div class="summary-card">
-          <div class="summary-lbl">Max Streak</div>
-          <div class="summary-val" id="res-streak" style="color: #fbbf24;">0</div>
+          <div class="summary-lbl">INCORRECT ANSWERS</div>
+          <div id="lbl-res-wrong" class="summary-val" style="color: #f43f5e;">0</div>
         </div>
         <div class="summary-card">
-          <div class="summary-lbl">Total Duration</div>
-          <div class="summary-val" id="res-time">0s</div>
+          <div class="summary-lbl">HIGHEST STREAK</div>
+          <div id="lbl-res-maxstreak" class="summary-val" style="color: var(--warning-gold);">0 🔥</div>
         </div>
       </div>
 
-      <!-- REVIEW / CITATION LOG -->
       <div class="review-section">
-        <div class="review-filter-bar">
-          <div class="review-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            <span>Question Review & Citation Log</span>
-          </div>
-
-          <select id="review-filter-select" class="config-select" style="width: auto; padding: 6px 12px; font-size: 12px;" onchange="filterReviewLog(this.value)">
-            <option value="wrong" selected>Show Incorrect Answers Only</option>
-            <option value="all">Show All Attempted Questions</option>
-            <option value="flagged">Show Flagged Questions Only</option>
-          </select>
-        </div>
-
-        <div id="review-container">
-          <!-- Dynamic review items -->
-        </div>
+        <h3 style="font-size: 15px; font-family: 'JetBrains Mono', monospace; color: var(--accent-electric); margin-bottom: 12px;">DETAILED QUESTION BREAKDOWN</h3>
+        <div id="review-container"></div>
       </div>
 
       <div class="btn-group-results">
-        <button class="btn-secondary" onclick="copyDiscordReport()">📋 Copy Discord Staff Report</button>
-        <button class="btn-secondary" onclick="retakeSameSession()">Retake Assessment</button>
-        <button class="btn-start" style="flex: 1; margin-top: 0;" onclick="showSetup()">Configure New Session</button>
+        <button class="btn-secondary" onclick="restartAssessment()">RETRY ASSESSMENT</button>
+        <button class="btn-start" style="margin-top:0; flex:1;" onclick="exitToSetup()">RETURN TO SETUP</button>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- MODAL: CONFIRM QUIT -->
-<div id="modal-confirm" class="modal-overlay hidden">
-  <div class="modal-card">
-    <div class="modal-title" id="modal-title">Quit Active Session?</div>
-    <div class="modal-msg" id="modal-msg">Are you sure you want to abandon this assessment? Your current session progress will be lost.</div>
-    <div class="modal-actions">
-      <button class="btn-secondary" style="flex: 1;" onclick="closeModal()">Cancel</button>
-      <button class="btn-start" style="flex: 1; margin-top: 0; background: var(--danger-red); color: #fff;" id="modal-btn-confirm">Confirm Quit</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: LIFETIME STATS -->
-<div id="modal-stats" class="modal-overlay hidden">
-  <div class="modal-card">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <div class="modal-title">Lifetime Performance Stats</div>
-      <button class="icon-btn" onclick="closeModal()" style="width: 32px; height: 32px;">✕</button>
-    </div>
-    
-    <div class="summary-grid" style="margin-top: 10px; margin-bottom: 10px;">
-      <div class="summary-card">
-        <div class="summary-lbl">Sessions</div>
-        <div class="summary-val" id="stat-total-sessions">0</div>
-      </div>
-      <div class="summary-card">
-        <div class="summary-lbl">Total Questions</div>
-        <div class="summary-val" id="stat-total-q">0</div>
-      </div>
-      <div class="summary-card">
-        <div class="summary-lbl">Overall Accuracy</div>
-        <div class="summary-val" id="stat-accuracy" style="color: var(--accent-electric);">0%</div>
-      </div>
-    </div>
-
-    <div>
-      <button class="btn-secondary" style="width: 100%; font-size: 12px; color: var(--danger-red);" onclick="resetLifetimeStats()">Reset All Stats Data</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: POLICY HANDBOOK / CODEX -->
+<!-- POLICY HANDBOOK MODAL -->
 <div id="modal-handbook" class="modal-overlay hidden">
-  <div class="modal-card" style="max-width: 640px;">
+  <div class="modal-card">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <div class="modal-title">Official Policy Codex Reference</div>
-      <button class="icon-btn" onclick="closeModal()" style="width: 32px; height: 32px;">✕</button>
+      <h3 class="modal-title">STATEVIEW POLICY CODEX</h3>
+      <button class="btn-quit" onclick="closeHandbookModal()">CLOSE</button>
     </div>
-    
-    <input type="text" id="codex-search-input" class="codex-search" placeholder="Search regulations, ranks, timeouts, penalties..." oninput="searchCodex(this.value)">
-
-    <div id="codex-list" style="margin-top: 10px;">
-      <!-- Dynamic handbook articles -->
-    </div>
+    <input type="text" id="handbook-search" class="codex-search" placeholder="Search rules, penalties, command formats..." oninput="filterHandbook()">
+    <div id="handbook-content-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
   </div>
 </div>
 
 <script>
-  // COMPLETE QUESTION BANK WRAPPED INTO SPECIFIC CATEGORIES & SECTIONS
-  const QUESTION_BANK = [
-    // ==========================================
-    // SECTION 1: IN-GAME REGULATIONS & RULE OFFENSES
-    // ==========================================
-    {
-      q: "What disciplinary consequence is issued for Exploiting, and is it appealable?",
-      options: [
-        "Permanent Unappealable Game Ban",
-        "7-day Game Ban (Appealable after 30 days)",
-        "30-day Suspension (Appealable)",
-        "Verbal Warning & Server Kick"
-      ],
-      ans: 0, diff: "easy", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Exploiting carries a strict, immediate Permanent Unappealable Game Ban."
-    },
-    {
-      q: "What are the four progressive disciplinary consequences for Cuff Abuse / Random Killing / Tool Abuse?",
-      options: [
-        "Tool Ban -> 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban",
-        "Verbal Warning -> Server Kick -> 1-day Ban -> Permanent Ban",
-        "12-hour Mute -> 1-day Mute -> 3-day Mute -> Demotion",
-        "1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban -> 14-day Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Cuff/Random Killing/Tool Abuse steps: Tool Ban -> 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban."
-    },
-    {
-      q: "What authorized methods must session hosts use to remove Respected Inmates who disrupt an ongoing session?",
-      options: [
-        "Kick from game or use /sban (session ban); administrative bans are strictly prohibited",
-        "Issue an immediate permanent game ban via admin commands",
-        "Issue a 3-day team ban and discord mute",
-        "Call an SIA Executive to demote them on the spot"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Session hosts must use /kick or /sban (session ban); standard admin bans against Respected Inmates are prohibited."
-    },
-    {
-      q: "What are the four disciplinary steps for Minor Admin Abuse?",
-      options: [
-        "1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban -> Demotion / Blacklist",
-        "Warning -> Server Kick -> 1-day Ban -> 3-day Ban",
-        "12-hour Mute -> 1-day Ban -> 7-day Ban -> Demotion",
-        "3-day Game Ban -> 7-day Game Ban -> 14-day Ban -> Demotion"
-      ],
-      ans: 0, diff: "hard", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Minor Admin Abuse steps: 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban -> Demotion / Blacklist."
-    },
-    {
-      q: "What are the three disciplinary steps for Major Admin Abuse?",
-      options: [
-        "7-day Game Ban -> 14-day Game Ban -> Permanent Ban & Demotion/Blacklist",
-        "1-day Game Ban -> 3-day Game Ban -> Demotion",
-        "3-day Game Ban -> 7-day Game Ban -> Permanent Ban",
-        "Immediate Demotion -> 30-day Game Ban -> Blacklist"
-      ],
-      ans: 0, diff: "hard", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Major Admin Abuse steps: 7-day Game Ban -> 14-day Game Ban -> Permanent Ban & Demotion/Blacklist."
-    },
-    {
-      q: "Which three specific behaviors define Disrespect under Rule 4?",
-      options: [
-        "Insulting staff/players, aggressive argumentativeness, and deliberate hostility/harassment",
-        "AFK farming, bypassing chat filters, and wearing illegal uniforms",
-        "Cuff abuse, tool abuse, and entering unauthorized areas",
-        "Spamming modcalls, spawn camping, and glitching"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Disrespect is defined by insulting individuals, aggressive argumentativeness, and targeted hostility or harassment."
-    },
-    {
-      q: "What are the disciplinary consequences for violating Rule 4 (Disrespect)?",
-      options: [
-        "Warning / 12-hour Mute -> 1-day Mute -> 3-day Mute -> 7-day Mute / Game Ban",
-        "Verbal Warning -> Server Kick -> 1-day Game Ban -> 3-day Game Ban",
-        "1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban -> Demotion",
-        "Tool Ban -> 1-day Mute -> 3-day Mute -> 7-day Mute"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Rule 4 (Disrespect) consequences: Warning / 12-hour Mute -> 1-day Mute -> 3-day Mute -> 7-day Mute / Game Ban."
-    },
-    {
-      q: "What is the fourth and final disciplinary consequence for Inappropriate Behavior?",
-      options: [
-        "7-day Game Ban & Demotion Review",
-        "14-day Game Ban",
-        "Permanent Blacklist",
-        "3-day Game Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "The 4th consequence for Inappropriate Behavior is a 7-day Game Ban accompanied by a formal Demotion Review."
-    },
-    {
-      q: "What notice is explicitly given to higher-ranking officers regarding the enforcement of Inappropriate Behavior?",
-      options: [
-        "Higher-ranking officers are held to higher standards and face immediate demotion review upon infraction",
-        "Higher-ranking officers are exempt from first-offense mutes",
-        "Higher-ranking officers only receive verbal warnings from Executives",
-        "Higher-ranking officers can appeal directly without waiting periods"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Higher-ranking officers are held to stricter conduct standards and face direct demotion review upon violations."
-    },
-    {
-      q: "How is Spamming defined under Rule 6, and what are its three disciplinary consequences?",
-      options: [
-        "Sending 3+ repeated or nonsensical messages rapidly; 12-hour Mute -> 1-day Mute -> 3-day Mute",
-        "Sending 5+ messages; Verbal Warning -> Kick -> 1-day Ban",
-        "Using caps in chat; 1-hour Mute -> 12-hour Mute -> 1-day Mute",
-        "Posting discord links; 1-day Mute -> 3-day Mute -> 7-day Mute"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Spamming is sending 3+ rapid repeated/nonsensical messages. Penalties: 12-hr Mute -> 1-day Mute -> 3-day Mute."
-    },
-    {
-      q: "How do the disciplinary steps for Trolling differ between staff ranked Cadet Officer & Above versus players ranked Suspended Security Inmate & Below?",
-      options: [
-        "Cadet Officer & Above face 5 progressive steps including demotion review; Inmates & Below face 2 steps (Warning -> Kick/Ban)",
-        "Inmates & Below face 5 steps while Cadet Officer & Above are banned immediately",
-        "Cadet Officers face 3 steps while Inmates face 4 steps",
-        "There is no difference in steps between ranks"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Cadet Officer & Above undergo a 5-step process including demotion review, whereas Inmates & Below have a 2-step process."
-    },
-    {
-      q: "What are the five disciplinary steps for Trolling for a Cadet Officer & Above?",
-      options: [
-        "Warning -> 12-hr Mute/Server Kick -> 1-day Game Ban -> 3-day Game Ban -> Demotion Review",
-        "Tool Ban -> 1-day Ban -> 3-day Ban -> 7-day Ban -> Demotion",
-        "Verbal Warning -> 1-day Ban -> 3-day Ban -> 7-day Ban -> Blacklist",
-        "12-hr Mute -> 1-day Ban -> 3-day Ban -> 7-day Ban -> 14-day Ban"
-      ],
-      ans: 0, diff: "hard", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Trolling steps (Cadet Officer+): Warning -> 12-hr Mute/Kick -> 1-day Game Ban -> 3-day Game Ban -> Demotion Review."
-    },
-    {
-      q: "What are the two disciplinary steps for Trolling for a Suspended Security Inmate & Below?",
-      options: [
-        "Warning -> Kick / 1-day Game Ban",
-        "12-hour Mute -> 3-day Game Ban",
-        "Verbal Warning -> Tool Ban",
-        "1-day Game Ban -> Permanent Ban"
-      ],
-      ans: 0, diff: "easy", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Trolling steps (Suspended Security Inmate & Below): Warning -> Kick / 1-day Game Ban."
-    },
-    {
-      q: "What are the disciplinary consequences for Glitching under Rule 8?",
-      options: [
-        "Warning / Respawn -> 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban",
-        "Verbal Warning -> Tool Ban -> 1-day Ban -> 3-day Ban",
-        "1-day Ban -> 3-day Ban -> 7-day Ban -> Permanent Ban",
-        "Kick -> 1-day Ban -> 5-day Ban -> Demotion"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Glitching consequences: Warning / Respawn -> 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban."
-    },
-    {
-      q: "What action occurs on the first infraction of Session Altercation?",
-      options: [
-        "Server Kick & Official Session Warning",
-        "12-hour Chat Mute",
-        "1-day Game Ban",
-        "Verbal Warning in Discord"
-      ],
-      ans: 0, diff: "easy", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "1st infraction for Session Altercation results in a Server Kick & Official Session Warning."
-    },
-    {
-      q: "What is the final disciplinary step for Session Altercation?",
-      options: [
-        "7-day Game Ban & Session Blacklist",
-        "14-day Game Ban",
-        "Permanent Game Ban & Demotion",
-        "3-day Game Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "The final step for Session Altercation is a 7-day Game Ban accompanied by a Session Blacklist."
-    },
-    {
-      q: "How is Raiding defined, and what is its first disciplinary consequence?",
-      options: [
-        "Group entry with intent to disrupt server operations; 3-day Game Ban / Server Ban",
-        "Entering unauthorized areas in a group; Warning",
-        "Killing 3+ guards simultaneously; 1-day Game Ban",
-        "Spamming door controls in group; Tool Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Raiding is coordinated group entry intended to disrupt operations. First consequence is a 3-day Game Ban / Server Ban."
-    },
-    {
-      q: "What is the minimum timeframe requirement of recorded evidence needed to prove an AFK Farming violation?",
-      options: [
-        "At least 7 minutes of continuous recorded evidence",
-        "At least 3 minutes of recorded evidence",
-        "At least 5 minutes of recorded evidence",
-        "At least 10 minutes of recorded evidence"
-      ],
-      ans: 0, diff: "hard", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Proving AFK Farming requires at least 7 minutes of unedited continuous recorded video evidence."
-    },
-    {
-      q: "What are the three disciplinary steps for AFK Farming?",
-      options: [
-        "Stat Reset / Kick -> 1-day Game Ban -> 3-day Game Ban",
-        "Warning -> Tool Ban -> 1-day Ban",
-        "12-hour Mute -> 1-day Ban -> 3-day Ban",
-        "1-day Ban -> 3-day Ban -> 7-day Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "AFK Farming steps: Stat Reset / Kick -> 1-day Game Ban -> 3-day Game Ban."
-    },
-    {
-      q: "What specific scenario is given in the text as an explicit example of Cross-Teaming?",
-      options: [
-        "Inmates and Guards/Staff teaming together to bypass security, assist escapes, or kill other officers",
-        "Guards trading weapons in the yard",
-        "Inmates sharing food in the cafeteria",
-        "Two staff members patrolling together without permission"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Cross-Teaming explicit example: Inmates and Guards/Staff teaming to bypass security, aid escapes, or kill officers."
-    },
-    {
-      q: "What are the three disciplinary consequences for Cross-Teaming?",
-      options: [
-        "Warning -> 1-day Game Ban -> 3-day Game Ban",
-        "Tool Ban -> 1-day Ban -> 7-day Ban",
-        "Kick -> 3-day Ban -> Demotion",
-        "12-hour Mute -> 1-day Ban -> 3-day Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Cross-Teaming consequences: Warning -> 1-day Game Ban -> 3-day Game Ban."
-    },
-    {
-      q: "Which specific actions constitute Control Panel Abuse, and what is the fourth disciplinary step?",
-      options: [
-        "Spamming doors/gates or toggling facility alarms unnecessarily; 7-day Game Ban & Control Panel Blacklist",
-        "Entering control room without rank; 1-day Ban",
-        "Turning off lights during blackout; 3-day Ban",
-        "Using execution controls; Demotion"
-      ],
-      ans: 0, diff: "hard", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Control Panel Abuse is spamming door controls or facility alarms. 4th step: 7-day Game Ban & Control Panel Blacklist."
-    },
-    {
-      q: "What constitutes Rank Impersonation, and what are the three disciplinary steps?",
-      options: [
-        "Falsely claiming or wearing uniforms of unauthorized higher ranks; Warning -> 1-day Game Ban -> 3-day Game Ban",
-        "Using admin commands without permission; 1-day Ban -> 3-day Ban -> 7-day Ban",
-        "Wearing inmate clothes as guard; Kick -> 1-day Ban -> 3-day Ban",
-        "Applying for wrong rank in discord; Warning -> Mute -> Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Rank Impersonation is falsely claiming/wearing higher rank uniforms. Steps: Warning -> 1-day Game Ban -> 3-day Game Ban."
-    },
-    {
-      q: "What are the three disciplinary consequences for Disturbing a Session?",
-      options: [
-        "Respawn/Kick -> 1-day Game Ban -> 3-day Game Ban",
-        "Warning -> Tool Ban -> 1-day Ban",
-        "12-hr Mute -> 1-day Ban -> Demotion",
-        "1-day Ban -> 3-day Ban -> 7-day Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Disturbing a Session consequences: Respawn/Kick -> 1-day Game Ban -> 3-day Game Ban."
-    },
-    {
-      q: "What is the precise distinction in definition between Spawn Killing and Spawn Camping?",
-      options: [
-        "Spawn Killing is killing immediately upon spawn; Spawn Camping is waiting/loitering at spawn areas to kill emerging players",
-        "Spawn Camping is killing inside cells; Spawn Killing is killing in the yard",
-        "Spawn Killing applies only to inmates; Spawn Camping applies only to guards",
-        "There is no distinction between the two rules"
-      ],
-      ans: 0, diff: "easy", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Spawn Killing is killing immediately at spawn points; Spawn Camping is loitering around spawns waiting to kill players."
-    },
-    {
-      q: "What are the four disciplinary steps for Spawn Killing?",
-      options: [
-        "Warning -> 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban",
-        "Tool Ban -> 1-day Ban -> 3-day Ban -> Demotion",
-        "Kick -> 1-day Ban -> 3-day Ban -> 14-day Ban",
-        "12-hr Mute -> 1-day Ban -> 3-day Ban -> 7-day Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Spawn Killing steps: Warning -> 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban."
-    },
-    {
-      q: "What are the four disciplinary steps for Spawn Camping?",
-      options: [
-        "Warning -> 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban",
-        "Tool Ban -> 1-day Ban -> 3-day Ban -> Demotion",
-        "Kick -> 1-day Ban -> 3-day Ban -> 14-day Ban",
-        "12-hr Mute -> 1-day Ban -> 3-day Ban -> 7-day Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Spawn Camping steps: Warning -> 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban."
-    },
-    {
-      q: "Entering the control room without holding at least what rank constitutes Entering Unauthorized Areas?",
-      options: [
-        "Cadet Officer",
-        "Correctional Officer",
-        "Warden",
-        "Superintendent"
-      ],
-      ans: 0, diff: "easy", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Entering the control room without holding at least Cadet Officer rank constitutes Entering Unauthorized Areas."
-    },
-    {
-      q: "Which forums document are the steps for Unauthorized Sessions shown?",
-      options: [
-        "In-Game Behavioral Standards Overview",
-        "General Procedures & Operations Overview",
-        "Session Operations Guide",
-        "BloxCord Session Guide"
-      ],
-      ans: 0, diff: "easy", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Session hosting standards are governed strictly by the #session-guidelines / Session Hosting Protocol."
-    },
-    {
-      q: "What are the three disciplinary steps for Unauthorized Spectating / Impersonating Permission?",
-      options: [
-        "Warning -> 1-day Game Ban -> 3-day Game Ban",
-        "Kick -> 3-day Ban -> Demotion",
-        "Tool Ban -> 1-day Ban -> 7-day Ban",
-        "12-hr Mute -> 1-day Ban -> 3-day Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Unauthorized Spectating steps: Warning -> 1-day Game Ban -> 3-day Game Ban."
-    },
-    {
-      q: "How are False Patrol Logs defined, and what are the three disciplinary steps?",
-      options: [
-        "Submitting fabricated, copied, or non-existent patrol logs; Warning/Log Invalidation -> Demotion -> Blacklist",
-        "Logging under 15 minutes; Verbal Warning -> Kick -> 1-day Ban",
-        "Logging without screenshots; 1-day Ban -> 3-day Ban -> Demotion",
-        "Posting logs in wrong channel; Mute -> Kick -> Ban"
-      ],
-      ans: 0, diff: "hard", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "False Patrol Logs are fake/copied submissions. Steps: Warning/Log Invalidation -> Demotion -> Blacklist."
-    },
-    {
-      q: "Failing to comply with instructions during a server lockdown or blackout is classified under what roleplay violation?",
-      options: [
-        "FailRP (Fail Roleplay)",
-        "Control Panel Abuse",
-        "Refusal to Patrol",
-        "Disrespect"
-      ],
-      ans: 0, diff: "easy", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Ignoring lockdown or blackout protocols is classified under FailRP."
-    },
-    {
-      q: "What crucial step must a staff member complete before issuing a ban to a player who is Leaving to Avoid Punishment?",
-      options: [
-        "Record full video evidence of the infraction occurring before the player left",
-        "Ask an Executive for verbal permission in voice chat",
-        "Issue a warning in the public Discord server",
-        "Check if the player has active gamepasses"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Staff MUST record full unedited video proof of the original infraction prior to the player leaving."
-    },
-    {
-      q: "What are the exact game ban durations for Leaving to Avoid Punishment across infractions 1, 2, and 3?",
-      options: [
-        "1 Day -> 3 Days -> 7 Days",
-        "3 Days -> 7 Days -> 14 Days",
-        "12 Hours -> 1 Day -> 3 Days",
-        "7 Days -> 14 Days -> 30 Days"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Leaving to Avoid Punishment ban durations: 1 Day -> 3 Days -> 7 Days."
-    },
-    {
-      q: "Under what specific conditions or locations ONLY is a direct order to patrol mandatory and enforceable under Refusal to Patrol?",
-      options: [
-        "During an active official hosted session or official server patrol command",
-        "Any time a higher rank enters the server",
-        "Only inside the Maximum Security sector",
-        "During shift changeovers in cafeteria"
-      ],
-      ans: 0, diff: "medium", cat: "Section 1: In-Game Regulations & Specific Rule Offenses",
-      exp: "Refusal to Patrol orders are enforceable strictly during active official hosted sessions or official server patrol commands."
-    },
+// ==========================================
+// 102 FACTUAL QUESTIONS DATABASE
+// Derived directly from official Stateview policy documentation
+// ==========================================
+const QUESTIONS_DB = [
+  // BEHAVIORAL STANDARDS & MODERATION (1-35)
+  {
+    id: 1,
+    category: "Behavioral Standards",
+    difficulty: "easy",
+    question: "What is the disciplinary consequence for Exploiting (noclipping, flying, teleporting)?",
+    options: ["Verbal Warning", "3-Day Game Ban", "Permanent Unappealable Game Ban", "14-Day Suspension"],
+    correct: 2,
+    explanation: "Exploiting carries a strict Permanent Unappealable Game Ban."
+  },
+  {
+    id: 2,
+    category: "Behavioral Standards",
+    difficulty: "easy",
+    question: "What is the disciplinary consequence for a 1st infraction of Cuff Abuse, Random Killing, or Tool Abuse?",
+    options: ["Verbal-Warning", "Tool-Ban", "Server-Ban", "Game-Kick"],
+    correct: 0,
+    explanation: "1st infraction for Cuff Abuse / RK / Tool Abuse is a Verbal-Warning."
+  },
+  {
+    id: 3,
+    category: "Behavioral Standards",
+    difficulty: "easy",
+    question: "What is the consequence for a 2nd infraction of Cuff Abuse, Random Killing, or Tool Abuse?",
+    options: ["Verbal-Warning", "Tool-Ban", "Extended Tool-Ban", "Game-Ban"],
+    correct: 1,
+    explanation: "2nd infraction for Cuff Abuse / RK / Tool Abuse is a Tool-Ban."
+  },
+  {
+    id: 4,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "What is the consequence for a 3rd infraction of Cuff Abuse, Random Killing, or Tool Abuse?",
+    options: ["Tool-Ban", "Extended Tool-Ban", "Game-Ban", "Termination"],
+    correct: 1,
+    explanation: "3rd infraction for Cuff Abuse / RK / Tool Abuse is an Extended Tool-Ban."
+  },
+  {
+    id: 5,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "What is the consequence for a 4th infraction of Cuff Abuse, Random Killing, or Tool Abuse?",
+    options: ["Extended Tool-Ban", "Server-Ban", "Game-Ban", "Permanent Blacklist"],
+    correct: 2,
+    explanation: "4th infraction for Cuff Abuse / RK / Tool Abuse escalates to a Game-Ban."
+  },
+  {
+    id: 6,
+    category: "Behavioral Standards",
+    difficulty: "hard",
+    question: "What are the exact step-by-step consequences for Minor Admin Abuse?",
+    options: [
+      "[1] Verbal-Warning, [2] Staff-Warning, [2] 3-5 Day Suspension, [3] Termination",
+      "[1] Chat-Mute, [2] Server-Ban, [3] Game-Ban",
+      "[1] Game-Kick, [2] Game-Ban",
+      "[1] Staff-Warning, [2] 7-14 Day Suspension, [3] Termination"
+    ],
+    correct: 0,
+    explanation: "Minor Admin Abuse progression: [1] Verbal-Warning, [2] Staff-Warning, [2] 3-5 Day Suspension, [3] Termination."
+  },
+  {
+    id: 7,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "What is the 2nd infraction penalty for Major Admin Abuse?",
+    options: ["Staff-Warning", "3-5 Day Suspension", "7-14 Day Suspension", "Termination"],
+    correct: 2,
+    explanation: "Major Admin Abuse: [1] Staff-Warning, [2] 7-14 Day Suspension, [3] Termination."
+  },
+  {
+    id: 8,
+    category: "Behavioral Standards",
+    difficulty: "easy",
+    question: "What is the penalty for a 1st infraction of Disrespect (hate speech, flame wars, mass yelling)?",
+    options: ["Verbal-Warning", "Chat-Mute", "Server-Ban", "Staff-Warning"],
+    correct: 1,
+    explanation: "Disrespect infraction 1 results in a Chat-Mute."
+  },
+  {
+    id: 9,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "What is the 4th infraction consequence for Inappropriate Behavior?",
+    options: ["Game-Ban", "Extended Game-Ban", "Permanent Blacklist", "Termination"],
+    correct: 2,
+    explanation: "Inappropriate Behavior consequences: [1] Chat-Mute, [2] Game-Ban, [3] Extended Game-Ban, [4] Permanent Blacklist."
+  },
+  {
+    id: 10,
+    category: "Behavioral Standards",
+    difficulty: "easy",
+    question: "What is the 2nd infraction penalty for Spamming (including radio spamming)?",
+    options: ["Verbal-Warning", "Chat-Mute", "Game-Ban", "Server-Kick"],
+    correct: 1,
+    explanation: "Spamming penalties: [1] Verbal-Warning, [2] Chat-Mute, [3] Game-Ban."
+  },
+  {
+    id: 11,
+    category: "Behavioral Standards",
+    difficulty: "hard",
+    question: "For Cadet Officer & Above, what is the complete disciplinary sequence for Trolling?",
+    options: [
+      "[1] Verbal-Warning, [2] Staff Warning, [3] 3-5 Day Suspension, [4] Demotion, [5] Termination",
+      "[1] Game-Kick, [2] Game-Ban",
+      "[1] Chat-Mute, [2] Server-Ban, [3] Game-Ban",
+      "[1] Verbal-Warning, [2] Server-Ban, [3] Termination"
+    ],
+    correct: 0,
+    explanation: "Trolling sequence for Cadet Officer & Above is 5 steps ending in Termination."
+  },
+  {
+    id: 12,
+    category: "Behavioral Standards",
+    difficulty: "easy",
+    question: "For Suspended Security Inmate & Below, what is the 1st infraction penalty for Trolling?",
+    options: ["Verbal-Warning", "Game-Kick", "Game-Ban", "Chat-Mute"],
+    correct: 1,
+    explanation: "For Suspended Security Inmate & Below, Trolling 1st infraction is Game-Kick, 2nd is Game-Ban."
+  },
+  {
+    id: 13,
+    category: "Behavioral Standards",
+    difficulty: "easy",
+    question: "What is the 2nd infraction penalty for Glitching?",
+    options: ["Verbal-Warning", "Staff-Warning", "Game-Ban", "Permanent Blacklist"],
+    correct: 2,
+    explanation: "Glitching consequences: [1] Verbal-Warning, [2] Game-Ban."
+  },
+  {
+    id: 14,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "What is the 1st infraction penalty for Session Altercation (modifying a session without HR approval)?",
+    options: ["Verbal-Warning & Cancellation of Session", "7-10 Day Suspension", "Termination", "Game-Kick"],
+    correct: 0,
+    explanation: "Session Altercation 1st offense is Verbal-Warning & Cancellation of Session."
+  },
+  {
+    id: 15,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "What is the 3rd infraction penalty for Raiding?",
+    options: ["Tool Ban", "Server-Ban", "Game-Ban", "Termination"],
+    correct: 1,
+    explanation: "Raiding penalties: [1] Verbal-Warning & Player Respawn, [2] Tool Ban, [3] Server-Ban."
+  },
+  {
+    id: 16,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "How many minutes of proof are required before issuing a punishment for AFK Farming?",
+    options: ["At least 3 minutes", "At least 5 minutes", "At least 7 minutes", "At least 10 minutes"],
+    correct: 2,
+    explanation: "You are required to show proof of the user AFK Farming for at least seven minutes."
+  },
+  {
+    id: 17,
+    category: "Behavioral Standards",
+    difficulty: "hard",
+    question: "What is the 3rd infraction penalty for AFK Farming?",
+    options: ["Demotion & Game-Kick", "Termination & Game-Kick", "Game-Ban & Termination", "Permanent Blacklist"],
+    correct: 2,
+    explanation: "AFK Farming: [1] Demotion & Game-Kick, [2] Termination & Game-Kick, [3] Game-Ban & Termination."
+  },
+  {
+    id: 18,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "What is the 3rd infraction penalty for Cross-Teaming?",
+    options: ["Server-Ban", "Team-Ban", "Game-Ban", "Termination"],
+    correct: 1,
+    explanation: "Cross-Teaming: [1] Verbal-Warning & Player-Respawn, [2] Server-Ban, [3] Team-Ban."
+  },
+  {
+    id: 19,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "Control Panel Abuse carries what penalty on the 2nd infraction?",
+    options: ["Verbal-Warning & Player-Respawn", "Game-Kick", "Server-Ban", "Game-Ban"],
+    correct: 1,
+    explanation: "Control Panel Abuse: [1] Verbal-Warning & Player-Respawn, [2] Game-Kick, [3] Server-Ban, [4] Game-Ban."
+  },
+  {
+    id: 20,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "Rank Impersonation carry what penalty on the 2nd infraction?",
+    options: ["Verbal-Warning", "3-5 Day Suspension", "Game-Ban", "Termination"],
+    correct: 1,
+    explanation: "Rank Impersonation: [1] Verbal-Warning, [2] 3-5 Day Suspension, [3] Game-Ban."
+  },
+  {
+    id: 21,
+    category: "Behavioral Standards",
+    difficulty: "easy",
+    question: "Disturbing a Session carries what penalty on the 2nd infraction?",
+    options: ["Verbal-Warning & Player-Respawn", "Server-Ban", "Game-Ban", "Tool-Ban"],
+    correct: 1,
+    explanation: "Disturbing a Session: [1] Verbal-Warning & Player-Respawn, [2] Server-Ban, [3] Game-Ban."
+  },
+  {
+    id: 22,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "Spawn Killing 2nd infraction penalty is:",
+    options: ["Verbal-Warning & Player-Respawn", "Tool-Ban", "Server-Ban", "Game-Ban"],
+    correct: 1,
+    explanation: "Spawn Killing: [1] Verbal-Warning & Player-Respawn, [2] Tool-Ban, [3] Server-Ban, [4] Game-Ban."
+  },
+  {
+    id: 23,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "Spawn Camping 4th infraction penalty is:",
+    options: ["Tool-Ban", "Server-Ban", "Game-Ban", "Blacklist"],
+    correct: 2,
+    explanation: "Spawn Camping 4th infraction is Game-Ban."
+  },
+  {
+    id: 24,
+    category: "Behavioral Standards",
+    difficulty: "hard",
+    question: "Entering Unauthorized Areas (e.g. control room without rank Commander+) 3rd infraction penalty is:",
+    options: ["Verbal-Warning & Player-Respawn", "Game-Kick", "Server-Ban", "Game-Ban"],
+    correct: 2,
+    explanation: "Entering Unauthorized Areas: [1] Verbal-Warning & Player-Respawn, [2] Game-Kick, [3] Server-Ban, [4] Game-Ban."
+  },
+  {
+    id: 25,
+    category: "Behavioral Standards",
+    difficulty: "medium",
+    question: "Unauthorized Spectating 3rd infraction penalty is:",
+    options: ["Verbal-Warning", "Staff-Warning", "4-6 Day Suspension", "Termination"],
+    correct: 2,
+    explanation: "Unauthorized Spectating: [1] Verbal-Warning, [2] Staff-Warning, [3] 4-6 Day Suspension."
+  },
 
-    // ==========================================
-    // SECTION 2: COMMAND OPERATIONS, INFRACTION STACKING & PENALTIES
-    // ==========================================
-    {
-      q: "Which three positions/ranks are authorized to issue a mandatory order to patrol under Rule 24?",
-      options: [
-        "Session Host, Co-Host, or Executive / High Rank Officer",
-        "Cadet Officer, Correctional Officer, Warden",
-        "Respected Inmates, SIA Agents, Support Agents",
-        "Community Advisory Council only"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Mandatory patrol orders can only be issued by the Session Host, Co-Host, or Executive/High Rank Officers."
-    },
-    {
-      q: "What are the four disciplinary consequences for Refusal to Patrol?",
-      options: [
-        "Verbal Warning -> Server Kick -> 1-day Game Ban -> Demotion Review",
-        "1-day Ban -> 3-day Ban -> 7-day Ban -> Demotion",
-        "Tool Ban -> 1-day Ban -> 3-day Ban -> Blacklist",
-        "12-hr Mute -> 1-day Ban -> 3-day Ban -> Demotion"
-      ],
-      ans: 0, diff: "hard", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Refusal to Patrol consequences: Verbal Warning -> Server Kick -> 1-day Game Ban -> Demotion Review."
-    },
-    {
-      q: "What is the penalty for the second infraction of Modcall Abuse?",
-      options: [
-        "1-day Game Ban & Modcall Permission Revocation",
-        "Verbal Warning in-game",
-        "3-day Game Ban",
-        "Permanent Blacklist"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "2nd Modcall Abuse infraction results in a 1-day Game Ban and temporary revocation of modcall permissions."
-    },
-    {
-      q: "What three specific examples of prohibited behavior are listed under Syringe Abuse?",
-      options: [
-        "Injecting non-consenting players, mass syringe killing, and spawning lethal syringes without RP reason",
-        "Carrying syringes into cells, dropping syringes, and selling syringes",
-        "Healing inmates during combat, syringe camping, and syringe trolling",
-        "Using syringes on guards, trading syringes, and syringe glitching"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Syringe Abuse involves non-consensual injection, mass killing, and unauthorized lethal syringe spawning."
-    },
-    {
-      q: "What is the second disciplinary step for Syringe Abuse?",
-      options: [
-        "3-day Game Ban & Medical Tool Ban",
-        "1-day Game Ban",
-        "7-day Game Ban & Demotion",
-        "Server Kick & Tool Ban"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "The 2nd step for Syringe Abuse is a 3-day Game Ban accompanied by a Medical Tool Ban."
-    },
-    {
-      q: "What are the three disciplinary steps for Electric Chair Abuse?",
-      options: [
-        "1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban & Executioner Ban",
-        "Warning -> Kick -> 1-day Ban",
-        "Tool Ban -> 3-day Ban -> Demotion",
-        "3-day Ban -> 7-day Ban -> Permanent Ban"
-      ],
-      ans: 0, diff: "hard", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Electric Chair Abuse steps: 1-day Game Ban -> 3-day Game Ban -> 7-day Game Ban & Executioner Ban."
-    },
-    {
-      q: "List four methods players use to attempt Bypassing (Chat & Audio) as detailed in Section 28.",
-      options: [
-        "Special characters/accents, spaced letters, audio ID obfuscation, and foreign language bypasses",
-        "Whispering, spamming, using caps, and using discord links",
-        "AFK farming, glitching walls, cuff abusing, and team swapping",
-        "F3X building, control panel spam, modcall abuse, and rank impersonation"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Bypassing includes special characters/accents, spaced letters, audio ID obfuscation, and foreign language bypasses."
-    },
-    {
-      q: "What are the three disciplinary steps for Bypassing?",
-      options: [
-        "1-day Game Ban / Mute -> 3-day Game Ban -> 7-day Game Ban / Permanent Ban",
-        "Warning -> 12-hr Mute -> 1-day Ban",
-        "3-day Ban -> 7-day Ban -> Demotion",
-        "12-hr Mute -> 1-day Mute -> 3-day Mute"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Bypassing steps: 1-day Game Ban/Mute -> 3-day Game Ban -> 7-day Game Ban / Permanent Ban."
-    },
-    {
-      q: "Name two specific examples of F3X Abuse provided in Section 29.",
-      options: [
-        "Deleting facility structures and inserting massive unanchored or inappropriate objects",
-        "Coloring walls green and changing door names",
-        "Building small chairs and spawning lights",
-        "Resizing weapons and moving vehicles"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "F3X Abuse includes deleting essential facility structures and spawning massive unanchored or inappropriate items."
-    },
-    {
-      q: "What is the fourth disciplinary step for F3X Abuse, and does it include a refund?",
-      options: [
-        "Permanent F3X Gamepass Revocation & Permanent Ban; No refund included",
-        "30-day F3X Ban; Refund granted upon appeal",
-        "7-day Ban & Partial refund of Robux",
-        "Demotion Review; Full refund provided"
-      ],
-      ans: 0, diff: "hard", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "4th step for F3X Abuse is Permanent F3X Gamepass Revocation & Permanent Ban. No refunds are ever issued."
-    },
-    {
-      q: "How does the cumulative In-Game Infraction System & Enforcement Guide calculate ban lengths across multiple rules?",
-      options: [
-        "Stacking system: cumulative total count of infractions increases total ban tier across all rules",
-        "Each rule retains its own independent infraction counter that never combines",
-        "Bans are calculated purely based on the player's account age",
-        "Infractions reset to zero every 7 days automatically"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "The cumulative stacking system totals all infractions across rules to advance the player to higher ban tiers."
-    },
-    {
-      q: "If a player receives a 1-day game ban for one rule and later breaks a completely different rule, how long will their next game ban be?",
-      options: [
-        "3 Days (2nd cumulative game ban infraction)",
-        "1 Day (since it's a different rule)",
-        "7 Days (double penalty)",
-        "12 Hours (warning tier)"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Under cumulative stacking, any subsequent game ban infraction advances to the next step (2nd ban = 3 Days)."
-    },
-    {
-      q: "Do discretionary infractions count toward the cumulative ban stacking policy?",
-      options: [
-        "Yes, discretionary infractions count toward cumulative ban stacking",
-        "No, discretionary infractions are exempt from stacking",
-        "Only if approved by the Chairperson",
-        "Only for High Ranks"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Discretionary infractions are formally logged and count fully toward cumulative ban stacking tiers."
-    },
-    {
-      q: "What are the exact mute lengths for Chat Infractions across infractions 1, 2, 3, 4, and 5+?",
-      options: [
-        "12 Hours -> 1 Day -> 3 Days -> 7 Days -> 14 Days",
-        "1 Hour -> 6 Hours -> 12 Hours -> 1 Day -> 3 Days",
-        "1 Day -> 3 Days -> 7 Days -> 14 Days -> Permanent",
-        "6 Hours -> 12 Hours -> 1 Day -> 3 Days -> 7 Days"
-      ],
-      ans: 0, diff: "hard", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Chat Infraction mutes: 12 Hours -> 1 Day -> 3 Days -> 7 Days -> 14 Days."
-    },
-    {
-      q: "What are the exact restriction lengths for Tool Bans across infractions 1, 2, 3, 4, and 5+?",
-      options: [
-        "1 Day -> 3 Days -> 7 Days -> 14 Days -> Permanent Tool Ban",
-        "12 Hours -> 1 Day -> 3 Days -> 7 Days -> 14 Days",
-        "3 Days -> 7 Days -> 14 Days -> 30 Days -> Permanent",
-        "1 Day -> 2 Days -> 5 Days -> 10 Days -> Permanent"
-      ],
-      ans: 0, diff: "hard", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Tool Ban restriction lengths: 1 Day -> 3 Days -> 7 Days -> 14 Days -> Permanent Tool Ban."
-    },
-    {
-      q: "What are the exact suspension lengths for Game Bans across infractions 1, 2, 3, 4, and 5+?",
-      options: [
-        "1 Day -> 3 Days -> 7 Days -> 14 Days -> 30 Days",
-        "12 Hours -> 1 Day -> 3 Days -> 7 Days -> 14 Days",
-        "3 Days -> 7 Days -> 14 Days -> 30 Days -> Permanent Ban",
-        "1 Day -> 5 Days -> 10 Days -> 20 Days -> Permanent Ban"
-      ],
-      ans: 0, diff: "hard", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Game Ban suspension lengths: 1 Day -> 3 Days -> 7 Days -> 14 Days -> 30 Days."
-    },
-    {
-      q: "What are the exact restriction lengths for Team Bans across infractions 1, 2, 3, 4, and 5+?",
-      options: [
-        "1 Day -> 3 Days -> 7 Days -> 14 Days -> 30 Days",
-        "12 Hours -> 1 Day -> 3 Days -> 7 Days -> 14 Days",
-        "3 Days -> 7 Days -> 14 Days -> 30 Days -> Permanent Team Ban",
-        "1 Day -> 2 Days -> 5 Days -> 10 Days -> 15 Days"
-      ],
-      ans: 0, diff: "hard", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Team Ban restriction lengths: 1 Day -> 3 Days -> 7 Days -> 14 Days -> 30 Days."
-    },
-    {
-      q: "Where must a player go to formally appeal any in-game infraction or ban?",
-      options: [
-        "The official Stateview Support Ticket System / Appeals Discord server",
-        "Direct message any Executive member on Roblox",
-        "Post a comment on the Stateview Roblox group wall",
-        "Submit a request in the session shout chat"
-      ],
-      ans: 0, diff: "easy", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Appeals must strictly be submitted through the official Stateview Support Ticket System / Appeals Discord server."
-    },
-    {
-      q: "What exact notation must be added to a log when an infraction is modified or reduced under the discretionary policy?",
-      options: [
-        "Discretionary Infraction or DS / MI",
-        "Custom Penalty or CP",
-        "Executive Action or EA",
-        "Special Waiver or SW"
-      ],
-      ans: 0, diff: "easy", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Modified/reduced infractions must explicitly include the notation 'Discretionary Infraction' or 'DS' / 'MI'."
-    },
-    {
-      q: "Which personnel category is exempt from providing a reason when issuing a discretionary infraction modification?",
-      options: [
-        "Stateview Leadership personnel",
-        "All Cadet Officers and above",
-        "SIA Trial Agents",
-        "Session Co-Hosts"
-      ],
-      ans: 0, diff: "medium", cat: "Section 2: Command Operations, Infraction Stacking & Penalties",
-      exp: "Leadership personnel are uniquely exempt from providing a written reason when modifying discretionary infractions."
-    },
+  // INFRACTION SYSTEM & ENFORCEMENT (26-45)
+  {
+    id: 26,
+    category: "Infraction System",
+    difficulty: "easy",
+    question: "False Patrol Logs carries what penalty on the 3rd infraction?",
+    options: ["Verbal-Warning", "Staff-Warning", "3-5 Day Suspension", "Demotion"],
+    correct: 2,
+    explanation: "False Patrol Logs: [1] Verbal-Warning, [2] Staff-Warning, [3] 3-5 Day Suspension."
+  },
+  {
+    id: 27,
+    category: "Infraction System",
+    difficulty: "easy",
+    question: "Failure to Comply with Instructions during a lockdown or blackout is classified as what?",
+    options: ["Fail-roleplay", "Exploiting", "Trolling", "Cross-teaming"],
+    correct: 0,
+    explanation: "Failure to comply during lockdown/blackout/server-wide activity is classified as fail-roleplay."
+  },
+  {
+    id: 28,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "Leaving to Avoid Punishment results in what penalty on the 1st infraction?",
+    options: ["Ten Minute Game-Ban", "One Day Game-Ban", "Three Day Game-Ban", "Permanent Ban"],
+    correct: 0,
+    explanation: "Leaving to Avoid Punishment: [1] Ten Minute Game-Ban, [2] One Day Game-Ban, [3] Three Day Game-Ban."
+  },
+  {
+    id: 29,
+    category: "Infraction System",
+    difficulty: "hard",
+    question: "Refusal to Patrol orders are ONLY mandatory when issued in which specific locations/situations?",
+    options: [
+      "Anywhere in the cell block or courtyard",
+      "Session Room, Admin Room, or during a Modcall",
+      "Discord voice channels only",
+      "Main entrance lobby only"
+    ],
+    correct: 1,
+    explanation: "It is mandatory ONLY WHEN the order has been made in the Session Room, Admin Room, or during a Modcall."
+  },
+  {
+    id: 30,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "Refusal to Patrol 4th infraction penalty is:",
+    options: ["Server-Kick", "Server-Ban", "Team-Ban", "Termination"],
+    correct: 2,
+    explanation: "Refusal to Patrol: [1] Verbal-Warning & Player-Respawn, [2] Server-Kick, [3] Server-Ban, [4] Team-Ban."
+  },
+  {
+    id: 31,
+    category: "Infraction System",
+    difficulty: "easy",
+    question: "Modcall Abuse 2nd infraction penalty is:",
+    options: ["Verbal-Warning", "ModCall-Ban", "Server-Ban", "Game-Ban"],
+    correct: 1,
+    explanation: "Modcall Abuse: [1] Verbal-Warning, [2] ModCall-Ban."
+  },
+  {
+    id: 32,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "Syringe Abuse 2nd infraction penalty is:",
+    options: ["Verbal-Warning", "Server-Kick", "Server-Ban", "Game-Ban"],
+    correct: 1,
+    explanation: "Syringe Abuse: [1] Verbal-Warning, [2] Server-Kick, [3] Server-Ban, [4] Game-Ban."
+  },
+  {
+    id: 33,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "Electric Chair Abuse 2nd infraction penalty is:",
+    options: ["Verbal-Warning", "Server-Ban", "Game-Ban", "Termination"],
+    correct: 1,
+    explanation: "Electric Chair Abuse: [1] Verbal-Warning, [2] Server-Ban, [3] Game-Ban."
+  },
+  {
+    id: 34,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "Bypassing (Chat & Audio moderation) 2nd infraction penalty is:",
+    options: ["Verbal-Warning", "Tool Ban and or Chat Mute", "Game-Ban", "Server-Ban"],
+    correct: 1,
+    explanation: "Bypassing: [1] Verbal-Warning, [2] Tool Ban and or Chat Mute, [3] Game-Ban."
+  },
+  {
+    id: 35,
+    category: "Infraction System",
+    difficulty: "hard",
+    question: "F3X Abuse 4th infraction penalty is:",
+    options: ["Tool Ban", "Tool-Ban (Extended)", "Item Removal (NO REFUND)", "Game-Ban"],
+    correct: 2,
+    explanation: "F3X Abuse: [1] Verbal-Warning, [2] Tool Ban, [3] Tool-Ban (Extended), [4] Item Removal (NO REFUND)."
+  },
+  {
+    id: 36,
+    category: "Infraction System",
+    difficulty: "easy",
+    question: "According to the Chat Infractions policy, what is the mute length for a 3rd infraction?",
+    options: ["30 Minutes", "1 Hour", "3 Days", "7 Days"],
+    correct: 2,
+    explanation: "Chat Infractions: 1=30m, 2=1h, 3=3 Days, 4=7 Days, 5+=14 Days."
+  },
+  {
+    id: 37,
+    category: "Infraction System",
+    difficulty: "easy",
+    question: "What is the Tool Ban length for a 3rd tool ban infraction?",
+    options: ["30 Minutes", "1 Hour", "3 Hours", "3 Days"],
+    correct: 2,
+    explanation: "Tool Bans: 1=30m, 2=1h, 3=3 Hours, 4=3 Days, 5+=14 Days."
+  },
+  {
+    id: 38,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "What is the Game Ban length for a 4th game ban infraction?",
+    options: ["3 Days", "7 Days", "30 Days", "90 Days"],
+    correct: 2,
+    explanation: "Game Bans: 1=1d, 2=3d, 3=7d, 4=30 Days, 5+=90d."
+  },
+  {
+    id: 39,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "What is the Team Ban length for a 5th or higher team ban infraction?",
+    options: ["7 Days", "30 Days", "90 Days", "Permanent"],
+    correct: 2,
+    explanation: "Team Bans: 1=1d, 2=3d, 3=7d, 4=30d, 5+=90 Days."
+  },
+  {
+    id: 40,
+    category: "Infraction System",
+    difficulty: "hard",
+    question: "How does the In-Game Infraction System stacking policy operate?",
+    options: [
+      "Each rule infraction tracks ban lengths completely independently",
+      "Ban length escalates based on total cumulative ban history regardless of rule violated",
+      "Ban length resets every 30 days automatically",
+      "Discretionary infractions stack double"
+    ],
+    correct: 1,
+    explanation: "Lengths are stacked according to the total cumulative ban history, regardless of specific rule violated."
+  },
+  {
+    id: 41,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "Which type of infractions DO NOT count towards the ban stacking policy?",
+    options: ["Game Bans", "Tool Bans", "Discretionary Infractions", "Chat Infractions"],
+    correct: 2,
+    explanation: "Discretionary infractions do not count towards this stacking policy."
+  },
+  {
+    id: 42,
+    category: "Infraction System",
+    difficulty: "easy",
+    question: "Where must a user go to appeal disciplinary consequences (bans, mutes, tool restrictions)?",
+    options: [
+      "Roblox DevForum",
+      "Stateview Administration Discord Server",
+      "In-game chat call",
+      "Roblox Support Portal"
+    ],
+    correct: 1,
+    explanation: "Appeals are submitted by joining the Stateview Administration Discord Server."
+  },
+  {
+    id: 43,
+    category: "Infraction System",
+    difficulty: "easy",
+    question: "Unauthorized Sessions carry what penalty on the 2nd infraction?",
+    options: ["Verbal-Warning & Cancellation", "7-10 Day Suspension", "Termination", "Game-Ban"],
+    correct: 1,
+    explanation: "Unauthorized Sessions: [1] Verbal-Warning & Cancellation, [2] 7-10 Day Suspension, [3] Termination."
+  },
+  {
+    id: 44,
+    category: "Infraction System",
+    difficulty: "easy",
+    question: "If Respected Inmates disrupt an ongoing session in the Session Room, how may hosts respond?",
+    options: [
+      "They cannot be removed under any circumstances",
+      "Hosts may remove them using appropriate and authorized methods",
+      "Hosts must immediately terminate them",
+      "Hosts must end the session"
+    ],
+    correct: 1,
+    explanation: "Respected Inmates disrupting a session may be removed using appropriate and authorized methods."
+  },
+  {
+    id: 45,
+    category: "Infraction System",
+    difficulty: "medium",
+    question: "Chat Infractions in Stateview Prison result in what type of penalty?",
+    options: ["Temporary Game Bans", "Temporary In-Game Mutes", "Server Kicks", "Demotions"],
+    correct: 1,
+    explanation: "Chat infractions in Stateview Prison result in temporary in-game mutes."
+  },
 
-    // ==========================================
-    // SECTION 3: REFORM STRATEGY, RESIGNATIONS & REINSTATEMENTS
-    // ==========================================
-    {
-      q: "Under the Rank Restructuring reform, what is the new rank for a Chief Executive Officer to Stateview Leadership?",
-      options: ["Chief of Staff", "Board of Governors", "Facility Director", "Superintendent"],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "CEO to Stateview Leadership was restructured to Chief of Staff."
-    },
-    {
-      q: "Under the Rank Restructuring reform, what is the new rank for a Chief of Staff to Chairman of the Board?",
-      options: ["Board of Governors", "Chief of Staff", "Facility Director", "Superintendent"],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Chief of Staff to Chairman of the Board was restructured to Board of Governors."
-    },
-    {
-      q: "Under the Rank Restructuring reform, what is the new rank for a Community Advisory Council to Board of Governors?",
-      options: ["Facility Director", "Board of Governors", "Superintendent", "Chief of Staff"],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "CAC to Board of Governors was restructured to Facility Director."
-    },
-    {
-      q: "Under the Rank Restructuring reform, what is the new rank for a Chairperson to Facility Director?",
-      options: ["Superintendent", "Facility Director", "Board of Governors", "Chief of Staff"],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Chairperson to Facility Director was restructured to Superintendent."
-    },
-    {
-      q: "Does purchasing a rank exempt a member from meeting quota and activity requirements?",
-      options: [
-        "No, purchased ranks require full quota and activity compliance",
-        "Yes, rank purchases grant full quota immunity",
-        "Yes, but only for the first 30 days after purchase",
-        "Only if approved by the Board of Governors"
-      ],
-      ans: 0, diff: "medium", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Purchasing a rank does NOT exempt any member from fulfilling quota and activity requirements."
-    },
-    {
-      q: "What are the seven essential factors considered during Stateview's reviewal process for reforms?",
-      options: [
-        "Game Activity, Community Rating, Department Activity, Overall Performance, Organizational Impact, Leadership Recognition, General Support & Participation",
-        "Robux spent, account age, total kills, discord messages, session hosting, forum posts, warnings",
-        "Activity, rank level, gamepass purchases, moderation history, group tenure, activity score, bans",
-        "Quota count, attendance, modcall response time, rank cost, activity level, legacy status, reports"
-      ],
-      ans: 0, diff: "hard", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "The 7 factors: Game Activity, Community Rating, Department Activity, Overall Performance, Organizational Impact, Leadership Recognition, Support & Participation."
-    },
-    {
-      q: "Within how many hours of notification must a member submit an appeal regarding a reform decision?",
-      options: ["72 hours", "24 hours", "48 hours", "7 days"],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Members impacted by reform decisions have exactly 72 hours from notification to file an official appeal."
-    },
-    {
-      q: "Which team reviews reform appeals to ensure due diligence and integrity?",
-      options: [
-        "Stateview Community Management & Executive Board",
-        "SIA Field Agents",
-        "Support Agency Trainees",
-        "Session Hosts Command"
-      ],
-      ans: 0, diff: "medium", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Reform appeals are thoroughly reviewed by Community Management and Executive Board members."
-    },
-    {
-      q: "List five of the factors used for determining discretionary consequences under Section II.",
-      options: [
-        "Intent, prior warning history, severity of disruption, cooperation during investigation, rank level",
-        "Robux balance, premium status, total play time, friends in game, time of day",
-        "Server player count, device type, chat logs, ping rate, uniform status",
-        "Account age, badge count, past group memberships, avatar accessories, audio history"
-      ],
-      ans: 0, diff: "medium", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Discretionary factors include intent, prior warning history, severity of disruption, cooperation, and rank level."
-    },
-    {
-      q: "What two shortened notations can be used in logs to designate a modified infraction?",
-      options: ["DS (Discretionary) and MI (Modified Infraction)", "CP and SW", "EA and MA", "DI and RM"],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "The two valid shortened log notations are DS (Discretionary) and MI (Modified Infraction)."
-    },
-    {
-      q: "What three rank transition options are available to resigning members in the Chairperson – Board of Governors range?",
-      options: [
-        "Option 1: Direct Demotion to CO, Option 2: Transition to Respected Inmate, Option 3: Standard Department Transition",
-        "Option 1: Permanent Ban, Option 2: Stat Reset, Option 3: Guest Status",
-        "Option 1: LOA, Option 2: Rank Freeze, Option 3: Transfer",
-        "Option 1: Inmate, Option 2: SIA Agent, Option 3: Retired Executive"
-      ],
-      ans: 0, diff: "hard", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Transition options for Chairperson – Board of Governors: CO Demotion, Respected Inmate transition, or Department Transition."
-    },
-    {
-      q: "What is the minimum rank required to be eligible to transition into a Respected Inmate upon resignation?",
-      options: ["Chief of Staff+", "Chairperson+", "Superintendent+", "Correctional Officer+"],
-      ans: 0, diff: "medium", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Transitioning into a Respected Inmate upon resignation requires a minimum rank of Chief of Staff+."
-    },
-    {
-      q: "How many days must elapse after a previous resignation before a member is permitted to resign again?",
-      options: ["30 days", "14 days", "60 days", "90 days"],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "A minimum of 30 days must elapse following a resignation before another resignation is permitted."
-    },
-    {
-      q: "Can a member resign to avoid pending disciplinary action or to bypass session quotas?",
-      options: [
-        "No, strictly prohibited and results in dishonorable termination",
-        "Yes, resignation clears all active investigations",
-        "Yes, if approved by a Superintendent",
-        "Only during official group maintenance periods"
-      ],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Resigning to avoid pending punishment or quotas is strictly prohibited and leads to dishonorable termination."
-    },
-    {
-      q: "Name three conditions that render a member ineligible for Respected Inmate (RI) status upon resignation.",
-      options: [
-        "Resigning with pending punishments, under 30 days tenure, or resigning due to demotion",
-        "Having 0 robux, playing on mobile, missing 1 session",
-        "Failing a modcall, being AFK in yard, leaving discord",
-        "Having past mutes, switching departments, changing username"
-      ],
-      ans: 0, diff: "medium", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Ineligibility conditions for RI: Pending disciplinary action, tenure under 30 days, or departing due to demotion."
-    },
-    {
-      q: "Which entity is authorized to grant Respected Inmate status upon resignation?",
-      options: ["Stateview Executive Leadership", "Support Agency Trainees", "Community Advisory Council only", "Session Hosts"],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Respected Inmate status is granted exclusively by Stateview Executive Leadership."
-    },
-    {
-      q: "What is the minimum number of days a player must have been resigned before they are eligible to apply for reinstatement?",
-      options: ["60 days", "30 days", "14 days", "90 days"],
-      ans: 0, diff: "medium", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Players must be resigned for at least 60 days before applying for rank reinstatement."
-    },
-    {
-      q: "What is the maximum timeframe (in months/years) since resignation after which a player can no longer reinstate?",
-      options: ["1.5 years (18 months)", "1 year (12 months)", "2 years (24 months)", "6 months"],
-      ans: 0, diff: "medium", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Reinstatement is strictly prohibited if more than 1.5 years (18 months) have elapsed since resignation."
-    },
-    {
-      q: "How many active in-game hours must a player complete in the last 7 days to qualify for reinstatement?",
-      options: ["40 active in-game hours", "20 active in-game hours", "10 active in-game hours", "50 active in-game hours"],
-      ans: 0, diff: "hard", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Reinstatement candidates must have logged at least 40 active in-game hours over the preceding 7 days."
-    },
-    {
-      q: "Is a player eligible for reinstatement if their previous departure was due to a demotion or disciplinary loss of rank?",
-      options: [
-        "No, players with disciplinary departures are strictly ineligible",
-        "Yes, after waiting 90 days",
-        "Yes, provided they pay a reinstatement fee",
-        "Only with approval from 3 Executives"
-      ],
-      ans: 0, diff: "easy", cat: "Section 3: Reform Strategy, Resignations & Reinstatements",
-      exp: "Departures resulting from demotion or disciplinary action render the player permanently ineligible for reinstatement."
-    },
+  // SESSIONS & DUTY (46-60)
+  {
+    id: 46,
+    category: "Sessions & Duty",
+    difficulty: "easy",
+    question: "Who may host a Stateview Shift on their own without supervision?",
+    options: ["Chairperson", "Facility Director+", "Superintendent", "Board of Governors only"],
+    correct: 1,
+    explanation: "Facility Director+ may host Stateview Shifts on their own. Chairpersons require FD+ supervision."
+  },
+  {
+    id: 47,
+    category: "Sessions & Duty",
+    difficulty: "easy",
+    question: "What is the minimum attendee requirement to start a Stateview Shift?",
+    options: ["3 or more", "5 or more", "8 or more", "12 or more"],
+    correct: 1,
+    explanation: "5 or more attendees are required to start a Stateview Shift."
+  },
+  {
+    id: 48,
+    category: "Sessions & Duty",
+    difficulty: "medium",
+    question: "What is the maximum number of promotions permitted per Stateview Shift, and what is the rank range?",
+    options: [
+      "Max 5 promotions; Cadet Officer to Warden",
+      "Max 3 promotions; Cadet Officer to Deputy Warden",
+      "Max 2 promotions; Low Security Inmate to Cadet Officer",
+      "Unlimited promotions; Cadet Officer to Chairperson"
+    ],
+    correct: 1,
+    explanation: "Max 3 promotions per shift. Ranks eligible: Cadet Officer to Deputy Warden."
+  },
+  {
+    id: 49,
+    category: "Sessions & Duty",
+    difficulty: "easy",
+    question: "What rank is required to host a Stateview Training on their own?",
+    options: ["Community Advisory Council+", "Facility Director", "Chairperson", "Superintendent"],
+    correct: 0,
+    explanation: "Community Advisory Council+ may host Stateview Trainings on their own."
+  },
+  {
+    id: 50,
+    category: "Sessions & Duty",
+    difficulty: "easy",
+    question: "What is the minimum attendee requirement to start a Stateview Training?",
+    options: ["5 or more", "8 or more", "12 or more", "15 or more"],
+    correct: 1,
+    explanation: "8 or more attendees are required to start a Stateview Training."
+  },
+  {
+    id: 51,
+    category: "Sessions & Duty",
+    difficulty: "medium",
+    question: "What is the promotion range for Stateview Trainings?",
+    options: ["Cadet Officer to Deputy Warden", "Cadet Officer to Warden", "Cadet Officer to Chairperson", "Cadet Officer to Board of Governors"],
+    correct: 1,
+    explanation: "Trainings promote from Cadet Officer to Warden."
+  },
+  {
+    id: 52,
+    category: "Sessions & Duty",
+    difficulty: "easy",
+    question: "Who is permitted to host Stateview Inspections on their own?",
+    options: ["Prison Commissioner+", "Board of Governors+", "Facility Director+", "Chief of Staff+"],
+    correct: 1,
+    explanation: "Board of Governors+ is permitted to host Inspections on their own."
+  },
+  {
+    id: 53,
+    category: "Sessions & Duty",
+    difficulty: "easy",
+    question: "What is the attendee requirement for a Stateview Inspection?",
+    options: ["8 or more", "12 or more", "15 or more", "18 or more"],
+    correct: 2,
+    explanation: "15 or more attendees are required for a Stateview Inspection."
+  },
+  {
+    id: 54,
+    category: "Sessions & Duty",
+    difficulty: "medium",
+    question: "What is the promotion range for Stateview Inspections?",
+    options: ["Cadet Officer to Warden", "Cadet Officer to Chairperson", "Cadet Officer to Superintendent", "Cadet Officer to Board of Governors"],
+    correct: 1,
+    explanation: "Stateview Inspections promote from Cadet Officer to Chairperson."
+  },
+  {
+    id: 55,
+    category: "Sessions & Duty",
+    difficulty: "easy",
+    question: "What is the minimum attendee requirement for a Stateview Riot Protocol session?",
+    options: ["8 or more", "10 or more", "12 or more", "15 or more"],
+    correct: 2,
+    explanation: "12 or more attendees are required for Riot Protocol."
+  },
+  {
+    id: 56,
+    category: "Sessions & Duty",
+    difficulty: "medium",
+    question: "What is the promotion range for Stateview Riot Protocol sessions?",
+    options: ["Cadet Officer to Deputy Warden", "Cadet Officer to Warden", "Cadet Officer to Chairperson", "Cadet Officer to Superintendent"],
+    correct: 1,
+    explanation: "Stateview Riot Protocol promotes from Cadet Officer to Warden."
+  },
+  {
+    id: 57,
+    category: "Sessions & Duty",
+    difficulty: "hard",
+    question: "Who is authorized to host Stateview Capture the Flag on their own?",
+    options: ["Chief of Staff+", "Board of Governors+", "Facility Director+", "Prison Commissioner+"],
+    correct: 0,
+    explanation: "Chief of Staff+ is authorized to host Capture the Flag on their own."
+  },
+  {
+    id: 58,
+    category: "Sessions & Duty",
+    difficulty: "medium",
+    question: "What is the minimum attendee requirement for Stateview Capture the Flag?",
+    options: ["12 or more", "15 or more", "18 or more", "20 or more"],
+    correct: 2,
+    explanation: "18 or more attendees are required for Capture the Flag."
+  },
+  {
+    id: 59,
+    category: "Sessions & Duty",
+    difficulty: "easy",
+    question: "What authority do session hosts hold regarding spectators during official sessions?",
+    options: [
+      "Spectators can never be removed under any circumstances",
+      "Session hosts reserve the right to dismiss any spectator at any moment",
+      "Only Leadership members can remove spectators",
+      "Spectators are allowed to actively intervene in training"
+    ],
+    correct: 1,
+    explanation: "Session hosts reserve the right to dismiss any spectator at any moment if deemed necessary."
+  },
+  {
+    id: 60,
+    category: "Sessions & Duty",
+    difficulty: "medium",
+    question: "Which of the following is NOT an authorized spectator rank?",
+    options: [
+      "Respected Inmate",
+      "Prison Commissioner+",
+      "Cadet Officer",
+      "Overseer Command Officer+"
+    ],
+    correct: 2,
+    explanation: "Cadet Officers are participants, not authorized spectator rank holders."
+  },
 
-    // ==========================================
-    // SECTION 4: RESPECTED INMATE POLICIES & LEAVE OF ABSENCE (LOA)
-    // ==========================================
-    {
-      q: "Holds or held what rank during the active hours period disqualifies a player from reinstating?",
-      options: [
-        "Suspended Security Inmate / Blacklisted Rank",
-        "Cadet Officer",
-        "Respected Inmate",
-        "Correctional Officer"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Holding or having held Suspended Security Inmate or blacklisted ranks disqualifies players from reinstatement."
-    },
-    {
-      q: "Can a rank obtained strictly through a rank purchase count as a 'valid promotion' when attempting to reinstate to a former rank?",
-      options: [
-        "No, purchased ranks do NOT count as valid earned promotions for reinstatement",
-        "Yes, rank purchases count fully as promotions",
-        "Yes, provided the purchase was over 6 months ago",
-        "Only if double quota was fulfilled"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Purchased ranks are explicitly excluded from being used as valid earned rank promotions for reinstatement."
-    },
-    {
-      q: "How many total strikes result in the full revocation of Respected Inmate status?",
-      options: ["3 Strikes (3/3)", "1 Strike", "2 Strikes", "5 Strikes"],
-      ans: 0, diff: "easy", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Accumulating 3 out of 3 strikes results in full revocation of Respected Inmate status."
-    },
-    {
-      q: "What rank is a Respected Inmate demoted to upon receiving 3/3 strikes?",
-      options: ["Low Security Inmate", "Suspended Security Inmate", "Cadet Officer", "Visitor"],
-      ans: 0, diff: "easy", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Upon reaching 3/3 strikes, a Respected Inmate is demoted directly to Low Security Inmate."
-    },
-    {
-      q: "Is the demotion resulting from accumulating 3/3 Respected Inmate strikes appealable?",
-      options: [
-        "No, it is non-appealable",
-        "Yes, appealable after 14 days",
-        "Yes, appealable directly to Executive Leadership",
-        "Only if the strikes were over 30 days old"
-      ],
-      ans: 0, diff: "easy", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Demotions resulting from 3/3 Respected Inmate strikes are strictly non-appealable."
-    },
-    {
-      q: "How long does a Respected Inmate strike remain active on record before expiring?",
-      options: ["30 Days", "14 Days", "60 Days", "90 Days"],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Respected Inmate strikes remain active on record for 30 days before expiring."
-    },
-    {
-      q: "What is the consequence for receiving 1 or 2 Respected Inmate strikes?",
-      options: [
-        "Official Warning logged on record with no immediate rank change",
-        "Temporary 7-day server ban",
-        "Loss of administrative panel permissions",
-        "Mandatory 14-day LOA"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "1 or 2 RI strikes serve as official warnings logged on record without immediate demotion."
-    },
-    {
-      q: "How must staff document an RI strike to ensure it is distinguished from a standard staff warning?",
-      options: [
-        "Explicitly tag as [RI STRIKE] in logs",
-        "Use red text in discord",
-        "File a ticket in SIA server",
-        "Send a direct message to the user"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Staff must explicitly prefix log entries with [RI STRIKE] to distinguish them from standard warnings."
-    },
-    {
-      q: "How long is the mandatory cooldown period before resubmitting a rejected Respected Inmate appeal ticket?",
-      options: ["14 Days", "7 Days", "30 Days", "24 Hours"],
-      ans: 0, diff: "easy", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "If an RI appeal ticket is rejected, a mandatory 14-day cooldown is required before submitting another."
-    },
-    {
-      q: "Which ranks/positions hold the issuing authority to hand out Respected Inmate Strikes?",
-      options: ["Chief of Staff or Executive Leadership", "Cadet Officers", "SIA Trial Agents", "Session Hosts"],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Respected Inmate Strikes can only be issued by Chief of Staff or Executive Leadership members."
-    },
-    {
-      q: "In which two places must a Respected Inmate strike be logged/issued?",
-      options: [
-        "Discord Warning Log Channel and In-Game Admin Log",
-        "Roblox Group Wall and Discord General",
-        "Support Ticket and Session Shout",
-        "Staff Audit and Personal DM"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "RI strikes must be logged simultaneously in the Discord Warning Log Channel and In-Game Admin Log."
-    },
-    {
-      q: "What is the minimum rank required to officially request or approve a Leave of Absence (LOA)?",
-      options: ["Chairperson or higher", "Cadet Officer or higher", "Superintendent or higher", "Board of Governors only"],
-      ans: 0, diff: "easy", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Official LOA submission and approval eligibility begins at Chairperson rank or higher."
-    },
-    {
-      q: "What is the absolute minimum duration allowed for an official Leave of Absence?",
-      options: ["7 days", "3 days", "14 days", "1 day"],
-      ans: 0, diff: "easy", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "An official Leave of Absence must last a minimum duration of 7 days."
-    },
-    {
-      q: "What is the maximum duration allowed for an official Leave of Absence without special leadership approval?",
-      options: ["21 days", "14 days", "30 days", "60 days"],
-      ans: 0, diff: "easy", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "The maximum duration for a standard LOA without special leadership authorization is 21 days."
-    },
-    {
-      q: "How is the cooldown period calculated after completing a Leave of Absence?",
-      options: [
-        "Equal to the duration of the completed LOA (e.g. 14-day LOA = 14-day cooldown)",
-        "Fixed 30-day cooldown regardless of length",
-        "Fixed 7-day cooldown",
-        "Double the length of the completed LOA"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "LOA cooldown is exactly 1:1 with the duration of the taken LOA (14 days LOA = 14 days cooldown)."
-    },
-    {
-      q: "If an LOA is submitted on or before Thursday, what happens to that week's quota requirements?",
-      options: [
-        "Quota for that week is fully excused",
-        "Half quota must still be completed",
-        "Full quota must still be completed",
-        "Quota is doubled for the following week"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Submitting an LOA on or before Thursday fully excuses quota obligations for that current week."
-    },
-    {
-      q: "If an LOA is submitted after Thursday, what quota obligations must the member fulfill?",
-      options: [
-        "Full quota for that week must still be completed",
-        "Quota is automatically excused",
-        "50% quota requirement",
-        "Quota is moved to next month"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "LOAs submitted after Thursday require the member to complete full quota for that current week."
-    },
-    {
-      q: "If an LOA ends after Thursday, is the member excused from that week's quota?",
-      options: [
-        "Yes, excused for that week",
-        "No, full quota must be completed by Sunday",
-        "Only half quota is excused",
-        "Only if approved by Superintendent"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "If an LOA concludes after Thursday, the member remains excused from quota for that ending week."
-    },
-    {
-      q: "What happens to quota requirements if a member voluntarily terminates their LOA early?",
-      options: [
-        "Quota requirements immediately reactivate for the full week",
-        "Quota remains excused until original end date",
-        "Quota is halved for the remainder of the week",
-        "Member is granted a 3-day grace period"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Early LOA termination immediately reactivates all weekly quota requirements."
-    },
-    {
-      q: "Are staff permitted to use administrative commands or perform departmental work while on an active LOA?",
-      options: [
-        "No, strictly prohibited from performing staff/departmental duties or using admin commands",
-        "Yes, provided they do not host sessions",
-        "Yes, but only in private servers",
-        "Only for emergency modcalls"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Performing staff/department duties or using admin commands while on active LOA is strictly forbidden."
-    },
-    {
-      q: "What is the first-offense disciplinary action for Misrepresentation of a Leave of Absence?",
-      options: [
-        "LOA Cancellation & Official Strike",
-        "14-day Suspension & LOA Blacklist",
-        "Demotion to Cadet Officer",
-        "Verbal Warning"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "1st offense for LOA Misrepresentation: Immediate LOA Cancellation & Official Strike."
-    },
-    {
-      q: "What is the second-offense disciplinary action for Misrepresentation of a Leave of Absence?",
-      options: [
-        "14-day Suspension & LOA Blacklist",
-        "Permanent Game Ban",
-        "Demotion Review",
-        "30-day Game Ban"
-      ],
-      ans: 0, diff: "hard", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "2nd offense for LOA Misrepresentation: 14-day Suspension & LOA Blacklist."
-    },
-    {
-      q: "What constitutes Exploiting the Leave of Absence System?",
-      options: [
-        "Using LOAs repeatedly to bypass quotas while remaining active in game or abusing LOA privileges",
-        "Submitting an LOA on Friday",
-        "Taking an LOA for 14 days",
-        "Canceling an LOA early once"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Exploiting LOA: Repeatedly taking LOAs to evade quota while actively playing or abusing leave privileges."
-    },
-    {
-      q: "What is the first-offense penalty for Exploiting the LOA System?",
-      options: [
-        "LOA Void & Official Strike",
-        "1-day Game Ban",
-        "Demotion Review",
-        "LOA Blacklist"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "1st offense for Exploiting LOA System: LOA Voided & Official Strike."
-    },
-    {
-      q: "What is the second-offense penalty for Exploiting the LOA System?",
-      options: [
-        "Demotion Review & 30-day LOA Blacklist",
-        "7-day Game Ban",
-        "Termination & Blacklist",
-        "14-day Suspension"
-      ],
-      ans: 0, diff: "hard", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "2nd offense for Exploiting LOA System: Demotion Review & 30-day LOA Blacklist."
-    },
-    {
-      q: "What is the third-offense penalty for Exploiting the LOA System?",
-      options: [
-        "Termination & Department Blacklist",
-        "30-day Game Ban",
-        "Permanent LOA Blacklist",
-        "Demotion to CO"
-      ],
-      ans: 0, diff: "hard", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "3rd offense for Exploiting LOA System: Termination & Department Blacklist."
-    },
-    {
-      q: "What is the first-offense penalty for Falsifying LOA Requests?",
-      options: [
-        "Immediate LOA Rejection & Official Strike",
-        "1-day Game Ban",
-        "Demotion",
-        "Verbal Warning"
-      ],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "1st offense for Falsifying LOA Requests: Immediate LOA Rejection & Official Strike."
-    },
-    {
-      q: "What is the second-offense penalty for Falsifying LOA Requests?",
-      options: [
-        "Demotion & LOA Blacklist",
-        "3-day Game Ban",
-        "Termination",
-        "14-day Suspension"
-      ],
-      ans: 0, diff: "hard", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "2nd offense for Falsifying LOA Requests: Demotion & LOA Blacklist."
-    },
-    {
-      q: "What specific disciplinary action is taken on a Cadet Officer's 4th Trolling infraction?",
-      options: [
-        "3-day Game Ban & Demotion Review",
-        "1-day Game Ban",
-        "7-day Game Ban",
-        "Permanent Blacklist"
-      ],
-      ans: 0, diff: "hard", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "A Cadet Officer's 4th Trolling infraction results in a 3-day Game Ban & Demotion Review."
-    },
-    {
-      q: "What is the exact ban duration for a player receiving their 4th cumulative Game Ban under the stacking system?",
-      options: ["14 Days", "7 Days", "21 Days", "30 Days"],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Under cumulative stacking, the 4th Game Ban infraction equals 14 Days."
-    },
-    {
-      q: "What is the exact ban duration for a player receiving their 5th cumulative Team Ban under the stacking system?",
-      options: ["30 Days Team Ban", "14 Days Team Ban", "Permanent Team Ban", "60 Days Team Ban"],
-      ans: 0, diff: "medium", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "The 5th cumulative Team Ban infraction equals a 30 Days Team Ban."
-    },
-    {
-      q: "Which staff members (rank or higher) can acknowledge a fundamental lack of rule knowledge that disqualifies a player from reinstatement?",
-      options: [
-        "Stateview Intelligence Agency / Community Management (SIA Commander+)",
-        "Any Cadet Officer",
-        "Session Co-Hosts",
-        "Support Trainees"
-      ],
-      ans: 0, diff: "hard", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "SIA Leadership / Community Management (SIA Commander+) hold the authority to acknowledge lack of rule knowledge."
-    },
-    {
-      q: "Which rank or higher has the authority to deem a player ineffective in carrying out their duties, barring them from reinstatement?",
-      options: [
-        "Executive Leadership / Board of Governors+",
-        "Superintendent",
-        "Facility Director",
-        "SIA Inspector"
-      ],
-      ans: 0, diff: "hard", cat: "Section 4: Respected Inmate Policies & Leave of Absence (LOA)",
-      exp: "Deeming a player ineffective for reinstatement requires Executive Leadership / Board of Governors+ authority."
-    }
-  ];
+  // REFORMS, RESIGNATION & RI RULES (61-80)
+  {
+    id: 61,
+    category: "Reforms & Ranks",
+    difficulty: "medium",
+    question: "Under rank restructuring reforms, Chief Executive Officer to Stateview Leadership is reformed to which rank?",
+    options: ["Board of Governors", "Chief of Staff", "Facility Director", "Superintendent"],
+    correct: 1,
+    explanation: "CEO to Stateview Leadership is reformed to Chief of Staff."
+  },
+  {
+    id: 62,
+    category: "Reforms & Ranks",
+    difficulty: "medium",
+    question: "Under rank restructuring reforms, Chairperson to Facility Director is reformed to which rank?",
+    options: ["Chief of Staff", "Board of Governors", "Facility Director", "Superintendent"],
+    correct: 3,
+    explanation: "Chairperson to Facility Director is reformed to Superintendent."
+  },
+  {
+    id: 63,
+    category: "Reforms & Ranks",
+    difficulty: "easy",
+    question: "Members impacted by reforms have the right to appeal decisions within what timeframe?",
+    options: ["24 hours", "48 hours", "72 hours", "7 days"],
+    correct: 2,
+    explanation: "Appeals must be submitted within 72 hours of notification."
+  },
+  {
+    id: 64,
+    category: "Reforms & Ranks",
+    difficulty: "easy",
+    question: "When an infraction is modified or reduced under discretionary policy, what notation MUST be included in the log?",
+    options: ["Modified Penalty", "Discretionary Infraction or DS", "Executive Decision", "Reduced Warning"],
+    correct: 1,
+    explanation: "The log must clearly include a notation labeled 'Discretionary Infraction' or 'DS'."
+  },
+  {
+    id: 65,
+    category: "Reforms & Ranks",
+    difficulty: "medium",
+    question: "Who is exempt from providing reasons when modifying discretionary consequences?",
+    options: ["Facility Directors", "High-Ranks", "Leadership Personnel", "Department Heads"],
+    correct: 2,
+    explanation: "Leadership personnel is exempt and can modify punishments without providing a reason."
+  },
+  {
+    id: 66,
+    category: "Reforms & Ranks",
+    difficulty: "medium",
+    question: "Which rank range is eligible for tailored resignation transition options?",
+    options: ["Cadet Officer to Warden", "Chairperson to Board of Governors", "Chief of Staff to CEO", "Respected Inmates only"],
+    correct: 1,
+    explanation: "Members holding positions within Chairperson - Board of Governors range have tailored resignation options."
+  },
+  {
+    id: 67,
+    category: "Reforms & Ranks",
+    difficulty: "hard",
+    question: "Resignation is NOT permitted if the player attempted to resign within how many days of a previous resignation, promotion, demotion, or punishment?",
+    options: ["7 days", "14 days", "30 days", "60 days"],
+    correct: 2,
+    explanation: "Resignation is barred within 30 days of resigning, reinstatement, promotion, demotion, or punishment."
+  },
+  {
+    id: 68,
+    category: "Reforms & Ranks",
+    difficulty: "hard",
+    question: "What active in-game hours requirement must be met in the last 7 days to qualify for rank reinstatement?",
+    options: ["20 active hours", "30 active hours", "40 active hours", "50 active hours"],
+    correct: 2,
+    explanation: "Reinstatement requires completing 40 active in-game hours in the last 7 days."
+  },
+  {
+    id: 69,
+    category: "Reforms & Ranks",
+    difficulty: "hard",
+    question: "What is the maximum timeframe after resignation within which a member can apply for reinstatement?",
+    options: ["6 months", "1 year", "1.5 years (18 months)", "2 years"],
+    correct: 2,
+    explanation: "Reinstatement is barred if the player resigned more than 1.5 years (18 months) ago."
+  },
+  {
+    id: 70,
+    category: "Reforms & Ranks",
+    difficulty: "medium",
+    question: "How many strikes cause a Respected Inmate (RI) to lose their RI status, and what rank are they demoted to?",
+    options: [
+      "2/2 strikes; demoted to Cadet Officer",
+      "3/3 strikes; demoted to Low Security Inmate",
+      "5/5 strikes; demoted to Warden",
+      "3/3 strikes; demoted to High Security Inmate"
+    ],
+    correct: 1,
+    explanation: "Accumulating 3 out of 3 strikes results in RI status revocation and demotion to Low Security Inmate."
+  },
+  {
+    id: 71,
+    category: "Reforms & Ranks",
+    difficulty: "easy",
+    question: "When does a Respected Inmate strike expire, provided no further violations occur?",
+    options: ["30 days", "3 months", "6 months", "1 year"],
+    correct: 2,
+    explanation: "RI strikes expire 6 months after issuance if no further violations occur."
+  },
+  {
+    id: 72,
+    category: "Reforms & Ranks",
+    difficulty: "easy",
+    question: "If a Respected Inmate strike appeal is rejected, what cooldown applies before resubmitting?",
+    options: ["24 hours", "3 days", "7 days", "14 days"],
+    correct: 2,
+    explanation: "A 7-day cooldown applies before a rejected RI strike appeal can be resubmitted."
+  },
+  {
+    id: 73,
+    category: "Reforms & Ranks",
+    difficulty: "medium",
+    question: "Who is authorized to issue Respected Inmate Strikes?",
+    options: ["Chairpersons and higher", "Facility Directors and higher", "Warden and higher", "Overseer Command only"],
+    correct: 1,
+    explanation: "Facility Directors and higher are authorized to issue Respected Inmate Strikes."
+  },
+  {
+    id: 74,
+    category: "Reforms & Ranks",
+    difficulty: "medium",
+    question: "Respected Inmate status may ONLY be granted by which team upon resignation?",
+    options: ["Game Administration", "Branch Diversity Team+", "Support Agency", "Events Team"],
+    correct: 1,
+    explanation: "Respected Inmate status may only be granted by a Branch Diversity Team+ upon resignation."
+  },
 
-  // STATE MANAGEMENT
-  let currentQuizList = [];
-  let currentIndex = 0;
-  let score = 0;
-  let streak = 0;
-  let maxStreak = 0;
-  let timerInterval = null;
-  let timeLeft = 0;
-  let quizStartTime = 0;
-  let totalTimeSec = 0;
-  let userAnswers = [];
-  let flaggedIndices = new Set();
-  let quizConfig = { mode: 'practice' };
-  let soundEnabled = true;
+  // LOA & FORCED LEAVE (75-82)
+  {
+    id: 75,
+    category: "LOA & Forced Leave",
+    difficulty: "easy",
+    question: "What is the minimum and maximum timeframe for an official Leave of Absence (LOA)?",
+    options: ["3 to 14 days", "7 to 21 days", "14 to 30 days", "7 to 28 days"],
+    correct: 1,
+    explanation: "LOA must last a minimum of 7 days and cannot exceed 21 days."
+  },
+  {
+    id: 76,
+    category: "LOA & Forced Leave",
+    difficulty: "easy",
+    question: "What is the LOA cooldown period required after completing a 7-day Leave of Absence?",
+    options: ["3 days", "7 days", "14 days", "21 days"],
+    correct: 1,
+    explanation: "The cooldown period corresponds directly to LOA duration (e.g., 7-day LOA = 7-day cooldown)."
+  },
+  {
+    id: 77,
+    category: "LOA & Forced Leave",
+    difficulty: "medium",
+    question: "If a member submits an LOA notice AFTER Thursday, what is their quota requirement for that week?",
+    options: [
+      "Fully excused from current week quota",
+      "Must fulfill all quota obligations for the current week",
+      "Quota is halved for the week",
+      "Quota carries over to next month"
+    ],
+    correct: 1,
+    explanation: "Members submitting LOA after Thursday must fulfill all quota obligations for the current week."
+  },
+  {
+    id: 78,
+    category: "LOA & Forced Leave",
+    difficulty: "medium",
+    question: "What is the disciplinary penalty for a 1st offense of Misrepresentation of LOA (false info/fabricated notice)?",
+    options: ["Verbal Warning", "Staff Warning", "7-Day Suspension", "Demotion"],
+    correct: 1,
+    explanation: "Misrepresentation of LOA: 1st Offense is a Staff Warning."
+  },
+  {
+    id: 79,
+    category: "LOA & Forced Leave",
+    difficulty: "easy",
+    question: "What is the penalty for a 1st offense of Exploiting the LOA system (to bypass quotas or discipline)?",
+    options: ["Verbal Warning", "Staff Warning", "LOA Revocation", "Demotion"],
+    correct: 0,
+    explanation: "Exploiting LOA system: [1] Verbal Warning, [2] LOA Revocation + Staff Warning, [3] Demotion."
+  },
+  {
+    id: 80,
+    category: "LOA & Forced Leave",
+    difficulty: "hard",
+    question: "What are the exact parameters for Minor Forced Leave?",
+    options: [
+      "7 to 14 days duration; max 60 Discord messages/day; barred from in-game",
+      "15 to 28 days duration; max 25 Discord messages/day; barred from in-game",
+      "1 to 7 days duration; max 100 Discord messages/day",
+      "30 days duration; 0 Discord messages allowed"
+    ],
+    correct: 0,
+    explanation: "Minor FL: 7-14 days duration, up to 60 Discord msg/day, barred from in-game activities."
+  },
+  {
+    id: 81,
+    category: "LOA & Forced Leave",
+    difficulty: "hard",
+    question: "What are the exact parameters for Major Forced Leave?",
+    options: [
+      "7 to 14 days; max 60 Discord messages/day",
+      "15 to 28 days; max 25 Discord messages/day; strictly prohibited from in-game",
+      "30 to 60 days; max 10 Discord messages/day",
+      "14 days; max 50 Discord messages/day"
+    ],
+    correct: 1,
+    explanation: "Major FL: 15-28 days duration, up to 25 Discord msg/day, strictly prohibited from in-game."
+  },
+  {
+    id: 82,
+    category: "LOA & Forced Leave",
+    difficulty: "easy",
+    question: "What is the disciplinary consequence for violating Forced Leave guidelines on a 1st offense?",
+    options: ["Verbal Warning", "Staff-Warning", "7-Day Suspension", "Termination"],
+    correct: 1,
+    explanation: "Forced Leave violation consequences: [1] Staff-Warning, [2] Game-Ban."
+  },
 
-  // Lifelines
-  let used5050 = false;
-  let usedHint = false;
+  // POLICIES & REGULATIONS (83-93)
+  {
+    id: 83,
+    category: "Policies & Regulations",
+    difficulty: "hard",
+    question: "What are the penalties for Anti-Corruption violations involving Abuse of Power, Friend Ranking, or Bias Reports/Targeting?",
+    options: [
+      "[1] 10-14 Day Suspension, [2] 28-30 Day Suspension, [3] Termination",
+      "[1] Verbal Warning, [2] Staff Warning, [3] Demotion",
+      "[1] Staff Warning, [2] 7-Day Suspension, [3] Termination",
+      "[1] Permanent Blacklist"
+    ],
+    correct: 0,
+    explanation: "Abuse of Power / Friend Ranking / Bias Reports: [1] 10-14 Day Suspension, [2] 28-30 Day Suspension, [3] Termination."
+  },
+  {
+    id: 84,
+    category: "Policies & Regulations",
+    difficulty: "hard",
+    question: "What are the penalties for Lack of Proof or Involvement in a Personal Matter under Anti-Corruption policy?",
+    options: [
+      "[1] Verbal-Warning, [2] Staff-Warning, [3] 7-10 Day Suspension, [4] Termination",
+      "[1] 10-14 Day Suspension, [2] 28-30 Day Suspension, [3] Termination",
+      "[1] Chat-Mute, [2] Server-Ban, [3] Game-Ban",
+      "[1] Staff Warning, [2] Termination"
+    ],
+    correct: 0,
+    explanation: "Lack of Proof / Personal Matter: [1] Verbal-Warning, [2] Staff-Warning, [3] 7-10 Day Suspension, [4] Termination."
+  },
+  {
+    id: 85,
+    category: "Policies & Regulations",
+    difficulty: "easy",
+    question: "What is the penalty for a 2nd offense of violating Sobriety & Professional Conduct rules?",
+    options: ["3-5 Day Suspension", "7-10 Day Suspension", "Termination", "Blacklist"],
+    correct: 2,
+    explanation: "Sobriety violations: [1] 3-5 Day Suspension, [2] Termination."
+  },
+  {
+    id: 86,
+    category: "Policies & Regulations",
+    difficulty: "easy",
+    question: "Operation of external servers claiming affiliation with Stateview requires prior approval from whom?",
+    options: ["Facility Director", "Community Advisory Council", "Stateview Executive", "Overseer Command"],
+    correct: 2,
+    explanation: "External affiliated servers must obtain approval from a Stateview Executive."
+  },
+  {
+    id: 87,
+    category: "Policies & Regulations",
+    difficulty: "easy",
+    question: "What is the penalty for a violation of United States Federal Law within Stateview?",
+    options: ["7-10 Day Suspension", "Termination", "Unappealable Blacklist", "Server Ban"],
+    correct: 2,
+    explanation: "Violation of US Federal Law carries an immediate Unappealable Blacklist."
+  },
+  {
+    id: 88,
+    category: "Policies & Regulations",
+    difficulty: "medium",
+    question: "Using usernames like 'SirYeet4CAC' is an example of what prohibited activity, and what is the 5th offense penalty?",
+    options: [
+      "Exploiting; Permanent Ban",
+      "Asking for Promotions / Hinting; Termination",
+      "Rank Impersonation; Game-Ban",
+      "Spamming; Server-Ban"
+    ],
+    correct: 1,
+    explanation: "Hinting includes usernames like 'SirYeet4CAC'. Progression ends in [5] Termination."
+  },
+  {
+    id: 89,
+    category: "Policies & Regulations",
+    difficulty: "easy",
+    question: "Failure to remain in the Main or Intel/Administration Discord servers results in demotion to which rank?",
+    options: ["Cadet Officer", "Warden", "Deputy Warden", "Low Security Inmate"],
+    correct: 1,
+    explanation: "Failure to remain in required servers results in demotion to Warden."
+  },
+  {
+    id: 90,
+    category: "Policies & Regulations",
+    difficulty: "medium",
+    question: "Threatening to Abuse Authority results in what immediate penalty?",
+    options: ["Staff Warning", "5-7 Day Suspension", "Termination", "Game Ban"],
+    correct: 2,
+    explanation: "Threatening to Abuse Authority results in immediate Termination."
+  },
+  {
+    id: 91,
+    category: "Policies & Regulations",
+    difficulty: "hard",
+    question: "What is the penalty sequence for Complete Deletion of Logs, Submissions, or Official Materials?",
+    options: [
+      "[1] Verbal Warning, [2] Staff Warning, [3] 3-5 Day Suspension, [4] Termination",
+      "[1] Staff Warning, [2] Termination",
+      "[1] 7-Day Suspension, [2] Blacklist",
+      "[1] Verbal Warning, [2] Game Kick, [3] Server Ban"
+    ],
+    correct: 0,
+    explanation: "Deletion of logs/materials: [1] Verbal Warning, [2] Staff Warning, [3] 3-5 Day Suspension, [4] Termination."
+  },
+  {
+    id: 92,
+    category: "Policies & Regulations",
+    difficulty: "easy",
+    question: "What penalty is issued for Unsafe Endangerment of Community Roleplay (e.g., sexually explicit or graphic violent RP)?",
+    options: ["7-10 Day Suspension", "Permanent Game-Ban", "Termination", "Demotion"],
+    correct: 1,
+    explanation: "Unsafe endangerment of roleplay results in a Permanent Game-Ban."
+  },
+  {
+    id: 93,
+    category: "Policies & Regulations",
+    difficulty: "medium",
+    question: "Which entities have authority to determine that an individual is Unfit to Hold Position / Non-Qualified?",
+    options: [
+      "Any High Rank member",
+      "Stateview's Intelligence Agency, Executive Committee, CM Administration, and Leadership",
+      "Respected Inmates and Overseer Command",
+      "Support Agency members only"
+    ],
+    correct: 1,
+    explanation: "Determining non-qualified status is restricted to Intelligence Agency, Executive Committee, CM Administration, and Leadership."
+  },
 
-  // Flashcards
-  let flashcardIndex = 0;
-  let flashcardFlipped = false;
-
-  // Web Audio Synth
-  let audioCtx = null;
-  function getAudioContext() {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    return audioCtx;
+  // ADMIN COMMANDS & HAX (94-102)
+  {
+    id: 94,
+    category: "Admin Commands & HAX",
+    difficulty: "easy",
+    question: "In administrative command permission levels, Level 2 (High Rank) corresponds to which rank?",
+    options: ["Roblox Gamepass Purchase", "Facility Director", "CAC to Prison Commissioner", "Board of Governors to CEO"],
+    correct: 1,
+    explanation: "Level 2 HR corresponds to Facility Director."
+  },
+  {
+    id: 95,
+    category: "Admin Commands & HAX",
+    difficulty: "easy",
+    question: "In administrative command permission levels, Level 4 (Super High Rank) corresponds to which rank range?",
+    options: ["Facility Director", "CAC to Prison Commissioner", "Board of Governors - Chief Executive Officer", "Private Purchase"],
+    correct: 2,
+    explanation: "Level 4 SHR corresponds to Board of Governors - Chief Executive Officer."
+  },
+  {
+    id: 96,
+    category: "Admin Commands & HAX",
+    difficulty: "medium",
+    question: "Under administrative command guidelines, when do penalties apply for blacklisted command usage?",
+    options: [
+      "Immediately upon typing the command prefix",
+      "Penalties apply ONLY if the command is successfully executed",
+      "Whenever another user reports the command attempt",
+      "Automatically via Bloxcord bot"
+    ],
+    correct: 1,
+    explanation: "Penalties for use of blacklisted commands will only apply IF the command is successfully executed."
+  },
+  {
+    id: 97,
+    category: "Admin Commands & HAX",
+    difficulty: "hard",
+    question: "What are the constraints on HAX Admin overhead modifications for other players?",
+    options: [
+      "Unlimited duration; no cooldown",
+      "Limited to 30 minutes duration, 10 minutes cooldown (Chief of Staff+ exempt from cooldown)",
+      "Limited to 5 minutes duration, 1 hour cooldown",
+      "Prohibited under all circumstances"
+    ],
+    correct: 1,
+    explanation: "Modifications limited to 30 min duration with 10 min cooldown. Chief of Staff+ are exempt from cooldown."
+  },
+  {
+    id: 98,
+    category: "Admin Commands & HAX",
+    difficulty: "easy",
+    question: "Which group is exempt from ALL administrative command regulations (including execution reasons and blacklisted commands with proper judgement)?",
+    options: ["Facility Directors", "High Rank+", "Chief of Staff or higher (Leadership Members)", "Gamepass Owners"],
+    correct: 2,
+    explanation: "Chief of Staff or higher (Leadership Members) are exempt from all administration regulations."
+  },
+  {
+    id: 99,
+    category: "Admin Commands & HAX",
+    difficulty: "medium",
+    question: "What is the standardized command execution format when justification is required?",
+    options: [
+      "[User] [Command] [Reason]",
+      "[Command] [User] [Reason]",
+      "[Reason] [Command] [User]",
+      "!admin [Command] [User]"
+    ],
+    correct: 1,
+    explanation: "Standard format: [Command] [User] [Reason], e.g., 'res odis67 Falling out of session'."
+  },
+  {
+    id: 100,
+    category: "Admin Commands & HAX",
+    difficulty: "medium",
+    question: "If a user explicitly asks an admin to execute a command on them (e.g. respawn), what is the correct reason format?",
+    options: [
+      "res odis67 Requested by user",
+      "res odis67 Asked",
+      "res odis67 Self",
+      "res odis67 Consent"
+    ],
+    correct: 1,
+    explanation: "Self-command request format: [Command] [User] [Asked], e.g., 'res odis67 Asked'."
+  },
+  {
+    id: 101,
+    category: "Admin Commands & HAX",
+    difficulty: "hard",
+    question: "If an administrator forgets to include a reason when executing 'res [user]', how should they correct it?",
+    options: [
+      "Re-run the command immediately with a reason",
+      "Execute 'logs Res command was for [reasoning]'",
+      "DM a Leadership member to edit the log",
+      "Submit a support ticket in Discord"
+    ],
+    correct: 1,
+    explanation: "Correction procedure: execute 'res [user]', then log via 'logs Res command was for [reasoning]'."
+  },
+  {
+    id: 102,
+    category: "Admin Commands & HAX",
+    difficulty: "easy",
+    question: "Breaking Appeal Cooldown results in what penalty on the 2nd offense?",
+    options: ["Verbal-Warning", "Appeal-Blacklist", "Server-Ban", "Termination"],
+    correct: 1,
+    explanation: "Breaking Appeal Cooldown: [1] Verbal-Warning, [2] Appeal-Blacklist."
   }
+];
 
-  function playTone(freq, type = 'sine', duration = 0.1) {
-    if (!soundEnabled) return;
-    try {
-      const ctx = getAudioContext();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      gain.gain.setValueAtTime(0.1, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
+// STATE MANAGEMENT
+let appState = {
+  mode: 'quiz',
+  questions: [],
+  currentIndex: 0,
+  score: 0,
+  streak: 0,
+  maxStreak: 0,
+  answers: [],
+  soundEnabled: true,
+  lifelines: {
+    fiftyFifty: 1,
+    hint: 1,
+    skip: 1
+  },
+  isFlipped: false
+};
+
+// AUDIO SYNTHESIS
+let audioCtx = null;
+function playSound(type) {
+  if (!appState.soundEnabled) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    if (type === 'correct') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+      osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.15); // E5
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
       osc.start();
-      osc.stop(ctx.currentTime + duration);
-    } catch (e) {}
+      osc.stop(audioCtx.currentTime + 0.25);
+    } else if (type === 'wrong') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
+      osc.frequency.exponentialRampToValueAtTime(130, audioCtx.currentTime + 0.2);
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.25);
+    } else if (type === 'click') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.08);
+    }
+  } catch (e) { console.error(e); }
+}
+
+function toggleSound() {
+  appState.soundEnabled = !appState.soundEnabled;
+  const btn = document.getElementById('btn-sound-toggle');
+  btn.style.opacity = appState.soundEnabled ? '1' : '0.4';
+}
+
+function selectMode(mode, element) {
+  appState.mode = mode;
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
+  element.classList.add('active');
+  playSound('click');
+}
+
+function startAssessment() {
+  playSound('click');
+  const cat = document.getElementById('select-category').value;
+  const qty = document.getElementById('select-quantity').value;
+
+  let pool = cat === 'ALL' ? [...QUESTIONS_DB] : QUESTIONS_DB.filter(q => q.category === cat);
+  
+  // Shuffle array
+  pool = pool.sort(() => Math.random() - 0.5);
+
+  if (qty !== 'ALL') {
+    const num = parseInt(qty, 10);
+    pool = pool.slice(0, num);
   }
 
-  function playCorrectSFX() {
-    playTone(523.25, 'triangle', 0.12);
-    setTimeout(() => playTone(659.25, 'triangle', 0.15), 80);
-    setTimeout(() => playTone(783.99, 'triangle', 0.25), 160);
-  }
+  appState.questions = pool;
+  appState.currentIndex = 0;
+  appState.score = 0;
+  appState.streak = 0;
+  appState.maxStreak = 0;
+  appState.answers = [];
+  appState.lifelines = { fiftyFifty: 1, hint: 1, skip: 1 };
 
-  function playWrongSFX() {
-    playTone(220, 'sawtooth', 0.15);
-    setTimeout(() => playTone(180, 'sawtooth', 0.25), 120);
-  }
+  document.getElementById('panel-setup').classList.add('hidden');
 
-  function playClickSFX() {
-    playTone(400, 'sine', 0.05);
+  if (appState.mode === 'flashcard') {
+    document.getElementById('panel-flashcard').classList.remove('hidden');
+    renderFlashcard();
+  } else {
+    document.getElementById('panel-quiz').classList.remove('hidden');
+    renderQuizQuestion();
   }
+}
 
-  function toggleSound() {
-    soundEnabled = !soundEnabled;
-    document.getElementById('icon-sound-on').classList.toggle('hidden', !soundEnabled);
-    document.getElementById('icon-sound-off').classList.toggle('hidden', soundEnabled);
-  }
+function renderQuizQuestion() {
+  const q = appState.questions[appState.currentIndex];
+  const total = appState.questions.length;
 
-  window.addEventListener('DOMContentLoaded', () => {
-    renderHandbookCodex();
-    updateHeaderCount();
+  document.getElementById('lbl-qnum').innerText = `${appState.currentIndex + 1}/${total}`;
+  document.getElementById('lbl-score').innerText = appState.score;
+  document.getElementById('lbl-streak').innerText = `${appState.streak} 🔥`;
+
+  // Progress Bar
+  const pct = ((appState.currentIndex) / total) * 100;
+  document.getElementById('progress-fill').style.width = `${pct}%`;
+
+  // Lifelines state
+  document.getElementById('btn-5050').disabled = appState.lifelines.fiftyFifty <= 0;
+  document.getElementById('btn-hint').disabled = appState.lifelines.hint <= 0;
+
+  // Tags
+  document.getElementById('tag-category').innerText = q.category;
+  const tagDiff = document.getElementById('tag-difficulty');
+  tagDiff.innerText = q.difficulty;
+  tagDiff.className = `meta-tag tag-${q.difficulty}`;
+
+  // Question Text
+  document.getElementById('lbl-question-text').innerText = q.question;
+
+  // Render Options
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+
+  const keys = ['A', 'B', 'C', 'D'];
+  q.options.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.onclick = () => selectOption(idx);
+    btn.innerHTML = `<span class="option-key">${keys[idx]}</span> <span>${optText}</span>`;
+    container.appendChild(btn);
   });
 
-  function updateHeaderCount() {
-    document.getElementById('header-q-count').innerText = `${QUESTION_BANK.length} POLICY QUESTIONS`;
-  }
+  // Hide explanation & next button
+  document.getElementById('explanation-box').classList.add('hidden');
+  document.getElementById('btn-next').classList.add('hidden');
+}
 
-  function selectMode(mode, element) {
-    playClickSFX();
-    quizConfig.mode = mode;
-    document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
-    element.classList.add('active');
-  }
+function selectOption(selectedIndex) {
+  const q = appState.questions[appState.currentIndex];
+  const buttons = document.querySelectorAll('.option-btn');
+  
+  buttons.forEach(btn => btn.classList.add('disabled'));
 
-  function shuffleArray(arr) {
-    const array = [...arr];
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
+  const isCorrect = selectedIndex === q.correct;
 
-  // START SESSION
-  function startSession() {
-    playClickSFX();
-    const catVal = document.getElementById('cfg-cat').value;
-    const countVal = document.getElementById('cfg-count').value;
-    const diffVal = document.getElementById('cfg-diff').value;
-    const timerVal = document.getElementById('cfg-timer').value;
+  if (isCorrect) {
+    playSound('correct');
+    buttons[selectedIndex].classList.add('selected-correct');
+    appState.score += 100 + (appState.streak * 10);
+    appState.streak++;
+    if (appState.streak > appState.maxStreak) appState.maxStreak = appState.streak;
+  } else {
+    playSound('wrong');
+    buttons[selectedIndex].classList.add('selected-wrong');
+    buttons[q.correct].classList.add('selected-correct');
+    appState.streak = 0;
 
-    quizConfig.cat = catVal;
-    quizConfig.count = countVal;
-    quizConfig.diff = diffVal;
-    quizConfig.timer = timerVal;
-
-    let pool = QUESTION_BANK;
-    if (catVal !== 'all') {
-      pool = pool.filter(q => q.cat === catVal);
-    }
-    if (diffVal !== 'all') {
-      pool = pool.filter(q => q.diff === diffVal);
-    }
-
-    if (pool.length === 0) {
-      alert("No questions available matching your exact category and difficulty filter!");
+    if (appState.mode === 'survival') {
+      setTimeout(() => { finishQuiz(); }, 1200);
       return;
     }
-
-    pool = shuffleArray(pool);
-
-    currentQuizList = pool.map(item => {
-      const optionObjects = item.options.map((optText, idx) => ({
-        text: optText,
-        isCorrect: idx === item.ans
-      }));
-      const shuffledOptions = shuffleArray(optionObjects);
-      const newAnsIndex = shuffledOptions.findIndex(o => o.isCorrect);
-
-      return {
-        q: item.q,
-        options: shuffledOptions.map(o => o.text),
-        ans: newAnsIndex,
-        diff: item.diff,
-        cat: item.cat,
-        exp: item.exp
-      };
-    });
-
-    if (countVal !== 'all') {
-      const limit = parseInt(countVal, 10);
-      currentQuizList = currentQuizList.slice(0, Math.min(limit, currentQuizList.length));
-    }
-
-    if (quizConfig.mode === 'flashcards') {
-      startFlashcards();
-      return;
-    }
-
-    currentIndex = 0;
-    score = 0;
-    streak = 0;
-    maxStreak = 0;
-    userAnswers = [];
-    flaggedIndices.clear();
-    used5050 = false;
-    usedHint = false;
-    quizStartTime = Date.now();
-
-    document.getElementById('btn-5050').disabled = false;
-    document.getElementById('btn-hint').disabled = false;
-
-    document.getElementById('view-setup').classList.add('hidden');
-    document.getElementById('view-results').classList.add('hidden');
-    document.getElementById('view-flashcard').classList.add('hidden');
-    document.getElementById('view-quiz').classList.remove('hidden');
-
-    renderQuestion();
   }
 
-  function renderQuestion() {
-    clearInterval(timerInterval);
+  appState.answers.push({
+    question: q.question,
+    userAns: selectedIndex,
+    correctAns: q.correct,
+    isCorrect: isCorrect,
+    explanation: q.explanation
+  });
 
-    const qData = currentQuizList[currentIndex];
-    const totalQ = currentQuizList.length;
+  // Show explanation
+  const expBox = document.getElementById('explanation-box');
+  expBox.innerHTML = `<strong>OFFICIAL POLICY EXPLANATION:</strong> ${q.explanation}`;
+  expBox.classList.remove('hidden');
 
-    document.getElementById('lbl-qnum').innerText = `${currentIndex + 1}/${totalQ}`;
-    document.getElementById('lbl-score').innerText = score;
-    document.getElementById('lbl-streak').innerText = `${streak} 🔥`;
+  document.getElementById('btn-next').classList.remove('hidden');
+}
 
-    const pct = Math.round((currentIndex / totalQ) * 100);
-    document.getElementById('progress-fill').style.width = `${pct}%`;
+function nextQuestion() {
+  playSound('click');
+  appState.currentIndex++;
+  if (appState.currentIndex >= appState.questions.length) {
+    finishQuiz();
+  } else {
+    renderQuizQuestion();
+  }
+}
 
-    const tagDiff = document.getElementById('tag-diff');
-    tagDiff.innerText = qData.diff.toUpperCase();
-    tagDiff.className = `meta-tag tag-${qData.diff}`;
+function useLifeline5050() {
+  if (appState.lifelines.fiftyFifty <= 0) return;
+  playSound('click');
+  appState.lifelines.fiftyFifty--;
 
-    document.getElementById('tag-cat').innerText = qData.cat.toUpperCase();
-    document.getElementById('lbl-question').innerText = qData.q;
+  const q = appState.questions[appState.currentIndex];
+  const buttons = document.querySelectorAll('.option-btn');
+  let removed = 0;
 
-    const flagBtn = document.getElementById('lbl-flag-text');
-    flagBtn.innerText = flaggedIndices.has(currentIndex) ? "🚩 Flagged" : "🚩 Flag Question";
-
-    const container = document.getElementById('options-container');
-    container.innerHTML = '';
-
-    const keys = ['A', 'B', 'C', 'D'];
-    qData.options.forEach((optText, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'option-btn';
-      btn.onclick = () => selectAnswer(idx);
-      btn.innerHTML = `
-        <span class="option-key">${keys[idx]}</span>
-        <span class="option-text">${optText}</span>
-      `;
-      container.appendChild(btn);
-    });
-
-    const expBox = document.getElementById('explanation-box');
-    expBox.classList.add('hidden');
-    expBox.innerHTML = '';
-
-    const nextBtn = document.getElementById('btn-next');
-    nextBtn.classList.add('hidden');
-
-    if (quizConfig.timer !== 'off') {
-      timeLeft = parseInt(quizConfig.timer, 10);
-      updateTimerPill();
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        updateTimerPill();
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          selectAnswer(-1);
-        }
-      }, 1000);
-    } else {
-      document.getElementById('lbl-timer').innerText = 'OFF';
+  buttons.forEach((btn, idx) => {
+    if (idx !== q.correct && removed < 2) {
+      btn.classList.add('hidden-5050');
+      removed++;
     }
+  });
+
+  document.getElementById('btn-5050').disabled = true;
+}
+
+function useLifelineHint() {
+  if (appState.lifelines.hint <= 0) return;
+  playSound('click');
+  appState.lifelines.hint--;
+
+  const q = appState.questions[appState.currentIndex];
+  const expBox = document.getElementById('explanation-box');
+  expBox.innerHTML = `<strong>POLICY HINT:</strong> Review penalty tier ${q.difficulty.toUpperCase()} for section [${q.category}].`;
+  expBox.classList.remove('hidden');
+
+  document.getElementById('btn-hint').disabled = true;
+}
+
+function useLifelineSkip() {
+  playSound('click');
+  appState.currentIndex++;
+  if (appState.currentIndex >= appState.questions.length) {
+    finishQuiz();
+  } else {
+    renderQuizQuestion();
+  }
+}
+
+function renderFlashcard() {
+  const q = appState.questions[appState.currentIndex];
+  document.getElementById('lbl-card-num').innerText = `${appState.currentIndex + 1}/${appState.questions.length}`;
+  document.getElementById('flash-cat-tag').innerText = q.category;
+  document.getElementById('flash-question-text').innerText = q.question;
+  document.getElementById('flash-answer-text').innerText = q.options[q.correct];
+  document.getElementById('flash-explanation-text').innerText = q.explanation;
+
+  const card = document.getElementById('flashcard-element');
+  card.classList.remove('flipped');
+  appState.isFlipped = false;
+}
+
+function flipCard() {
+  playSound('click');
+  const card = document.getElementById('flashcard-element');
+  card.classList.toggle('flipped');
+  appState.isFlipped = !appState.isFlipped;
+}
+
+function nextCard() {
+  playSound('click');
+  appState.currentIndex = (appState.currentIndex + 1) % appState.questions.length;
+  renderFlashcard();
+}
+
+function prevCard() {
+  playSound('click');
+  appState.currentIndex = (appState.currentIndex - 1 + appState.questions.length) % appState.questions.length;
+  renderFlashcard();
+}
+
+function finishQuiz() {
+  document.getElementById('panel-quiz').classList.add('hidden');
+  document.getElementById('panel-flashcard').classList.add('hidden');
+  document.getElementById('panel-results').classList.remove('hidden');
+
+  const total = appState.answers.length;
+  const correctCount = appState.answers.filter(a => a.isCorrect).length;
+  const wrongCount = total - correctCount;
+  const percent = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+  document.getElementById('lbl-res-percent').innerText = `${percent}%`;
+  document.getElementById('lbl-res-total').innerText = total;
+  document.getElementById('lbl-res-correct').innerText = correctCount;
+  document.getElementById('lbl-res-wrong').innerText = wrongCount;
+  document.getElementById('lbl-res-maxstreak').innerText = `${appState.maxStreak} 🔥`;
+
+  if (percent >= 80) {
+    triggerConfetti();
+    document.getElementById('lbl-res-title').innerText = "PASSED - EXCELLENT PERFORMANCE";
+    document.getElementById('lbl-res-msg').innerText = "You have demonstrated superior knowledge of Stateview Correctional Facility policies.";
+  } else {
+    document.getElementById('lbl-res-title').innerText = "EVALUATION COMPLETE - REVISION RECOMMENDED";
+    document.getElementById('lbl-res-msg').innerText = "Review the detailed breakdown below and study the Policy Codex before re-assessing.";
   }
 
-  function updateTimerPill() {
-    const pill = document.getElementById('lbl-timer');
-    pill.innerText = `${timeLeft}s`;
-    pill.style.color = timeLeft <= 5 ? '#f43f5e' : 'var(--accent-electric)';
-  }
+  // Render Detailed Review
+  const revContainer = document.getElementById('review-container');
+  revContainer.innerHTML = '';
 
-  function selectAnswer(selectedIdx) {
-    clearInterval(timerInterval);
-
-    const qData = currentQuizList[currentIndex];
-    const isCorrect = selectedIdx === qData.ans;
-
-    if (isCorrect) {
-      playCorrectSFX();
-      score++;
-      streak++;
-      if (streak > maxStreak) maxStreak = streak;
-    } else {
-      playWrongSFX();
-      streak = 0;
-    }
-
-    userAnswers.push({
-      question: qData.q,
-      userAnsText: selectedIdx >= 0 ? qData.options[selectedIdx] : "TIME EXPIRED",
-      correctAnsText: qData.options[qData.ans],
-      isCorrect: isCorrect,
-      exp: qData.exp,
-      cat: qData.cat,
-      isFlagged: flaggedIndices.has(currentIndex)
-    });
-
-    document.getElementById('lbl-score').innerText = score;
-    document.getElementById('lbl-streak').innerText = `${streak} 🔥`;
-
-    const optionBtns = document.querySelectorAll('.option-btn');
-    optionBtns.forEach((btn, idx) => {
-      btn.classList.add('disabled');
-      btn.onclick = null;
-
-      if (idx === qData.ans) {
-        btn.classList.add('selected-correct');
-      } else if (idx === selectedIdx) {
-        btn.classList.add('selected-wrong');
-      }
-    });
-
-    if (quizConfig.mode === 'survival' && !isCorrect) {
-      setTimeout(() => finishQuiz(), 1200);
-      return;
-    }
-
-    if (quizConfig.mode === 'practice' || !isCorrect) {
-      const expBox = document.getElementById('explanation-box');
-      expBox.innerHTML = `<strong>POLICY CITATION:</strong> ${qData.exp}`;
-      expBox.classList.remove('hidden');
-    }
-
-    const nextBtn = document.getElementById('btn-next');
-    if (currentIndex < currentQuizList.length - 1) {
-      nextBtn.innerText = 'Next Question →';
-    } else {
-      nextBtn.innerText = 'View Final Results ★';
-    }
-    nextBtn.classList.remove('hidden');
-  }
-
-  function nextQuestion() {
-    playClickSFX();
-    currentIndex++;
-    if (currentIndex < currentQuizList.length) {
-      renderQuestion();
-    } else {
-      finishQuiz();
-    }
-  }
-
-  function toggleFlagQuestion() {
-    playClickSFX();
-    if (flaggedIndices.has(currentIndex)) {
-      flaggedIndices.delete(currentIndex);
-      document.getElementById('lbl-flag-text').innerText = "🚩 Flag Question";
-    } else {
-      flaggedIndices.add(currentIndex);
-      document.getElementById('lbl-flag-text').innerText = "🚩 Flagged";
-    }
-  }
-
-  function useLifeline5050() {
-    if (used5050) return;
-    playClickSFX();
-    used5050 = true;
-    document.getElementById('btn-5050').disabled = true;
-
-    const qData = currentQuizList[currentIndex];
-    const optionBtns = document.querySelectorAll('.option-btn');
-    let removedCount = 0;
-
-    optionBtns.forEach((btn, idx) => {
-      if (idx !== qData.ans && removedCount < 2) {
-        btn.classList.add('hidden-5050');
-        removedCount++;
-      }
-    });
-  }
-
-  function useLifelineHint() {
-    if (usedHint) return;
-    playClickSFX();
-    usedHint = true;
-    document.getElementById('btn-hint').disabled = true;
-
-    const qData = currentQuizList[currentIndex];
-    const expBox = document.getElementById('explanation-box');
-    expBox.innerHTML = `<strong>HINT CITATION:</strong> Category is ${qData.cat}. Review this specific area in the policy codex!`;
-    expBox.classList.remove('hidden');
-  }
-
-  function promptQuitQuiz() {
-    playClickSFX();
-    document.getElementById('modal-title').innerText = "Quit Active Assessment?";
-    document.getElementById('modal-msg').innerText = "Are you sure you want to abandon this assessment? Your current session progress will be lost.";
+  appState.answers.forEach((ans, idx) => {
+    const qObj = appState.questions[idx];
+    const item = document.createElement('div');
+    item.className = 'review-item';
     
-    const confirmBtn = document.getElementById('modal-btn-confirm');
-    confirmBtn.onclick = () => {
-      closeModal();
-      showSetup();
-    };
+    const ansClass = ans.isCorrect ? 'ans-correct' : 'ans-wrong';
+    const symbol = ans.isCorrect ? '✓' : '✗';
 
-    document.getElementById('modal-confirm').classList.remove('hidden');
-  }
+    item.innerHTML = `
+      <div class="review-q">${idx + 1}. ${ans.question}</div>
+      <div class="${ansClass}">${symbol} Your Answer: ${qObj.options[ans.userAns]}</div>
+      ${!ans.isCorrect ? `<div class="ans-correct">✓ Correct Answer: ${qObj.options[ans.correctAns]}</div>` : ''}
+      <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">${ans.explanation}</div>
+    `;
+    revContainer.appendChild(item);
+  });
+}
 
-  function showSetup() {
-    clearInterval(timerInterval);
-    document.getElementById('view-quiz').classList.add('hidden');
-    document.getElementById('view-results').classList.add('hidden');
-    document.getElementById('view-flashcard').classList.add('hidden');
-    document.getElementById('view-setup').classList.remove('hidden');
-  }
+function restartAssessment() {
+  startAssessment();
+}
 
-  function closeModal() {
-    playClickSFX();
-    document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
-  }
+function exitToSetup() {
+  playSound('click');
+  document.getElementById('panel-quiz').classList.add('hidden');
+  document.getElementById('panel-flashcard').classList.add('hidden');
+  document.getElementById('panel-results').classList.add('hidden');
+  document.getElementById('panel-setup').classList.remove('hidden');
+}
 
-  // FLASHCARDS MODE
-  function startFlashcards() {
-    flashcardIndex = 0;
-    flashcardFlipped = false;
+// HANDBOOK / CODEX MODAL FUNCTIONS
+function openHandbookModal() {
+  playSound('click');
+  document.getElementById('modal-handbook').classList.remove('hidden');
+  renderHandbookList(QUESTIONS_DB);
+}
 
-    document.getElementById('view-setup').classList.add('hidden');
-    document.getElementById('view-results').classList.add('hidden');
-    document.getElementById('view-quiz').classList.add('hidden');
-    document.getElementById('view-flashcard').classList.remove('hidden');
+function closeHandbookModal() {
+  playSound('click');
+  document.getElementById('modal-handbook').classList.add('hidden');
+}
 
-    renderFlashcard();
-  }
+function renderHandbookList(list) {
+  const container = document.getElementById('handbook-content-list');
+  container.innerHTML = '';
 
-  function renderFlashcard() {
-    const card = document.getElementById('flashcard-card');
-    card.classList.remove('flipped');
-    flashcardFlipped = false;
+  list.forEach(q => {
+    const div = document.createElement('div');
+    div.className = 'codex-item';
+    div.innerHTML = `
+      <h4>[${q.category}] - ${q.question}</h4>
+      <p><strong>Official Answer:</strong> ${q.options[q.correct]}</p>
+      <p><strong>Policy Detail:</strong> ${q.explanation}</p>
+    `;
+    container.appendChild(div);
+  });
+}
 
-    const qData = currentQuizList[flashcardIndex];
-    document.getElementById('lbl-card-num').innerText = `${flashcardIndex + 1}/${currentQuizList.length}`;
-    document.getElementById('lbl-card-cat').innerText = qData.cat.toUpperCase();
-    document.getElementById('fc-cat').innerText = qData.cat.toUpperCase();
-    document.getElementById('fc-question').innerText = qData.q;
-    document.getElementById('fc-answer').innerText = qData.options[qData.ans];
-    document.getElementById('fc-exp').innerText = qData.exp;
-  }
+function filterHandbook() {
+  const term = document.getElementById('handbook-search').value.toLowerCase();
+  const filtered = QUESTIONS_DB.filter(q => 
+    q.question.toLowerCase().includes(term) ||
+    q.category.toLowerCase().includes(term) ||
+    q.explanation.toLowerCase().includes(term) ||
+    q.options[q.correct].toLowerCase().includes(term)
+  );
+  renderHandbookList(filtered);
+}
 
-  function flipFlashcard() {
-    playClickSFX();
-    const card = document.getElementById('flashcard-card');
-    card.classList.toggle('flipped');
-    flashcardFlipped = !flashcardFlipped;
-  }
+// CONFETTI CANNON
+function triggerConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-  function nextFlashcard() {
-    playClickSFX();
-    flashcardIndex = (flashcardIndex + 1) % currentQuizList.length;
-    renderFlashcard();
-  }
+  const particles = [];
+  const colors = ['#38bdf8', '#00d8ff', '#10b981', '#fbbf24', '#a855f7'];
 
-  function prevFlashcard() {
-    playClickSFX();
-    flashcardIndex = (flashcardIndex - 1 + currentQuizList.length) % currentQuizList.length;
-    renderFlashcard();
-  }
-
-  function shuffleFlashcards() {
-    playClickSFX();
-    currentQuizList = shuffleArray(currentQuizList);
-    flashcardIndex = 0;
-    renderFlashcard();
-  }
-
-  // FINISH QUIZ
-  function finishQuiz() {
-    clearInterval(timerInterval);
-    totalTimeSec = Math.round((Date.now() - quizStartTime) / 1000);
-
-    document.getElementById('view-quiz').classList.add('hidden');
-    document.getElementById('view-results').classList.remove('hidden');
-
-    const totalQ = userAnswers.length;
-    const pct = totalQ > 0 ? Math.round((score / totalQ) * 100) : 0;
-
-    document.getElementById('res-percent').innerText = `${pct}%`;
-    document.getElementById('res-correct').innerText = score;
-    document.getElementById('res-wrong').innerText = totalQ - score;
-    document.getElementById('res-streak').innerText = maxStreak;
-    document.getElementById('res-time').innerText = `${totalTimeSec}s`;
-
-    const titleEl = document.getElementById('res-title');
-    const msgEl = document.getElementById('res-msg');
-
-    if (pct === 100) {
-      titleEl.innerText = "PERFECT SCORE - MASTER COMMANDER";
-      msgEl.innerText = "You have demonstrated flawless knowledge of all Stateview General Procedures & Policies!";
-      triggerConfetti();
-    } else if (pct >= 80) {
-      titleEl.innerText = "PASSED - QUALIFIED STAFF MEMBER";
-      msgEl.innerText = "Great job! You have a solid command of Stateview organizational regulations.";
-    } else {
-      titleEl.innerText = "NEEDS IMPROVEMENT";
-      msgEl.innerText = "Please review the miss log below and retake the assessment to ensure compliance.";
-    }
-
-    saveStatsToStorage(totalQ, score);
-    filterReviewLog('wrong');
-  }
-
-  function filterReviewLog(filterType) {
-    const reviewContainer = document.getElementById('review-container');
-    reviewContainer.innerHTML = '';
-
-    let itemsToDisplay = userAnswers;
-    if (filterType === 'wrong') {
-      itemsToDisplay = userAnswers.filter(a => !a.isCorrect);
-    } else if (filterType === 'flagged') {
-      itemsToDisplay = userAnswers.filter(a => a.isFlagged);
-    }
-
-    if (itemsToDisplay.length === 0) {
-      reviewContainer.innerHTML = `
-        <div style="text-align: center; color: var(--status-success); font-family: 'JetBrains Mono', monospace; font-size: 13px; padding: 24px;">
-          ✓ NO QUESTIONS TO DISPLAY FOR THIS FILTER SELECTION!
-        </div>
-      `;
-      return;
-    }
-
-    itemsToDisplay.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'review-item';
-      div.innerHTML = `
-        <div class="review-q">${item.isFlagged ? '🚩 ' : ''}${item.question}</div>
-        <div class="review-ans ans-wrong"><strong>Your Answer:</strong> ${item.userAnsText}</div>
-        <div class="review-ans ans-correct"><strong>Correct Regulation:</strong> ${item.correctAnsText}</div>
-        <div style="font-size: 12px; color: var(--text-sub); margin-top: 8px; font-style: italic;">
-          ${item.exp}
-        </div>
-      `;
-      reviewContainer.appendChild(div);
-    });
-  }
-
-  function copyDiscordReport() {
-    playClickSFX();
-    const totalQ = userAnswers.length;
-    const pct = totalQ > 0 ? Math.round((score / totalQ) * 100) : 0;
-    
-    const reportText = [
-      `**STATEVIEW CORRECTIONAL FACILITY - ASSESSMENT REPORT**`,
-      `**Score:** ${score}/${totalQ} (${pct}%)`,
-      `**Max Streak:** ${maxStreak}`,
-      `**Duration:** ${totalTimeSec} seconds`,
-      `**Mode:** ${quizConfig.mode.toUpperCase()}`,
-      `**Category Filter:** ${quizConfig.cat}`,
-      `*Logged automatically via Policy Assessment Portal*`
-    ].join('\n');
-
-    navigator.clipboard.writeText(reportText).then(() => {
-      showToast("Discord Report Copied to Clipboard!");
-    }).catch(() => {
-      alert(reportText);
-    });
-  }
-
-  function retakeSameSession() {
-    startSession();
-  }
-
-  function showToast(msg) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerText = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2500);
-  }
-
-  // STATS MANAGEMENT
-  function saveStatsToStorage(totalQ, correctQ) {
-    let stats = JSON.parse(localStorage.getItem('stateview_quiz_stats') || '{"sessions":0,"totalQ":0,"correctQ":0}');
-    stats.sessions++;
-    stats.totalQ += totalQ;
-    stats.correctQ += correctQ;
-    localStorage.setItem('stateview_quiz_stats', JSON.stringify(stats));
-  }
-
-  function openStatsModal() {
-    playClickSFX();
-    let stats = JSON.parse(localStorage.getItem('stateview_quiz_stats') || '{"sessions":0,"totalQ":0,"correctQ":0}');
-    const pct = stats.totalQ > 0 ? Math.round((stats.correctQ / stats.totalQ) * 100) : 0;
-
-    document.getElementById('stat-total-sessions').innerText = stats.sessions;
-    document.getElementById('stat-total-q').innerText = stats.totalQ;
-    document.getElementById('stat-accuracy').innerText = `${pct}%`;
-
-    document.getElementById('modal-stats').classList.remove('hidden');
-  }
-
-  function resetLifetimeStats() {
-    playClickSFX();
-    if (confirm("Reset all stored lifetime performance data?")) {
-      localStorage.removeItem('stateview_quiz_stats');
-      openStatsModal();
-      showToast("Lifetime stats reset successfully.");
-    }
-  }
-
-  // CODEX / HANDBOOK SEARCH
-  function openHandbookModal() {
-    playClickSFX();
-    document.getElementById('modal-handbook').classList.remove('hidden');
-  }
-
-  function renderHandbookCodex() {
-    const codexContainer = document.getElementById('codex-list');
-    codexContainer.innerHTML = '';
-
-    QUESTION_BANK.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'codex-item';
-      div.innerHTML = `
-        <h4>[${item.cat}] ${item.q}</h4>
-        <p><strong>ANSWER:</strong> ${item.options[item.ans]}</p>
-        <p style="margin-top: 4px; font-size: 12px; color: var(--accent-electric);">${item.exp}</p>
-      `;
-      codexContainer.appendChild(div);
-    });
-  }
-
-  function searchCodex(query) {
-    const q = query.toLowerCase().trim();
-    const items = document.querySelectorAll('.codex-item');
-
-    items.forEach(item => {
-      const text = item.innerText.toLowerCase();
-      item.style.display = text.includes(q) ? 'block' : 'none';
-    });
-  }
-
-  // CONFETTI EFFECT
-  function triggerConfetti() {
-    const canvas = document.getElementById('confetti-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles = Array.from({ length: 120 }).map(() => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
-      color: ['#00d8ff', '#fbbf24', '#10b981', '#38bdf8', '#a855f7'][Math.floor(Math.random() * 5)],
+  for (let i = 0; i < 120; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 18,
+      vy: (Math.random() - 0.8) * 18,
       size: Math.random() * 8 + 4,
-      speedY: Math.random() * 4 + 2,
-      speedX: Math.random() * 2 - 1
-    }));
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1
+    });
+  }
 
-    let frame = 0;
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.y += p.speedY;
-        p.x += p.speedX;
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let active = false;
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.3; // Gravity
+      p.alpha -= 0.015;
+
+      if (p.alpha > 0) {
+        active = true;
+        ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      frame++;
-      if (frame < 180) {
-        requestAnimationFrame(animate);
-      } else {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(p.x, p.y, p.size, p.size);
       }
-    }
-    animate();
+    });
+
+    if (active) requestAnimationFrame(render);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
+
+  render();
+}
 </script>
-<!-- Floating Aesthetic Home Button -->
-<style>
-  .floating-home-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: #1a1a1a;
-    text-decoration: none;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  }
-
-  .floating-home-btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.18);
-    color: #000;
-  }
-
-  .floating-home-btn:active {
-    transform: translateY(-1px) scale(0.98);
-  }
-
-  .floating-home-btn svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-    transition: transform 0.3s ease;
-  }
-
-  .floating-home-btn:hover svg {
-    transform: scale(1.1);
-  }
-
-  /* Automatic Dark Mode Support */
-  @media (prefers-color-scheme: dark) {
-    .floating-home-btn {
-      background: rgba(20, 20, 20, 0.75);
-      color: #f0f0f0;
-      border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-    }
-    .floating-home-btn:hover {
-      background: rgba(30, 30, 30, 0.92);
-      color: #ffffff;
-    }
-  }
-</style>
-
-<a href="index.html" class="floating-home-btn" aria-label="Go to Home">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-  </svg>
-  <span>Home</span>
-</a>
 </body>
 </html>
