@@ -72,7 +72,7 @@
       background: var(--panel-bg);
       border: 1px solid var(--panel-border);
       border-radius: 20px;
-      padding: 28px 32px;
+      padding: 24px 32px;
       backdrop-filter: blur(20px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
       display: flex;
@@ -83,13 +83,44 @@
     }
 
     .main-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: -0.5px;
       display: flex;
       align-items: center;
       gap: 12px;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-code);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 8px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .home-btn:hover {
+      background: var(--accent-bg-subtle);
+      border-color: var(--accent-electric);
+      color: var(--accent-electric);
+      box-shadow: 0 0 15px var(--accent-glow);
+      transform: translateY(-1px);
     }
 
     .header-badge {
@@ -99,8 +130,8 @@
       color: var(--accent-electric);
       background: var(--accent-bg-subtle);
       border: 1px solid var(--panel-border);
-      padding: 6px 14px;
-      border-radius: 30px;
+      padding: 8px 14px;
+      border-radius: 10px;
       letter-spacing: 1px;
     }
 
@@ -221,10 +252,19 @@
 
 <div class="guide-container">
 
-  <!-- Main Header -->
+  <!-- Main Header with Home Navigation -->
   <div class="header-card">
     <h1 class="main-title">STATEVIEW RANKING GUIDE 🧾</h1>
-    <span class="header-badge">STATEVIEW GUIDES</span>
+    <div class="header-controls">
+      <a href="index.html" class="home-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>HOME</span>
+      </a>
+      <span class="header-badge">OFFICIAL DOCUMENTATION</span>
+    </div>
   </div>
 
   <!-- Section 1: Session Tab Ranking -->
