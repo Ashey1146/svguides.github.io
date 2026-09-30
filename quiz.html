@@ -2561,5 +2561,344 @@ function triggerConfetti() {
   render();
 }
 </script>
+  <!-- ========================================== -->
+<!-- UNIVERSAL AESTHETIC HOME BUTTON (DROP-IN)  -->
+<!-- ========================================== -->
+<div id="aesthetic-home-btn-wrapper" style="all: initial; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <a id="aesthetic-home-btn" href="index.html" aria-label="Go to Home" title="Go to Home (Hotkey: H)">
+    <div class="home-btn-aura"></div>
+    <div class="home-btn-glass">
+      <svg class="home-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 2Here is a **100% self-contained drop-in snippet**. You can paste this code at the **very bottom of any HTML file** (right before `</body>` or just at the end of your file), and it will immediately create a floating, high-tech, aesthetic Home button with procedural Web Audio sound effects, particle animations, glowing hover effects, drag-and-drop repositioning, and keyboard shortcut support (<kbd>H</kbd>).
+
+It requires **no external libraries, CSS files, or audio MP3s**.
+
+```html
+<!-- ========================================== -->
+<!-- UNIVERSAL AESTHETIC HOME BUTTON DROP-IN   -->
+<!-- Paste this code at the end of any HTML file-->
+<!-- ========================================== -->
+<div id="universal-home-btn-root">
+  <a href="index.html" id="uhb-link" aria-label="Return to Home">
+    <canvas id="uhb-canvas"></canvas>
+    <div class="uhb-glow"></div>
+    <div class="uhb-ring"></div>
+    <div class="uhb-icon-wrap">
+      <svg class="uhb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+      </svg>
+    </div>
+    <span class="uhb-tooltip">INDEX.HTML <span class="uhb-badge">Press H</span></span>
+  </a>
+</div>
+
+<style>
+  #universal-home-btn-root {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+
+  #uhb-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: rgba(13, 14, 24, 0.75);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #uhb-link:hover {
+    transform: scale(1.1) translateY(-2px);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 15px 35px rgba(168, 85, 247, 0.35), 0 0 20px rgba(56, 189, 248, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  }
+
+  #uhb-link:active {
+    transform: scale(0.92) translateY(1px);
+  }
+
+  .uhb-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7, #3b82f6, #06b6d4);
+    opacity: 0.2;
+    filter: blur(8px);
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  #uhb-link:hover .uhb-glow {
+    opacity: 0.8;
+  }
+
+  .uhb-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(168, 85, 247, 0.4);
+    animation: uhb-spin 12s linear infinite;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+  }
+
+  #uhb-link:hover .uhb-ring {
+    opacity: 1;
+    border-color: rgba(56, 189, 248, 0.8);
+    animation-duration: 6s;
+  }
+
+  .uhb-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    z-index: 2;
+    transition: transform 0.3s ease;
+  }
+
+  .uhb-icon {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+
+  #uhb-link:hover .uhb-icon-wrap {
+    transform: scale(1.15);
+  }
+
+  #uhb-canvas {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 162px;
+    height: 162px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .uhb-tooltip {
+    position: absolute;
+    right: 74px;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background: rgba(15, 17, 23, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  #uhb-link:hover .uhb-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  .uhb-badge {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    padding: 2px 5px;
+    font-size: 9px;
+    color: #38bdf8;
+  }
+
+  @keyframes uhb-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<script>
+(function() {
+  const root = document.getElementById('universal-home-btn-root');
+  const link = document.getElementById('uhb-link');
+  const canvas = document.getElementById('uhb-canvas');
+  const ctx = canvas.getContext('2d');
+
+  // Resize Canvas
+  canvas.width = 162;
+  canvas.height = 162;
+
+  // Web Audio Synthesizer (Zero External Dependencies)
+  let audioCtx = null;
+  function getAudioContext() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playSound(type) {
+    try {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (type === 'hover') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
+        gain.gain.setValueAtTime(0.03, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        osc.start(now);
+        osc.stop(now + 0.12);
+      } else if (type === 'click') {
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C Major Chord
+        notes.forEach((freq, idx) => {
+          const subOsc = ctx.createOscillator();
+          const subGain = ctx.createGain();
+          subOsc.type = 'triangle';
+          subOsc.frequency.setValueAtTime(freq, now + idx * 0.04);
+          subGain.gain.setValueAtTime(0.08, now + idx * 0.04);
+          subGain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.04 + 0.4);
+          subOsc.connect(subGain);
+          subGain.connect(ctx.destination);
+          subOsc.start(now + idx * 0.04);
+          subOsc.stop(now + idx * 0.04 + 0.4);
+        });
+      }
+    } catch(e) {}
+  }
+
+  // Particle Physics System
+  let particles = [];
+  class Particle {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.radius = Math.random() * 2.5 + 1;
+      this.color = color;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 3 + 1;
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed;
+      this.alpha = 1;
+      this.decay = Math.random() * 0.03 + 0.015;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.alpha -= this.decay;
+    }
+    draw(context) {
+      context.save();
+      context.globalAlpha = Math.max(0, this.alpha);
+      context.fillStyle = this.color;
+      context.beginPath();
+      context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      context.fill();
+      context.restore();
+    }
+  }
+
+  function createBurst() {
+    const colors = ['#a855f7', '#3b82f6', '#06b6d4', '#ffffff'];
+    for (let i = 0; i < 24; i++) {
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      particles.push(new Particle(81, 81, color));
+    }
+  }
+
+  function renderParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, index) => {
+      p.update();
+      p.draw(ctx);
+      if (p.alpha <= 0) particles.splice(index, 1);
+    });
+    requestAnimationFrame(renderParticles);
+  }
+  renderParticles();
+
+  // Hover Effect
+  link.addEventListener('mouseenter', () => playSound('hover'));
+
+  // Click Animation & Audio
+  link.addEventListener('click', (e) => {
+    playSound('click');
+    createBurst();
+    
+    // Smooth delay before navigation so user hears click chime
+    e.preventDefault();
+    setTimeout(() => {
+      window.location.href = link.href;
+    }, 220);
+  });
+
+  // Keyboard Shortcut (Press "H" to Go Home)
+  window.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'h' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+      link.click();
+    }
+  });
+
+  // Optional Drag & Drop functionality
+  let isDragging = false, startX, startY, initialRight, initialBottom;
+  link.addEventListener('mousedown', (e) => {
+    isDragging = false;
+    startX = e.clientX;
+    startY = e.clientY;
+    const rect = root.getBoundingClientRect();
+    initialRight = window.innerWidth - rect.right;
+    initialBottom = window.innerHeight - rect.bottom;
+
+    function onMouseMove(ev) {
+      const dx = startX - ev.clientX;
+      const dy = startY - ev.clientY;
+      if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+        isDragging = true;
+        root.style.right = (initialRight + dx) + 'px';
+        root.style.bottom = (initialBottom + dy) + 'px';
+      }
+    }
+
+    function onMouseUp() {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    }
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  });
+})();
+</script>
 </body>
 </html>
